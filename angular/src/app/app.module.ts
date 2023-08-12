@@ -39,7 +39,10 @@ import { SidebarLogoComponent } from './layout/sidebar-logo.component';
 import { SidebarUserPanelComponent } from './layout/sidebar-user-panel.component';
 import { SidebarMenuComponent } from './layout/sidebar-menu.component';
 
+
 // #region (1) Import the component here
+import { CategoryComponent } from './Vendor-View/category/category.component';
+
 
 // #endregion
 
@@ -71,8 +74,11 @@ import { SidebarMenuComponent } from './layout/sidebar-menu.component';
         SidebarComponent,
         SidebarLogoComponent,
         SidebarUserPanelComponent,
-        SidebarMenuComponent
+        SidebarMenuComponent,
+
         // #region (2) Declare the components here
+        CategoryComponent
+
 
         // #endregion
     ],
