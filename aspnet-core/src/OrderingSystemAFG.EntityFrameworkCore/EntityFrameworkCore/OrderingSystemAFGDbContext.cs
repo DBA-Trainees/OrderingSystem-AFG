@@ -3,6 +3,7 @@ using Abp.Zero.EntityFrameworkCore;
 using OrderingSystemAFG.Authorization.Roles;
 using OrderingSystemAFG.Authorization.Users;
 using OrderingSystemAFG.MultiTenancy;
+using OrderingSystemAFG.Entities;
 
 namespace OrderingSystemAFG.EntityFrameworkCore
 {
@@ -14,5 +15,10 @@ namespace OrderingSystemAFG.EntityFrameworkCore
             : base(options)
         {
         }
+
+        /* List of Tables  */
+        public DbSet<Category> Categories { get; set; }
+
+
     }
 }
