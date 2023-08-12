@@ -12,9 +12,9 @@ namespace OrderingSystemAFG.Categorys
 
     public interface ICategoryAppService : IAsyncCrudAppService<CategoryDto, int, PagedCategoryResultRequestDto, CreateCategoryDto, CategoryDto>
     {
-        //Task<PagedResultDto<CategoryDto>> GetAllAsync(PagedCategoryResultRequestDto input);
+        Task<PagedResultDto<CategoryDto>> GetAllAsync(PagedCategoryResultRequestDto input);
 
-        //Task<List<CategoryDto>> GetAllTheListOfCategoryFromDTO();
+        Task<List<CategoryDto>> GetAllTheListOfCategoryFromDTO();
 
     }
 }
