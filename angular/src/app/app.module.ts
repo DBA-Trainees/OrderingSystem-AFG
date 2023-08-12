@@ -42,6 +42,7 @@ import { SidebarMenuComponent } from './layout/sidebar-menu.component';
 
 // #region (1) Import the component here
 import { CategoryComponent } from './Vendor-View/category/category.component';
+import { CategoryServiceProxy } from '@shared/service-proxies/service-proxies';
 
 
 // #endregion
@@ -99,7 +100,8 @@ import { CategoryComponent } from './Vendor-View/category/category.component';
     ],
     providers: [
         // #region (3) Declare the serviceproxy here
-
+        CategoryServiceProxy
+        
         // #endregion
 
     ]
