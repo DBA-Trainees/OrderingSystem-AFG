@@ -44,6 +44,7 @@ import { SidebarMenuComponent } from './layout/sidebar-menu.component';
 import { CategoryComponent } from './Vendor-View/category/category.component';
 import { CategoryServiceProxy } from '@shared/service-proxies/service-proxies';
 import { CreateOrEditCategoryComponent } from './Vendor-View/category/create-or-edit-category/create-or-edit-category.component';
+import { DivisionComponent } from './Admin-View/division/division.component';
 
 
 // #endregion
@@ -81,6 +82,7 @@ import { CreateOrEditCategoryComponent } from './Vendor-View/category/create-or-
         // #region (2) Declare the components here
         CategoryComponent,
         CreateOrEditCategoryComponent,
+        DivisionComponent,
 
 
         // #endregion
