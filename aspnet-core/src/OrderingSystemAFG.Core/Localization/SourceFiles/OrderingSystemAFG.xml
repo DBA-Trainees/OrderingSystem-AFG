@@ -128,12 +128,15 @@
     <text name="Vendor Main Navigation">Vendor Main View</text>
     <text name="Category View">Category View</text>
 	  
-    <text name="Admin Main View">Admin Main View</text>
+    <text name="Admin Main Navigation">Admin Main View</text> 
+    <text name="Division View">Division View</text> 
+	  
+	  
     <text name="Customer Main View">Customer Main View</text>
     
     <text name="Home View">Home View</text>
     <text name="Customer View">Customer View</text>
-    <text name="Division View">Division View</text>
+    
     <text name="Food View">Food View</text>
     <text name="Food Type View">Food Type View</text>
     

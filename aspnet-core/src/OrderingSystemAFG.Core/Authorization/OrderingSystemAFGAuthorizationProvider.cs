@@ -21,7 +21,9 @@ namespace OrderingSystemAFG.Authorization
             #endregion
 
             #region Admin View
-
+                var adminView = context.GetPermissionOrNull(PermissionNames.Pages_User_Admin) ?? context.CreatePermission(PermissionNames.Pages_User_Admin, L("Admin Main Navigation"));
+ 
+                adminView.CreateChildPermission(PermissionNames.Pages_Admin_Divisions, L("Division View"));
             #endregion
 
             #region Customer View
