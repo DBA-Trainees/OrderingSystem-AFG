@@ -51,6 +51,14 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
             new MenuItem(this.l('Users'), '/app/users', 'fas fa-users', 'Pages.Users'),
             new MenuItem(this.l('About'), '/app/about', 'fas fa-info-circle'),
             
+            // #region Vendor
+            new MenuItem(this.l("VendorNav"), '', 'fas fa-store', 'Pages.User.Vendor', [
+                new MenuItem(this.l('Category'), '/app/category', 'fa fa-list', 'Pages.Vendor.Category'),
+                
+            ]),
+            // #endregion
+
+
         ];
     }
     // #endregion
