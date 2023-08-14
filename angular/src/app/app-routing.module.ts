@@ -11,7 +11,7 @@ import { ChangePasswordComponent } from './users/change-password/change-password
 
 // #region (4) Declare the Component here first before adding into path
 import { CategoryComponent } from './Vendor-View/category/category.component';
-
+import { DivisionComponent } from './Admin-View/division/division.component';
 // #endregion
 
 @NgModule({
@@ -28,6 +28,11 @@ import { CategoryComponent } from './Vendor-View/category/category.component';
                     { path: 'tenants', component: TenantsComponent, data: { permission: 'Pages.Tenants' }, canActivate: [AppRouteGuard] },
                     { path: 'about', component: AboutComponent, canActivate: [AppRouteGuard] },
                     { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] },
+
+                    // #region Admin
+                    { path: 'division', component: DivisionComponent, data: { permission: 'Pages.User.Admin'}, canActivate: [AppRouteGuard] },
+                    
+                    // #endregion
 
                     // #region Vendor
                     { path: 'category', component: CategoryComponent, data: { permission: 'Pages.User.Vendor'} , canActivate: [AppRouteGuard] },
