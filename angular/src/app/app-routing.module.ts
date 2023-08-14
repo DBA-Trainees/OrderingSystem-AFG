@@ -10,7 +10,7 @@ import { RolesComponent } from 'app/roles/roles.component';
 import { ChangePasswordComponent } from './users/change-password/change-password.component';
 
 // #region (4) Declare the Component here first before adding into path
-
+import { CategoryComponent } from './Vendor-View/category/category.component';
 
 // #endregion
 
@@ -27,9 +27,12 @@ import { ChangePasswordComponent } from './users/change-password/change-password
                     { path: 'roles', component: RolesComponent, data: { permission: 'Pages.Roles' }, canActivate: [AppRouteGuard] },
                     { path: 'tenants', component: TenantsComponent, data: { permission: 'Pages.Tenants' }, canActivate: [AppRouteGuard] },
                     { path: 'about', component: AboutComponent, canActivate: [AppRouteGuard] },
-                    { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] }
+                    { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] },
 
+                    // #region Vendor
+                    { path: 'category', component: CategoryComponent, data: { permission: 'Pages.User.Vendor'} , canActivate: [AppRouteGuard] },
                     
+                    // #endregion
 
                 ]
             }
