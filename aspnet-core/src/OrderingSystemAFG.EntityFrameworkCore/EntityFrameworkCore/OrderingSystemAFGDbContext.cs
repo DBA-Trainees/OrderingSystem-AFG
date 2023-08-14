@@ -18,6 +18,8 @@ namespace OrderingSystemAFG.EntityFrameworkCore
 
         /* List of Tables  */
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Division> Divisions { get; set; }
+
 
 
     }
