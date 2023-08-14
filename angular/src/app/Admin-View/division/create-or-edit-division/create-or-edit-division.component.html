@@ -1,1 +1,48 @@
-<p>create-or-edit-division works!</p>
+
+<form class="form-horizontal"
+      autocomplete="off"
+      #createDivisionModal="ngForm"
+      (ngSubmit)="save()">
+  
+    <abp-modal-header [title]="'Create Division' | localize" 
+                      (onCloseClick)="_divisionModal.hide()">
+    
+    </abp-modal-header>
+  
+    <div class="modal-body">
+
+        <div class="form-group row required">
+
+          <label class="col-md-3 col-form-label" 
+                 for="divisionName">
+            {{ "Division" | localize }}
+          </label>
+
+          <div class="col-md-9">
+
+            <input type="text"
+                   class="form-control"
+                   name="divisionName"
+                   id="divisionName"
+                   required
+                   [(ngModel)]="divisionDto.divisionName"
+                   #divisionNameModel="ngModel"
+                   #divisionNameEl />
+
+            <abp-validation-summary [control]="divisionNameModel"
+                                    [controlEl]="divisionNameEl">
+            </abp-validation-summary>
+
+          </div>
+        </div>
+
+    </div>
+    
+    <abp-modal-footer [cancelDisabled]="saving"
+                      [saveDisabled]="!createDivisionModal.form.valid || saving"
+                      (onCancelClick)="_divisionModal.hide()">
+    </abp-modal-footer>
+
+</form>
+  
+

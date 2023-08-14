@@ -23,7 +23,7 @@ export class CreateOrEditDivisionComponent extends AppComponentBase implements O
   constructor(
     private injector: Injector,
     private _divisionServiceProxy: DivisionServiceProxy,
-    private _divisionModal: BsModalRef,
+    public _divisionModal: BsModalRef,
   )
   {
     super(injector);
