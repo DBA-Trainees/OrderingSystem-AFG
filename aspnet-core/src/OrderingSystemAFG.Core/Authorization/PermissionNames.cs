@@ -1,6 +1,6 @@
 ﻿namespace OrderingSystemAFG.Authorization
 {
-    /* (1) */
+    /*  (1) */
     public static class PermissionNames
     {
 

@@ -123,8 +123,11 @@
     <text name="OrderingSystemBrandText">Ordering System</text>
     <text name="Developer Name">Adrienne Fortin Garimbao</text>
 
-    <!-- #region View Title Permissions -->
-    <text name="Vendor Main View">Vendor Main View</text>
+    <!-- #region (3) View Title Permissions -->
+	  
+    <text name="Vendor Main Navigation">Vendor Main View</text>
+    <text name="Category View">Category View</text>
+	  
     <text name="Admin Main View">Admin Main View</text>
     <text name="Customer Main View">Customer Main View</text>
     
@@ -133,7 +136,7 @@
     <text name="Division View">Division View</text>
     <text name="Food View">Food View</text>
     <text name="Food Type View">Food Type View</text>
-    <text name="Category View">Category View</text>
+    
     <text name="User View">User View</text>
     <text name="Role View">Role View</text>
     <text name="Tenant View">Tenant View</text>
