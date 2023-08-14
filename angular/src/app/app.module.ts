@@ -45,6 +45,7 @@ import { CategoryComponent } from './Vendor-View/category/category.component';
 import { CategoryServiceProxy, DivisionServiceProxy } from '@shared/service-proxies/service-proxies';
 import { CreateOrEditCategoryComponent } from './Vendor-View/category/create-or-edit-category/create-or-edit-category.component';
 import { DivisionComponent } from './Admin-View/division/division.component';
+import { CreateOrEditDivisionComponent } from './Admin-View/division/create-or-edit-division/create-or-edit-division.component';
 
 
 // #endregion
@@ -83,6 +84,7 @@ import { DivisionComponent } from './Admin-View/division/division.component';
         CategoryComponent,
         CreateOrEditCategoryComponent,
         DivisionComponent,
+        CreateOrEditDivisionComponent,
 
 
         // #endregion
