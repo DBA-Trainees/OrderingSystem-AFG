@@ -11,7 +11,7 @@ namespace OrderingSystemAFG.Entities
     {
         /* List Columns */
 
-        public int FoodTypeName { get; set; }
+        public string FoodTypeName { get; set; } 
 
     }
 }

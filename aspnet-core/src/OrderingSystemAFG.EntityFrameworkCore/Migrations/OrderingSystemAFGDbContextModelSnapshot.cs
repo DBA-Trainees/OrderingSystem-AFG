@@ -1667,8 +1667,8 @@ namespace OrderingSystemAFG.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FoodTypeName")
-                        .HasColumnType("int");
+                    b.Property<string>("FoodTypeName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");

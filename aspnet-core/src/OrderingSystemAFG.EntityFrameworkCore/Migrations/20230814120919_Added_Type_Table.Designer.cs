@@ -12,8 +12,8 @@ using OrderingSystemAFG.EntityFrameworkCore;
 namespace OrderingSystemAFG.Migrations
 {
     [DbContext(typeof(OrderingSystemAFGDbContext))]
-    [Migration("20230814114236_Added_FoodType_Table")]
-    partial class Added_FoodType_Table
+    [Migration("20230814120919_Added_Type_Table")]
+    partial class Added_Type_Table
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1670,8 +1670,8 @@ namespace OrderingSystemAFG.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FoodTypeName")
-                        .HasColumnType("int");
+                    b.Property<string>("FoodTypeName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");

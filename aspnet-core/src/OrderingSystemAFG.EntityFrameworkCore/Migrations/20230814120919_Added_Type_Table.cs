@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OrderingSystemAFG.Migrations
 {
     /// <inheritdoc />
-    public partial class Added_FoodType_Table : Migration
+    public partial class Added_Type_Table : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace OrderingSystemAFG.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FoodTypeName = table.Column<int>(type: "int", nullable: false),
+                    FoodTypeName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
                     LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
