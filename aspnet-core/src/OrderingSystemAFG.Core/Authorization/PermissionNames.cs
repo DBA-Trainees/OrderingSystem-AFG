@@ -12,13 +12,14 @@
         #endregion
 
         #region Admin
-
+            public const string Pages_User_Admin = "Pages.User.Admin"; 
+            public const string Pages_Admin_Divisions = "Pages.Admin.Divisions";
 
         #endregion
 
 
         #region Vendor
-            public const string Pages_Users_Vendor = "Pages.User.Vendor";
+        public const string Pages_Users_Vendor = "Pages.User.Vendor";
             public const string Pages_Vendor_Category = "Pages.Vendor.Category";
 
         #endregion
