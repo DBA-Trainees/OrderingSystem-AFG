@@ -1,1 +1,47 @@
-<p>create-or-edit-category works!</p>
+<form class="form-horizontal"
+      autocomplete="off"
+      #createCategoryModal="ngForm"
+      (ngSubmit)="save()" >
+
+  <abp-modal-header [title]="'Create Category' | localize" 
+                    (onCloseClick)="_categoryModal.hide()">
+  </abp-modal-header>
+
+  <div class="modal-body">
+
+        <div class="form-group row required">
+
+          <label class="col-md-3 col-form-label" 
+                 for="categoryName" >
+
+            {{ "Category" | localize }}
+            
+          </label>
+
+          <div class="col-md-9">
+            <input type="text"
+                   class="form-control"
+                   name="categoryName"
+                   id="categoryName"
+                   required
+                   [(ngModel)]="categoryDto.categoryName"
+                   #categoryNameModel="ngModel"
+                   #categoryNameEl />
+
+            <abp-validation-summary [control]="categoryNameModel"
+                                    [controlEl]="categoryNameEl">
+            </abp-validation-summary>
+
+          </div>
+        </div>
+
+    </div>
+
+    <abp-modal-footer [cancelDisabled]="saving"
+                      [saveDisabled]="!createCategoryModal.form.valid || saving"
+                      (onCancelClick)="_categoryModal.hide()">
+    </abp-modal-footer>
+
+</form>
+  
+

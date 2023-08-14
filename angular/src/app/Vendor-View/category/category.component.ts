@@ -29,7 +29,7 @@ export class CategoryComponent extends PagedListingComponentBase<CategoryDto>{
   totalRecords: number = 0;
   loading: boolean = false;
   request: CategoryDtoPagedResultDto;
-  keyword: '';
+  keyword: "";
   isActive: boolean | null;
   advancedFiltersVisible = false;
 
