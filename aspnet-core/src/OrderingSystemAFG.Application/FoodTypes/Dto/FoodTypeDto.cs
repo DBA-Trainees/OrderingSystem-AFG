@@ -13,6 +13,6 @@ namespace OrderingSystemAFG.FoodTypes.Dto
 
     public class FoodTypeDto : EntityDto<int>
     {
-        public int FoodTypeName { get; set; }
+        public string FoodTypeName { get; set; }
     }
 }

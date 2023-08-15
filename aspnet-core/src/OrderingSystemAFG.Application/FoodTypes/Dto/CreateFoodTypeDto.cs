@@ -11,6 +11,6 @@ namespace OrderingSystemAFG.FoodTypes.Dto
 
     public class CreateFoodTypeDto
     {
-        public int FoodTypeName { get; set; }
+        public string FoodTypeName { get; set; }
     }
 }

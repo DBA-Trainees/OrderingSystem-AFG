@@ -6,7 +6,6 @@ import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { FoodTypeDto, FoodTypeDtoPagedResultDto, FoodTypeServiceProxy } from '@shared/service-proxies/service-proxies';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
-import { result } from 'lodash-es';
 
 class PagedFoodTypeDto extends PagedRequestDto
 {
@@ -29,6 +28,8 @@ export class FoodTypeComponent extends PagedListingComponentBase<FoodTypeDto>{
   totalRecords: number = 0;
   loading: boolean = false;
   icActive: boolean | null;
+  keyword: "";
+  request: FoodTypeDtoPagedResultDto;
   advancedFiltersVisible = false;
   
   constructor(

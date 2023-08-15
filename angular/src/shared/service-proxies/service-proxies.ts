@@ -3412,7 +3412,7 @@ export interface ICreateDivisionDto {
 }
 
 export class CreateFoodTypeDto implements ICreateFoodTypeDto {
-    foodTypeName: number;
+    foodTypeName: string | undefined;
 
     constructor(data?: ICreateFoodTypeDto) {
         if (data) {
@@ -3451,7 +3451,7 @@ export class CreateFoodTypeDto implements ICreateFoodTypeDto {
 }
 
 export interface ICreateFoodTypeDto {
-    foodTypeName: number;
+    foodTypeName: string | undefined;
 }
 
 export class CreateRoleDto implements ICreateRoleDto {
@@ -3963,7 +3963,7 @@ export interface IFlatPermissionDto {
 
 export class FoodTypeDto implements IFoodTypeDto {
     id: number;
-    foodTypeName: number;
+    foodTypeName: string | undefined;
 
     constructor(data?: IFoodTypeDto) {
         if (data) {
@@ -4005,7 +4005,7 @@ export class FoodTypeDto implements IFoodTypeDto {
 
 export interface IFoodTypeDto {
     id: number;
-    foodTypeName: number;
+    foodTypeName: string | undefined;
 }
 
 export class FoodTypeDtoPagedResultDto implements IFoodTypeDtoPagedResultDto {
