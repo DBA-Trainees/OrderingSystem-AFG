@@ -21,7 +21,7 @@
         #region Vendor
         public const string Pages_Users_Vendor = "Pages.User.Vendor";
             public const string Pages_Vendor_Category = "Pages.Vendor.Category";
-
+            public const string Pages_Vendor_Type = "Pages.Vendor.Type";
         #endregion
 
 
