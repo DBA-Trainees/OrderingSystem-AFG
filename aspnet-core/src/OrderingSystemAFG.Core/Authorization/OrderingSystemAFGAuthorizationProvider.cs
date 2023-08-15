@@ -18,11 +18,12 @@ namespace OrderingSystemAFG.Authorization
             var vendorView = context.GetPermissionOrNull(PermissionNames.Pages_Users_Vendor) ?? context.CreatePermission(PermissionNames.Pages_Users_Vendor, L("Vendor Main Navigation"));
 
                 vendorView.CreateChildPermission(PermissionNames.Pages_Vendor_Category, L("Category View"));
-                vendorView.CreateChildPermission(PermissionNames.Pages_Vendor_Type, L("Food Type View")); 
+                vendorView.CreateChildPermission(PermissionNames.Pages_Vendor_Type, L("Food Type View"));
+                vendorView.CreateChildPermission(PermissionNames.Pages_Vendor_Size, L("Food Size View"));
             #endregion
 
             #region Admin View
-                var adminView = context.GetPermissionOrNull(PermissionNames.Pages_User_Admin) ?? context.CreatePermission(PermissionNames.Pages_User_Admin, L("Admin Main Navigation"));
+            var adminView = context.GetPermissionOrNull(PermissionNames.Pages_User_Admin) ?? context.CreatePermission(PermissionNames.Pages_User_Admin, L("Admin Main Navigation"));
  
                 adminView.CreateChildPermission(PermissionNames.Pages_Admin_Divisions, L("Division View"));
                 context.CreatePermission(PermissionNames.Pages_Users, L("Users"));
