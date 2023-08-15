@@ -1,1 +1,46 @@
-<p>create-or-edit-foodtype works!</p>
+
+<form class="form-horizontal"
+      autocomplete="off"
+      #createTypeModal="ngForm"
+      (ngSubmit)="save()">
+  
+      <abp-modal-header [title]="'Type' | localize" 
+                        (onCloseClick)="_foodTypeModal.hide()">
+    </abp-modal-header>
+
+  <div class="modal-body">
+
+        <div class="form-group row required">
+          
+            <label class="col-md-3 col-form-label" 
+                   for="fTypeName">
+            {{ "FoodType" | localize }}
+            </label>
+
+          <div class="col-md-9">
+
+            <input type="text"
+                   class="form-control"
+                   name="fTypeName"
+                   id="fTypeName"
+                   required
+                   [(ngModel)]="foodTypeDto.foodTypeName"
+                   #typeNameModel="ngModel"
+                   #typeNameEl />
+
+            <abp-validation-summary [control]="typeNameModel"
+                                    [controlEl]="typeNameEl">
+            </abp-validation-summary>
+
+          </div>
+        </div>
+
+    </div>
+
+    <abp-modal-footer [cancelDisabled]="saving"
+                      [saveDisabled]="!createTypeModal.form.valid || saving"
+                      (onCancelClick)="_foodTypeModal.hide()">
+    </abp-modal-footer>
+
+</form>
+  
