@@ -49,6 +49,7 @@ import { CreateOrEditDivisionComponent } from './Admin-View/division/create-or-e
 import { FoodTypeComponent } from './Vendor-View/food-type/food-type.component';
 import { CreateOrEditFoodtypeComponent } from './Vendor-View/food-type/create-or-edit-foodtype/create-or-edit-foodtype.component';
 import { FoodSizeComponent } from './Vendor-View/food-size/food-size.component';
+import { CreateOrEditFoodsizeComponent } from './Vendor-View/food-size/create-or-edit-foodsize/create-or-edit-foodsize.component';
 
 
 // #endregion
@@ -91,6 +92,7 @@ import { FoodSizeComponent } from './Vendor-View/food-size/food-size.component';
         FoodTypeComponent,
         CreateOrEditFoodtypeComponent,
         FoodSizeComponent,
+        CreateOrEditFoodsizeComponent,
 
 
         // #endregion
