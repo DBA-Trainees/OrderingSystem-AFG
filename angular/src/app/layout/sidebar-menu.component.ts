@@ -51,16 +51,16 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
             
              // #region Admin Menu
              new MenuItem(this.l("AdminNav"), '', 'fas fa-user-tie', 'Pages.User.Admin', [     
-                new MenuItem(this.l('Division'), '/app/division', 'fas fa-sitemap'),   
-                new MenuItem(this.l('Roles'), '/app/roles','fas fa-theater-masks'),
-                new MenuItem(this.l('Users'), '/app/users', 'fas fa-users' ),
+                new MenuItem(this.l('Division'), '/app/division', 'fas fa-sitemap', 'Pages.Admin.Divisions'),   
+                new MenuItem(this.l('Roles'), '/app/roles','fas fa-theater-masks', 'Pages.User.Admin'),
+                new MenuItem(this.l('Users'), '/app/users', 'fas fa-users', 'Pages.User.Admin'),
             ]),
             // #endregion
 
             // #region Vendor Menu 
             new MenuItem(this.l("VendorNav"), '', 'fas fa-store', 'Pages.User.Vendor', [
                 new MenuItem(this.l('Category'), '/app/category', 'fa fa-list', 'Pages.Vendor.Category'),
-                
+                new MenuItem(this.l('FoodType'), '/app/food-type', 'fas fa-utensils', 'Pages.Vendor.Type'),
             ]),
             // #endregion
 

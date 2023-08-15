@@ -29,15 +29,15 @@ import { FoodTypeComponent } from './Vendor-View/food-type/food-type.component';
                     { path: 'tenants', component: TenantsComponent, canActivate: [AppRouteGuard] },
 
                     // #region Admin
-                    { path: 'users', component: UsersComponent, canActivate: [AppRouteGuard] },
-                    { path: 'roles', component: RolesComponent,  canActivate: [AppRouteGuard] },
-                    { path: 'division', component: DivisionComponent, canActivate: [AppRouteGuard] },
+                    { path: 'users', component: UsersComponent, data: { permission: 'Pages.User.Admin'}, canActivate: [AppRouteGuard] },
+                    { path: 'roles', component: RolesComponent, data: { permission: 'Pages.User.Admin'}, canActivate: [AppRouteGuard] },
+                    { path: 'division', component: DivisionComponent, data: { permission: 'Pages.User.Admin'}, canActivate: [AppRouteGuard] },
                     
                     // #endregion
 
                     // #region Vendor
-                    { path: 'category', component: CategoryComponent, canActivate: [AppRouteGuard] },
-                    { path: 'food-type', component: FoodTypeComponent, canActivate: [AppRouteGuard] },
+                    { path: 'category', component: CategoryComponent, data: { permission: 'Pages.User.Vendor'}, canActivate: [AppRouteGuard] },
+                    { path: 'food-type', component: FoodTypeComponent, data: { permission: 'Pages.User.Vendor'}, canActivate: [AppRouteGuard] },
                     // #endregion
 
                 ]

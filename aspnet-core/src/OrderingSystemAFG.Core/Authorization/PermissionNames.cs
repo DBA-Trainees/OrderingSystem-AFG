@@ -14,7 +14,8 @@
         #region Admin
             public const string Pages_User_Admin = "Pages.User.Admin"; 
             public const string Pages_Admin_Divisions = "Pages.Admin.Divisions";
-
+            public const string Pages_Admin_Users = "Pages.Admin.Users";
+            public const string Pages_Admin_Roles = "Pages.Admin.Roles";
         #endregion
 
 
