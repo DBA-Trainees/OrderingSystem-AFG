@@ -200,6 +200,11 @@
     <text name="FType Name">Food Type</text>
     <text name="Create Food Type">TYPE </text>
     <!-- #endregion  -->
+	  
+    <!-- #region Food Size -->
+    <text name="FoodSize">Food Size</text>
+	  
+    <!-- #endregion  -->
 
     <!-- #region Food -->
     <text name="Food">Foods</text>
