@@ -11,8 +11,8 @@ namespace OrderingSystemAFG.Sizes
 {
     public interface ISizeAppService : IAsyncCrudAppService<SizeDto, int, PagedSizeResultRequestDto, CreateSizeDto, SizeDto>
     {
-        //Task<PagedResultDto<SizeDto>> GetAllAsync(PagedSizeResultRequestDto input);
+        Task<PagedResultDto<SizeDto>> GetAllAsync(PagedSizeResultRequestDto input);
 
-        //Task<List<SizeDto>> GetAllTheListOfSizeFromDTO();
+        Task<List<SizeDto>> GetAllTheListOfSizeFromDTO();
     }
 }
