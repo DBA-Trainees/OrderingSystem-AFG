@@ -20,6 +20,7 @@ namespace OrderingSystemAFG.EntityFrameworkCore
         public DbSet<Category> Categories { get; set; }
         public DbSet<Division> Divisions { get; set; }
         public DbSet<Type> Types { get; set; } 
+        public DbSet<Size> Sizes { get; set; }
 
 
     }
