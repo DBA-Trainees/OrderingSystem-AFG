@@ -21,6 +21,7 @@ namespace OrderingSystemAFG.EntityFrameworkCore
         public DbSet<Division> Divisions { get; set; }
         public DbSet<Type> Types { get; set; } 
         public DbSet<Size> Sizes { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
 
     }

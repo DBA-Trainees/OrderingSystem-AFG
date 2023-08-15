@@ -1,0 +1,77 @@
+
+<form class="form-horizontal"
+      autocomplete="off"
+      #createCustomerModal="ngForm"
+      (ngSubmit)="save()">
+  
+    <abp-modal-header [title]="'Create Customer' | localize" 
+                      (onCloseClick)="_customerModal.hide()">
+    </abp-modal-header>
+  
+    <div class="modal-body">
+
+        <div class="form-group row required">
+
+          <label class="col-md-3 col-form-label" 
+                 for="customerName">
+            {{ "Name" | localize }}
+
+          </label>
+
+          <div class="col-md-9">
+            <input type="text"
+                   class="form-control"
+                   name="customerName"
+                   id="customerName"
+                   required
+                   [(ngModel)]="customerDto.customerName"
+                   #customerNameModel="ngModel"
+                   #customerNameEl />
+
+            <abp-validation-summary [control]="customerNameModel"
+                                    [controlEl]="customerNameEl">
+            </abp-validation-summary>
+
+          </div>
+        </div>
+
+        <div class="form-group row required">
+
+            <label class="col-md-3 col-form-label" 
+                   for="divisionName">
+
+                {{ "Divisions" | localize }}
+
+            </label>
+
+            <div class="col-md-9">
+                
+                <select class="form-control"
+                        name="divisionName"
+                        id="divisionName"
+                        required            
+                        [ngModel]="selectedDivision"     
+                        (ngModelChange)="selectedDivision=$event">
+
+                    <option *ngFor="let division of divisionItems"
+                            [ngValue]="division.id">{{division.divisionName}}
+                
+                    </option>
+
+                </select>
+
+            </div>            
+        </div>
+
+
+    </div>
+
+    <abp-modal-footer [cancelDisabled]="saving"
+                      [saveDisabled]="!createCustomerModal.form.valid || saving"
+                      (onCancelClick)="_customerModal.hide()">
+    </abp-modal-footer>
+
+</form>
+  
+
+

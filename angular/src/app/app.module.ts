@@ -42,7 +42,7 @@ import { SidebarMenuComponent } from './layout/sidebar-menu.component';
 
 // #region (1) Import the component here
 import { CategoryComponent } from './Vendor-View/category/category.component';
-import { CategoryServiceProxy, DivisionServiceProxy, FoodTypeServiceProxy, SizeServiceProxy } from '@shared/service-proxies/service-proxies';
+import { CategoryServiceProxy, CustomerServiceProxy, DivisionServiceProxy, FoodTypeServiceProxy, SizeServiceProxy } from '@shared/service-proxies/service-proxies';
 import { CreateOrEditCategoryComponent } from './Vendor-View/category/create-or-edit-category/create-or-edit-category.component';
 import { DivisionComponent } from './Admin-View/division/division.component';
 import { CreateOrEditDivisionComponent } from './Admin-View/division/create-or-edit-division/create-or-edit-division.component';
@@ -50,6 +50,8 @@ import { FoodTypeComponent } from './Vendor-View/food-type/food-type.component';
 import { CreateOrEditFoodtypeComponent } from './Vendor-View/food-type/create-or-edit-foodtype/create-or-edit-foodtype.component';
 import { FoodSizeComponent } from './Vendor-View/food-size/food-size.component';
 import { CreateOrEditFoodsizeComponent } from './Vendor-View/food-size/create-or-edit-foodsize/create-or-edit-foodsize.component';
+import { CustomerWithDivisionComponent } from './customer-with-division/customer-with-division.component';
+import { CreateOrEditCustomerwithdivisionComponent } from './customer-with-division/create-or-edit-customerwithdivision/create-or-edit-customerwithdivision.component';
 
 
 // #endregion
@@ -93,6 +95,8 @@ import { CreateOrEditFoodsizeComponent } from './Vendor-View/food-size/create-or
         CreateOrEditFoodtypeComponent,
         FoodSizeComponent,
         CreateOrEditFoodsizeComponent,
+        CustomerWithDivisionComponent,
+        CreateOrEditCustomerwithdivisionComponent,
 
 
         // #endregion
@@ -118,6 +122,7 @@ import { CreateOrEditFoodsizeComponent } from './Vendor-View/food-size/create-or
         DivisionServiceProxy,
         FoodTypeServiceProxy,
         SizeServiceProxy,
+        CustomerServiceProxy,
         
         // #endregion
 
