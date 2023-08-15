@@ -18,6 +18,7 @@ namespace OrderingSystemAFG.Authorization
                 var vendorView = context.GetPermissionOrNull(PermissionNames.Pages_Users_Vendor) ?? context.CreatePermission(PermissionNames.Pages_Users_Vendor, L("Vendor Main Navigation"));
 
                 vendorView.CreateChildPermission(PermissionNames.Pages_Vendor_Category, L("Category View"));
+                vendorView.CreateChildPermission(PermissionNames.Pages_Vendor_Type, L("Food Type View")); 
             #endregion
 
             #region Admin View
