@@ -1,1 +1,45 @@
-<p>create-or-edit-foodsize works!</p>
+
+<form class="form-horizontal"
+      autocomplete="off"
+      #createSizeModal="ngForm"
+      (ngSubmit)="save()">
+  
+    <abp-modal-header [title]="'Create Division' | localize" 
+                      (onCloseClick)="_sizeModal.hide()">
+    </abp-modal-header>
+  
+    <div class="modal-body">
+
+        <div class="form-group row required">
+          
+            <label class="col-md-3 col-form-label" 
+                   for="sizeName">
+                {{ "Food Size" | localize }}
+            </label>
+
+          <div class="col-md-9">
+            <input type="text"
+                   class="form-control"
+                   name="sizeName"
+                   id="sizeName"
+                   required
+                   [(ngModel)]="sizeDto.sizeName"
+                   #sizeNameModel="ngModel"
+                   #sizeNameEl/>
+
+            <abp-validation-summary [control]="sizeNameModel"
+                                    [controlEl]="sizeNameEl">
+            </abp-validation-summary>
+
+          </div>
+        </div>
+
+    </div>
+
+    <abp-modal-footer [cancelDisabled]="saving"
+                      [saveDisabled]="!createSizeModal.form.valid || saving"
+                      (onCancelClick)="_sizeModal.hide()">
+    </abp-modal-footer>
+    
+</form>
+  
