@@ -94,7 +94,7 @@ export class FoodSizeComponent extends PagedListingComponentBase<SizeDto>{
 
     if(!id)
     {
-      showCreateSizeComponent = this._sizeModalService.show(CreateOrEditFoodsizeComponent {
+      showCreateSizeComponent = this._sizeModalService.show(CreateOrEditFoodsizeComponent, {
         class: 'modal-lg',
       });
 
@@ -124,7 +124,7 @@ export class FoodSizeComponent extends PagedListingComponentBase<SizeDto>{
 
   }
 
-  
+
 
 }
 

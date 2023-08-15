@@ -203,6 +203,7 @@
 	  
     <!-- #region Food Size -->
     <text name="FoodSize">Food Size</text>
+    <text name="Size Name">Size</text>
 	  
     <!-- #endregion  -->
 
