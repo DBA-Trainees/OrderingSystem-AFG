@@ -14,5 +14,7 @@ namespace OrderingSystemAFG.FoodTypes
         Task<PagedResultDto<FoodTypeDto>> GetAllAsync(PagedFoodTypeResultRequestDto input);
 
         Task<List<FoodTypeDto>> GetAllTheListOfFoodTyoeFromDTO();
+
+        Task<FoodTypeDto> CreateAsync(CreateFoodTypeDto input);
     }
 }

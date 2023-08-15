@@ -21,6 +21,11 @@ namespace OrderingSystemAFG.FoodTypes
             _foodTypeIRepository = repository;
         }
 
+        public override Task<FoodTypeDto> CreateAsync(CreateFoodTypeDto input)
+        {
+            return base.CreateAsync(input);
+        }
+
         public override async Task<PagedResultDto<FoodTypeDto>> GetAllAsync(PagedFoodTypeResultRequestDto input)
         {
             var foodTypeItems = await _foodTypeIRepository.GetAll()

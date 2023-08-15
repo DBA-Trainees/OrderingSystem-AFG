@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace OrderingSystemAFG.FoodTypes.Dto
 {
-    [AutoMapFrom(typeof(Type))]
-    [AutoMapTo(typeof(Type))]
+    [AutoMapFrom(typeof(Entities.Type))]
+    [AutoMapTo(typeof(Entities.Type))]
 
     public class FoodTypeDto : EntityDto<int>
     {

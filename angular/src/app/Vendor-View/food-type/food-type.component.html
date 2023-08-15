@@ -72,24 +72,24 @@
                             </thead>
 
                             <tbody>
-                                <tr *ngFor="let type of typeItems | paginate:{
+                                <tr *ngFor="let types of typeItems | paginate:{
                                     id: 'server',
                                     itemsPerPage: pageSize,
                                     currentPage: pageNumber,
-                                    totalItems: totalItems
+                                    totalItems: totalItems,}" >
 
-                                }">
-                                    <td>{{type.foodTypeName}}</td>
+                                    <td>{{ types.foodTypeName }}</td>
 
 
                                     <td>
                                         <button type="button"
-                                                class="btn btn-sm bg-secondary" (click)="ShowEditFoodType(type.id)" >
+                                                class="btn btn-sm bg-secondary" (click)="ShowEditFoodType(types.id)" >
                                             <i class="fas fa-pencil-alt"></i>
                                             {{ "Edit" | localize }}
                                         </button>
+
                                         <button type="button"
-                                                class="btn btn-sm bg-danger mx-2" (click)="delete(type)" >
+                                                class="btn btn-sm bg-danger mx-2" (click)="delete(types)" >
                                             <i class="fas fa-trash"></i>
                                             {{ "Delete" | localize }}
                                         </button>
