@@ -12,6 +12,7 @@ import { ChangePasswordComponent } from './users/change-password/change-password
 // #region (4) Declare the Component here first before adding into path
 import { CategoryComponent } from './Vendor-View/category/category.component';
 import { DivisionComponent } from './Admin-View/division/division.component';
+import { FoodTypeComponent } from './Vendor-View/food-type/food-type.component';
 // #endregion
 
 @NgModule({
@@ -23,20 +24,20 @@ import { DivisionComponent } from './Admin-View/division/division.component';
                 children: [
 
                     { path: 'home', component: HomeComponent,  canActivate: [AppRouteGuard] },
-                    { path: 'users', component: UsersComponent, data: { permission: 'Pages.Users' }, canActivate: [AppRouteGuard] },
-                    { path: 'roles', component: RolesComponent, data: { permission: 'Pages.Roles' }, canActivate: [AppRouteGuard] },
-                    { path: 'tenants', component: TenantsComponent, data: { permission: 'Pages.Tenants' }, canActivate: [AppRouteGuard] },
                     { path: 'about', component: AboutComponent, canActivate: [AppRouteGuard] },
                     { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] },
+                    { path: 'tenants', component: TenantsComponent, canActivate: [AppRouteGuard] },
 
                     // #region Admin
-                    { path: 'division', component: DivisionComponent, data: { permission: 'Pages.User.Admin'}, canActivate: [AppRouteGuard] },
+                    { path: 'users', component: UsersComponent, canActivate: [AppRouteGuard] },
+                    { path: 'roles', component: RolesComponent,  canActivate: [AppRouteGuard] },
+                    { path: 'division', component: DivisionComponent, canActivate: [AppRouteGuard] },
                     
                     // #endregion
 
                     // #region Vendor
-                    { path: 'category', component: CategoryComponent, data: { permission: 'Pages.User.Vendor'} , canActivate: [AppRouteGuard] },
-                    
+                    { path: 'category', component: CategoryComponent, canActivate: [AppRouteGuard] },
+                    { path: 'food-type', component: FoodTypeComponent, canActivate: [AppRouteGuard] },
                     // #endregion
 
                 ]
