@@ -11,8 +11,8 @@ namespace OrderingSystemAFG.Foods
 {
     public interface IFoodAppService : IAsyncCrudAppService<FoodDto, int, PagedFoodResultRequestDto, CreateFoodDto, FoodDto>
     {
-        //Task<PagedResultDto<FoodDto>> GetAllAsync(PagedFoodResultRequestDto input);
-        //Task<List<FoodDto>> GetAllTheListOfFood();
-        //Task<PagedResultDto<FoodDto>> GetAllTheFoodItemWhereAvailabilityIsTrue(PagedFoodResultRequestDto input);
+        Task<PagedResultDto<FoodDto>> GetAllAsync(PagedFoodResultRequestDto input);
+        Task<List<FoodDto>> GetAllTheListOfFood();
+        Task<PagedResultDto<FoodDto>> GetAllTheFoodItemWhereAvailabilityIsTrue(PagedFoodResultRequestDto input);
     }
 }
