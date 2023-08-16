@@ -23,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\app\Admin-View\" />
+    <Folder Include="src\app\Customer-View\" />
     <Folder Include="src\app\Vendor-View\" />
   </ItemGroup>
 </Project>
