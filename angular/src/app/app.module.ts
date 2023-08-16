@@ -53,6 +53,7 @@ import { CreateOrEditFoodsizeComponent } from './Vendor-View/food-size/create-or
 import { CustomerWithDivisionComponent } from './customer-with-division/customer-with-division.component';
 import { CreateOrEditCustomerwithdivisionComponent } from './customer-with-division/create-or-edit-customerwithdivision/create-or-edit-customerwithdivision.component';
 import { FoodListComponent } from './Vendor-View/food-list/food-list.component';
+import { CreateOrEditFoodComponent } from './Vendor-View/food-list/create-or-edit-food/create-or-edit-food.component';
 
 
 // #endregion
@@ -99,6 +100,7 @@ import { FoodListComponent } from './Vendor-View/food-list/food-list.component';
         CustomerWithDivisionComponent,
         CreateOrEditCustomerwithdivisionComponent,
         FoodListComponent,
+        CreateOrEditFoodComponent,
 
 
         // #endregion
