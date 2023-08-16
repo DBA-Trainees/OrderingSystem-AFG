@@ -21,5 +21,7 @@ namespace OrderingSystemAFG.CustomerOrders.Dto
         public bool OrderStatus { get; set; }
         public DateTime? DateAndTimeOrderIsPlaced { get; set; }
         public DateTime? DateAndTimeOrderIsRecieved { get; set; }
+
+        public double TotalAmountTobePay { get; set; }
     }
 }

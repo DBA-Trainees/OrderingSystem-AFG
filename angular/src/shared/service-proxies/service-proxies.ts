@@ -1890,6 +1890,62 @@ export class FoodServiceProxy {
      * @param id (optional) 
      * @return Success
      */
+    getAllFoodIncludingCategory(id: number | undefined): Observable<FoodDto> {
+        let url_ = this.baseUrl + "/api/services/app/Food/GetAllFoodIncludingCategory?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllFoodIncludingCategory(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllFoodIncludingCategory(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<FoodDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<FoodDto>;
+        }));
+    }
+
+    protected processGetAllFoodIncludingCategory(response: HttpResponseBase): Observable<FoodDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = FoodDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return Success
+     */
     get(id: number | undefined): Observable<FoodDto> {
         let url_ = this.baseUrl + "/api/services/app/Food/Get?";
         if (id === null)
@@ -4967,6 +5023,7 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
     orderStatus: boolean;
     dateAndTimeOrderIsPlaced: moment.Moment | undefined;
     dateAndTimeOrderIsRecieved: moment.Moment | undefined;
+    totalAmountTobePay: number;
 
     constructor(data?: ICreateCustomerOrderDto) {
         if (data) {
@@ -4989,6 +5046,7 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
             this.orderStatus = _data["orderStatus"];
             this.dateAndTimeOrderIsPlaced = _data["dateAndTimeOrderIsPlaced"] ? moment(_data["dateAndTimeOrderIsPlaced"].toString()) : <any>undefined;
             this.dateAndTimeOrderIsRecieved = _data["dateAndTimeOrderIsRecieved"] ? moment(_data["dateAndTimeOrderIsRecieved"].toString()) : <any>undefined;
+            this.totalAmountTobePay = _data["totalAmountTobePay"];
         }
     }
 
@@ -5011,6 +5069,7 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
         data["orderStatus"] = this.orderStatus;
         data["dateAndTimeOrderIsPlaced"] = this.dateAndTimeOrderIsPlaced ? this.dateAndTimeOrderIsPlaced.toISOString() : <any>undefined;
         data["dateAndTimeOrderIsRecieved"] = this.dateAndTimeOrderIsRecieved ? this.dateAndTimeOrderIsRecieved.toISOString() : <any>undefined;
+        data["totalAmountTobePay"] = this.totalAmountTobePay;
         return data;
     }
 
@@ -5033,6 +5092,7 @@ export interface ICreateCustomerOrderDto {
     orderStatus: boolean;
     dateAndTimeOrderIsPlaced: moment.Moment | undefined;
     dateAndTimeOrderIsRecieved: moment.Moment | undefined;
+    totalAmountTobePay: number;
 }
 
 export class CreateDivisionDto implements ICreateDivisionDto {
@@ -5566,6 +5626,7 @@ export class CustomerOrderDto implements ICustomerOrderDto {
     orderStatus: boolean;
     dateAndTimeOrderIsPlaced: moment.Moment | undefined;
     dateAndTimeOrderIsRecieved: moment.Moment | undefined;
+    totalAmountTobePay: number;
 
     constructor(data?: ICustomerOrderDto) {
         if (data) {
@@ -5593,6 +5654,7 @@ export class CustomerOrderDto implements ICustomerOrderDto {
             this.orderStatus = _data["orderStatus"];
             this.dateAndTimeOrderIsPlaced = _data["dateAndTimeOrderIsPlaced"] ? moment(_data["dateAndTimeOrderIsPlaced"].toString()) : <any>undefined;
             this.dateAndTimeOrderIsRecieved = _data["dateAndTimeOrderIsRecieved"] ? moment(_data["dateAndTimeOrderIsRecieved"].toString()) : <any>undefined;
+            this.totalAmountTobePay = _data["totalAmountTobePay"];
         }
     }
 
@@ -5620,6 +5682,7 @@ export class CustomerOrderDto implements ICustomerOrderDto {
         data["orderStatus"] = this.orderStatus;
         data["dateAndTimeOrderIsPlaced"] = this.dateAndTimeOrderIsPlaced ? this.dateAndTimeOrderIsPlaced.toISOString() : <any>undefined;
         data["dateAndTimeOrderIsRecieved"] = this.dateAndTimeOrderIsRecieved ? this.dateAndTimeOrderIsRecieved.toISOString() : <any>undefined;
+        data["totalAmountTobePay"] = this.totalAmountTobePay;
         return data;
     }
 
@@ -5647,6 +5710,7 @@ export interface ICustomerOrderDto {
     orderStatus: boolean;
     dateAndTimeOrderIsPlaced: moment.Moment | undefined;
     dateAndTimeOrderIsRecieved: moment.Moment | undefined;
+    totalAmountTobePay: number;
 }
 
 export class CustomerOrderDtoPagedResultDto implements ICustomerOrderDtoPagedResultDto {

@@ -54,7 +54,16 @@ namespace OrderingSystemAFG.Foods
             return new PagedResultDto<FoodDto>(availableFoodItems.Count(), availableFoodItems);
         }
 
+        public async Task<FoodDto> GetAllFoodIncludingCategory(EntityDto<int> input)
+        {
+            var foodItems = await _foodIRepository.GetAll()
+                .Where(items => items.Id == input.Id)
+                .Select(items => ObjectMapper.Map<FoodDto>(items))
+                .FirstOrDefaultAsync();
 
+            return foodItems; 
+
+        }
 
 
     }

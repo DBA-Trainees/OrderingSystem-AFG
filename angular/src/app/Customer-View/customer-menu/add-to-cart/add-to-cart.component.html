@@ -1,1 +1,171 @@
-<p>add-to-cart works!</p>
+<form class="form-horizontal"
+      autocomplete="off"
+      #createOrderModal="ngForm"
+      (ngSubmit)="save()">
+
+  <abp-modal-header [title]="'Add Order' | localize"
+                    (onCloseClick)="orderModal.hide()">
+  </abp-modal-header>
+
+  <div class="modal-body">
+
+    <div class="form-group row required">
+
+        <label class="col-md-2 col-form-label" for="customerName">
+  
+          {{ "Customer Name" | localize }}
+  
+        </label>
+  
+        <div class="col-md-10">
+  
+          <input type="text"
+                 class="form-control"
+                 name="customerName"
+                 id="customerName"
+                 required
+                 [(ngModel)]="orderDto.customerName"
+                 #customerNameModel="ngModel"
+                 #customerNameEl />
+  
+          <abp-validation-summary [control]="customerNameModel"
+                                  [controlEl]="customerNameEl">
+          </abp-validation-summary>
+  
+        </div>
+  
+    </div>
+
+    <div class="form-group row">
+
+        <label class="col-md-2 col-form-label" for="division">
+          {{ "Divisions" | localize }}
+        </label>
+  
+        <div class="col-md-10">
+
+          <select class="form-control"
+                  name="division"
+                  id="division"
+                  [ngModel]="selectedDivision"
+                  (ngModelChange)="selectedDivision = $event">
+  
+            <option *ngFor="let division of divisionItems" [ngValue]="division.id">
+              {{ division.divisionName }}
+            </option>
+  
+          </select>
+        </div>
+
+    </div>
+
+    <div class="col-md-10">
+
+        <img *ngIf="foodDto.imageFileType && foodDto.image"
+              class="center"
+              [src]="'data:' + foodDto.imageFileType + ';base64,' + foodDto.image"/>
+    </div>
+
+
+    <div class="form-group row">
+
+        <label class="col-md-2 col-form-label" for="size">
+          {{ "Food Size" | localize }}
+        </label>
+  
+        <div class="col-md-10">
+
+          <select class="form-control"
+                  name="size"
+                  id="size"
+                  [ngModel]="selectedSize"
+                  (ngModelChange)="selectedSize = $event">
+  
+            <option *ngFor="let size of sizeItems" [ngValue]="size.id">
+              {{ size.sizeName }}
+            </option>
+  
+          </select>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+
+        <label class="col-md-2 col-form-label" for="category">
+          {{ "Category" | localize }}
+        </label>
+  
+        <div class="col-md-10">
+
+          <select class="form-control"
+                  name="category"
+                  id="category"
+                  [ngModel]="selectedCategory"
+                  (ngModelChange)="selectedCategory = $event">
+  
+            <option *ngFor="let category of categoryItems" [ngValue]="category.id">
+              {{ category.categoryName }}
+            </option>
+  
+          </select>
+        </div>
+
+    </div>
+
+    
+
+
+    <div class="form-group row required">
+
+      <label class="col-md-2 col-form-label" for="foodQty">
+        {{ "Qty" | localize }}
+      </label>
+
+      <div class="col-md-10">
+        <input type="number"
+               class="form-control"
+               name="foodQty"
+               id="foodQty"
+               required
+               [(ngModel)]="orderDto.totalQuantityOfOrder"
+               #orderQtyModel="ngModel"
+               #orderQtyEl />
+
+        <abp-validation-summary [control]="orderQtyModel"
+                                [controlEl]="orderQtyEl">
+        </abp-validation-summary>
+
+      </div>
+    </div>
+ 
+
+    <div class="form-group row required">
+
+      <label class="col-md-2 col-form-label" for="foodPrice">
+
+        {{ "Price" | localize }}
+
+      </label>
+
+      <div class="col-md-10">
+
+        <div class="input-group">
+
+          <div class="input-group-prepend"  *ngFor="let food of foodItems">
+            <span class="intro-2"><strong> {{ food.price | currency:'PHP'}}</strong></span> 
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <abp-modal-footer [cancelDisabled]="saving"
+                    [saveDisabled]="!createOrderModal.form.valid || saving"
+                    (onCancelClick)="orderModal.hide()">
+  </abp-modal-footer>
+
+</form>

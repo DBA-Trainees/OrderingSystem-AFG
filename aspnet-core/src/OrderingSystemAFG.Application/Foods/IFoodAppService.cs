@@ -14,5 +14,7 @@ namespace OrderingSystemAFG.Foods
         Task<PagedResultDto<FoodDto>> GetAllAsync(PagedFoodResultRequestDto input);
         Task<List<FoodDto>> GetAllTheListOfFood();
         Task<PagedResultDto<FoodDto>> GetAllTheFoodItemWhereAvailabilityIsTrue(PagedFoodResultRequestDto input);
+
+        Task<FoodDto> GetAllFoodIncludingCategory(EntityDto<int> input);
     }
 }
