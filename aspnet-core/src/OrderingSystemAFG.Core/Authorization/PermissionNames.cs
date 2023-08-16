@@ -29,8 +29,8 @@
 
 
         #region Customers
-
-
+            public const string Pages_User_Customer = "Pages.User.Customer";
+            public const string Pages_Customers_Menu_List = "Pages.Customers.Menu";
         #endregion
 
     }
