@@ -23,7 +23,7 @@ namespace OrderingSystemAFG.EntityFrameworkCore
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Food> Foods { get; set; } 
-        public DbSet<CustomerOrder> CustomersOrders { get; set; }
+        public DbSet<CustomerOrder> CustomersOrders { get; set; } 
 
     }
 }
