@@ -32,7 +32,9 @@ namespace OrderingSystemAFG.Authorization
             #endregion
 
             #region Customer View
-
+                var customerView = context.GetPermissionOrNull(PermissionNames.Pages_User_Customer) ?? context.CreatePermission(PermissionNames.Pages_User_Customer, L("Customer Main View"));
+                
+                customerView.CreateChildPermission(PermissionNames.Pages_Customers_Menu, L("Customer Menu View"));
             #endregion
 
 

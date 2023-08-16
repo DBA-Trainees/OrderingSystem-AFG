@@ -136,6 +136,7 @@
 	  
 	  
     <text name="Customer Main View">Customer Main View</text>
+    <text name="Customer Menu View">Customer Menu View</text> 
     
     <text name="Home View">Home View</text>
     <text name="Customer View">Customer View</text>
@@ -146,7 +147,7 @@
     <text name="User View">User View</text>
     <text name="Role View">Role View</text>
     <text name="Tenant View">Tenant View</text>
-    <text name="Food Menu View">Food Menu View</text>
+    
     <text name="Menu List View">Menu List View</text>
     <text name="Food Menu - Add to Cart View">Food Menu - Add to Cart View</text>
     <text name="Add To Cart View">Add to Cart View</text>
