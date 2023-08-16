@@ -1,0 +1,19 @@
+img{
+    width:  auto;
+    height: 100px;
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    transform-origin: center;
+    transform: scale(var(--img-scale));
+    transition: transform 0.4s ease-in-out;
+}
+
+th,td,img{
+    text-align: center;
+}
+
+* {
+ box-sizing: border-box;   
+}
+

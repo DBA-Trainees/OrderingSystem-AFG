@@ -108,14 +108,14 @@ export class FoodListComponent extends PagedListingComponentBase<FoodDto> {
 
   private EditFood(id?: number): void
   {
-      let showCreateFoodComponent : BsModalRef
+      let showEdiFoodComponent : BsModalRef
 
-          showCreateFoodComponent = this._foodModalService.show(CreateOrEditFoodComponent, {
+          showEdiFoodComponent = this._foodModalService.show(CreateOrEditFoodComponent, {
               class: 'modal-lg',
               initialState : {id : id},
           });
 
-          showCreateFoodComponent.content.onSave.subscribe(() => {
+          showEdiFoodComponent.content.onSave.subscribe(() => {
               this.refresh();
           })
 

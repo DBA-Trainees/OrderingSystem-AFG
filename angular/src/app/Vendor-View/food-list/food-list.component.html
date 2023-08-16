@@ -104,9 +104,9 @@
                                         <td>Not Available</td>                       
                                     </ng-template>
 
-                                    <td>{{ food.quantity }}</td>
-                                    <td>{{ food.type?.typeName }}</td>
-                                    <td>{{ food.size }}</td>
+                                    <td>{{ food.totalStock }}</td>
+                                    <td>{{ food.type?.foodTypeName }}</td>
+                                    <td>{{ food.size?.sizeName }}</td>
                                     <td>
                                         {{ food.price | currency:'PHP'}}
                                     </td>
