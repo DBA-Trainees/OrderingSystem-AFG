@@ -210,6 +210,7 @@
 
     <!-- #region Food -->
     <text name="Food">Foods</text>
+    <text name="FoodList">Food List</text>
     <text name="Food Name">Food Name</text>
     <text name="Image">Image</text>
     <text name="Availability">Availability</text>
