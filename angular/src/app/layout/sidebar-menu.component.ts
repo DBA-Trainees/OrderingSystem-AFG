@@ -67,6 +67,13 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
             ]),
             // #endregion
 
+            // #region Customer View
+            new MenuItem(this.l("CustomerNav"), '', 'fas fa-user-friends', 'Pages.User.Customer', [
+                new MenuItem(this.l('Food Menu'), '/app/customer-menu', 'fas fa-burger', 'Pages.Customers.Menu' ),
+                
+            ]),
+            // #endregion
+
 
         ];
     }
