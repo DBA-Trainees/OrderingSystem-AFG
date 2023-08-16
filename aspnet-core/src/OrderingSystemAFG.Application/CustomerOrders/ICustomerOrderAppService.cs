@@ -11,7 +11,7 @@ namespace OrderingSystemAFG.CustomerOrders
 {
     public interface ICustomerOrderAppService : IAsyncCrudAppService<CustomerOrderDto, int, PagedCustomerOrderResultRequestDto, CreateCustomerOrderDto, CustomerOrderDto>
     {
-        //Task<PagedResultDto<CustomerOrderDto>> GetAllAsync(PagedCustomerOrderResultRequestDto input);
-        //Task<PagedResultDto<CustomerOrderDto>> GetAllTheListOfOrderIncludingFoodThenCategoryThenSizeThenDivision(PagedCustomerOrderResultRequestDto input);
+        Task<PagedResultDto<CustomerOrderDto>> GetAllAsync(PagedCustomerOrderResultRequestDto input);
+        Task<PagedResultDto<CustomerOrderDto>> GetAllTheListOfOrderIncludingFoodThenCategoryThenSizeThenDivision(PagedCustomerOrderResultRequestDto input);
     }
 }
