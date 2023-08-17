@@ -3,8 +3,10 @@ import { Component, Injector } from '@angular/core';
 import { CustomerMenuComponent } from '../customer-menu/customer-menu.component';
 import { PagedListingComponentBase, PagedRequestDto } from '@shared/paged-listing-component-base';
 import { CategoryDto, CustomerDto, CustomerOrderDto, CustomerOrderDtoPagedResultDto, CustomerOrderServiceProxy, DivisionDto, FoodDto, SizeDto } from '@shared/service-proxies/service-proxies';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
+import { CustomerEditOrderComponent } from './customer-edit-order/customer-edit-order.component';
+import { appModuleAnimation } from '@shared/animations/routerTransition';
 
 class PagedOrderDto extends PagedRequestDto
 {
@@ -12,12 +14,11 @@ class PagedOrderDto extends PagedRequestDto
     IsActive: boolean | null;
 }
 
-
-
 @Component({
   selector: 'app-customer-cart',
   templateUrl: './customer-cart.component.html',
-  styleUrls: ['./customer-cart.component.css']
+  styleUrls: ['./customer-cart.component.css'],
+  animations: [appModuleAnimation()],
 })
 
 export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto>
@@ -45,7 +46,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
 
   ShowEditOrderForm(id)
   {
-      //
+      this.EditCustomerOrder(id);
   }
 
   protected list(request: PagedOrderDto, pageNumber: number, finishedCallback: Function): void {
@@ -86,7 +87,21 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
     );
   }
 
-  
+  private EditCustomerOrder(id?: number): void
+  {
+      let showCustomerEditCompoment: BsModalRef;
+
+      showCustomerEditCompoment = this._orderModalService.show(CustomerEditOrderComponent, {
+        class: 'modal-lg',
+        initialState : {id : id}, 
+      });
+
+      showCustomerEditCompoment.content.onSave.subscribe(() => {
+          this.refresh();
+      })
+
+
+  }
 
     
 }

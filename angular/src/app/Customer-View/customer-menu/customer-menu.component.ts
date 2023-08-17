@@ -23,7 +23,7 @@ class PagedOrderRequestDto extends PagedRequestDto {
   animations: [appModuleAnimation()],
 })
 
-export class CustomerMenuComponent extends PagedListingComponentBase<FoodDto>
+export class CustomerMenuComponent extends PagedListingComponentBase<CustomerOrderDto>
 {
   
 
@@ -73,16 +73,17 @@ export class CustomerMenuComponent extends PagedListingComponentBase<FoodDto>
 
   }
   
-  protected delete(entity: FoodDto): void {
+  protected delete(entity: CustomerOrderDto): void {
     throw new Error('Method not implemented.');
   }
 
-  AddToCart(selectedOrder: FoodDto): void
+  AddToCart(selectedItem: FoodDto): void
   {
-      this.orderDto.foodId = this.selectedFood;
+      this.orderDto.foodId = selectedItem.id;
       this.orderDto.dateAndTimeOrderIsPlaced = moment(this.dateToday);
-      this.orderDto.totalAmountTobePay = selectedOrder.price * this.totalQuantityOfOrder;
+      this.orderDto.totalAmountTobePay = this.orderDto.food?.price * this.totalQuantityOfOrder;
       this.orderDto.sizeId = this.selectedSize;
+      this.orderDto.totalAmountTobePay = selectedItem.price * this.totalQuantityOfOrder;
       this.orderDto.divisionId = this.selectedDivision;
       this.orderDto.totalQuantityOfOrder = this.totalQuantityOfOrder;
       this.orderDto.orderStatus = false;
@@ -92,7 +93,7 @@ export class CustomerMenuComponent extends PagedListingComponentBase<FoodDto>
           this.onSave.emit(request);
 
           //Navigate to Add to Cart Html Component
-      })
+      });
       
 
   }
