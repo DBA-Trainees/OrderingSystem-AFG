@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
 
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { PagedListingComponentBase, PagedRequestDto } from '@shared/paged-listing-component-base';
@@ -22,7 +22,8 @@ class PagedOrderRequestDto extends PagedRequestDto {
   animations: [appModuleAnimation()],
 })
 
-export class CustomerMenuComponent extends PagedListingComponentBase<FoodDto>{
+export class CustomerMenuComponent extends PagedListingComponentBase<FoodDto>
+{
   
 
   foodItems: FoodDto[] = [];
@@ -37,6 +38,8 @@ export class CustomerMenuComponent extends PagedListingComponentBase<FoodDto>{
   selectedDivision: number = null;
   selectedSize: number = null;
   selectedFood: number = null;
+
+  @Output() onSave = new EventEmitter<any>();
 
   constructor(
       injector: Injector,
@@ -83,11 +86,14 @@ export class CustomerMenuComponent extends PagedListingComponentBase<FoodDto>{
       this.orderDto.totalQuantityOfOrder = this.totalQuantityOfOrder;
       this.orderDto.orderStatus = false;
 
-      //updateAddToCart
-
+      this._orderServiceProxy.putOrdersToCart(this.orderDto).subscribe((request) => {
+          this.notify.info(this.l('Added to Cart'));
+          this.onSave.emit(request);
+      })
+      
 
   }
 
-
+  
 
 }
