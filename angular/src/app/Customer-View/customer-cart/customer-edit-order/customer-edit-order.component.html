@@ -1,1 +1,140 @@
-<p>customer-edit-order works!</p>
+<form class="form-horizontal"
+      autocomplete="off"
+      #createOrderModal="ngForm"
+      (ngSubmit)="save()">
+
+  <abp-modal-header [title]="'Edit Order' | localize"
+                    (onCloseClick)="_orderModal.hide()">
+  </abp-modal-header>
+
+  <div class="modal-body">
+
+    <div class="form-group row required">
+
+        <label class="col-md-2 col-form-label" for="size">
+          {{ "Food List" | localize }}
+        </label>
+  
+        <div class="col-md-10">
+
+          <select class="form-control"
+                  name="size"
+                  id="size"
+                  [ngModel]="selectedFood"
+                  (ngModelChange)="selectedFood = $event">
+  
+            <option *ngFor="let food of foodItems" [ngValue]="food.id">
+              {{ food.foodName }}
+            </option>
+  
+          </select>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+
+        <label class="col-md-2 col-form-label" for="size">
+          {{ "Size" | localize }}
+        </label>
+  
+        <div class="col-md-10">
+
+          <select class="form-control"
+                  name="size"
+                  id="size"
+                  [ngModel]="selectedSize"
+                  (ngModelChange)="selectedSize = $event">
+  
+            <option *ngFor="let size of sizeItems" [ngValue]="size.id">
+              {{ size.sizeName }}
+            </option>
+  
+          </select>
+        </div>
+
+    </div>
+
+
+    <div class="form-group row required">
+
+      <label class="col-md-2 col-form-label" for="foodQty">
+        {{ "Qty" | localize }}
+      </label>
+
+      <div class="col-md-10">
+        <input type="number"
+               class="form-control"
+               name="foodQty"
+               id="foodQty"
+               required
+               [(ngModel)]="orderDto.totalQuantityOfOrder"
+               #foodQtyModel="ngModel"
+               #foodQtyEl />
+
+        <abp-validation-summary [control]="foodQtyModel"
+                                [controlEl]="foodQtyEl">
+        </abp-validation-summary>
+
+      </div>
+    </div>
+
+    <div class="form-group row required">
+
+      <label class="col-md-2 col-form-label" for="typeName">
+
+        {{ "Category" | localize }}
+
+      </label>
+
+      <div class="col-md-10">
+
+        <select class="form-control"
+                name="typeName"
+                id="typeName"
+                required
+                [ngModel]="selectedCategory"
+                (ngModelChange)="selectedCategory = $event">
+
+          <option *ngFor="let category of categoryItems" [ngValue]="category.id">
+            {{ category.categoryName }}
+          </option>
+
+        </select>
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+
+        <label class="col-md-3 col-form-label" 
+               for="notes">
+          
+               {{ "Notes" | localize }}
+        </label>
+
+        <div class="col-md-12">
+
+          <input type="text"
+                 class="form-control"
+                 name="notes"
+                 id="notes"
+                 [(ngModel)]="orderDto.notes"
+                #customerNotesModel="ngModel"
+                #customerNotesEl />
+
+          <abp-validation-summary [control]="customerNotesModel"
+                                  [controlEl]="customerNotesEl">
+        </abp-validation-summary>
+
+        </div>
+      </div>
+
+  </div>
+
+  <abp-modal-footer [cancelDisabled]="saving"
+                    [saveDisabled]="!createOrderModal.form.valid || saving"
+                    (onCancelClick)="_orderModal.hide()">
+  </abp-modal-footer>
+
+</form>

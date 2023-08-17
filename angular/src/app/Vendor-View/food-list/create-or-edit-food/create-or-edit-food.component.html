@@ -77,29 +77,6 @@
       </div>
     </div>
 
-    <div class="form-group row">
-
-        <label class="col-md-2 col-form-label" for="size">
-          {{ "Food Size" | localize }}
-        </label>
-  
-        <div class="col-md-10">
-
-          <select class="form-control"
-                  name="size"
-                  id="size"
-                  [ngModel]="selectedSize"
-                  (ngModelChange)="selectedSize = $event">
-  
-            <option *ngFor="let size of sizeItems" [ngValue]="size.id">
-              {{ size.sizeName }}
-            </option>
-  
-          </select>
-        </div>
-
-    </div>
-
     <div class="form-group row required">
 
       <label class="col-md-2 col-form-label" for="availability">

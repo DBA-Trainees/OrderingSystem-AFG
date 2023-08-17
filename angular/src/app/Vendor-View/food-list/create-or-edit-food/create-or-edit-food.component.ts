@@ -18,7 +18,6 @@ export class CreateOrEditFoodComponent extends AppComponentBase implements OnIni
   sizeItems: SizeDto[] = [];
   id: number = 0;
   selectedType: number = null;
-  selectedSize: number = null;
   isAvailable: boolean = true;
   base64ImagePath: string;
   
@@ -43,7 +42,6 @@ export class CreateOrEditFoodComponent extends AppComponentBase implements OnIni
         this._foodServiceProxy.get(this.id).subscribe((request) => {
             this.foodDto = request;
             this.selectedType = request.typeId;
-            this.selectedSize = request.sizeId;
 
         });
 
@@ -51,10 +49,6 @@ export class CreateOrEditFoodComponent extends AppComponentBase implements OnIni
 
     this._typeServiceProxy.getAllTheListOfFoodTyoeFromDTO().subscribe((request) => {
           this.typeItems = request;
-    });
-
-    this._sizeServiceProxy.getAllTheListOfSizeFromDTO().subscribe((request) => {
-          this.sizeItems = request;
     });
 
   }
@@ -87,7 +81,6 @@ export class CreateOrEditFoodComponent extends AppComponentBase implements OnIni
   {
       this.saving = true;
       this.foodDto.typeId = this.selectedType;
-      this.foodDto.sizeId = this.selectedSize;
 
       if(this.id !==0)
       {
