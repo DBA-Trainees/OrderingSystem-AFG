@@ -17,6 +17,7 @@ import { FoodSizeComponent } from './Vendor-View/food-size/food-size.component';
 import { CustomerWithDivisionComponent } from './customer-with-division/customer-with-division.component';
 import { FoodListComponent } from './Vendor-View/food-list/food-list.component';
 import { CustomerMenuComponent } from './Customer-View/customer-menu/customer-menu.component';
+import { CustomerCartComponent } from './Customer-View/customer-cart/customer-cart.component';
 // #endregion
 
 @NgModule({
@@ -50,6 +51,8 @@ import { CustomerMenuComponent } from './Customer-View/customer-menu/customer-me
 
                     // #region Customer
                     { path: 'customer-menu', component: CustomerMenuComponent, data: { permission: 'Pages.User.Customer'}, canActivate: [AppRouteGuard] },
+                    { path: 'customer-cart', component: CustomerCartComponent, data: { permission: 'Pages.User.Customer'}, canActivate: [AppRouteGuard] },
+                    
                     // #endregion
 
                 ]
