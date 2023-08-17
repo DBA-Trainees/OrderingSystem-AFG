@@ -8,6 +8,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import * as moment from 'moment';
 
 import { CustomerCartComponent } from '../customer-cart/customer-cart.component';
+import { Router } from '@angular/router';
 
 class PagedOrderRequestDto extends PagedRequestDto {
   keyword: string;
@@ -47,6 +48,7 @@ export class CustomerMenuComponent extends PagedListingComponentBase<CustomerOrd
       private _orderServiceProxy: CustomerOrderServiceProxy,
       private _foodServiceProxy: FoodServiceProxy, 
       private _orderModalService: BsModalService,
+      private orderRouter: Router,
   )
   {
       super(injector);
@@ -92,7 +94,7 @@ export class CustomerMenuComponent extends PagedListingComponentBase<CustomerOrd
           this.notify.info(this.l('Added to Cart'));
           this.onSave.emit(request);
 
-          //Navigate to Add to Cart Html Component
+          this.orderRouter.navigate(["./app/customer-cart"]);
       });
       
 
