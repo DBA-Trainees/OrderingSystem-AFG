@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injector, Output } from '@angular/core';
 
-import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { PagedListingComponentBase, PagedRequestDto } from '@shared/paged-listing-component-base';
 import { CustomerOrderDto, CustomerOrderServiceProxy, FoodDto, FoodDtoPagedResultDto, FoodServiceProxy } from '@shared/service-proxies/service-proxies';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { finalize } from 'rxjs';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import * as moment from 'moment';
+
+import { CustomerCartComponent } from '../customer-cart/customer-cart.component';
 
 class PagedOrderRequestDto extends PagedRequestDto {
   keyword: string;
@@ -89,11 +90,13 @@ export class CustomerMenuComponent extends PagedListingComponentBase<FoodDto>
       this._orderServiceProxy.putOrdersToCart(this.orderDto).subscribe((request) => {
           this.notify.info(this.l('Added to Cart'));
           this.onSave.emit(request);
+
+          //Navigate to Add to Cart Html Component
       })
       
 
   }
 
-  
+
 
 }
