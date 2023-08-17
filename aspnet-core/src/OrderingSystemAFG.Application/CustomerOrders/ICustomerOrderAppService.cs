@@ -13,5 +13,7 @@ namespace OrderingSystemAFG.CustomerOrders
     {
         Task<PagedResultDto<CustomerOrderDto>> GetAllAsync(PagedCustomerOrderResultRequestDto input);
         Task<PagedResultDto<CustomerOrderDto>> GetAllTheListOfOrderIncludingFoodThenCategoryThenSizeThenDivision(PagedCustomerOrderResultRequestDto input);
+
+        Task<CustomerOrderDto> PutOrdersToCart(CustomerOrderDto input);
     }
 }

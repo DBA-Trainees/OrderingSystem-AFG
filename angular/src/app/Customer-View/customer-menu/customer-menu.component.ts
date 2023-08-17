@@ -34,7 +34,7 @@ export class CustomerMenuComponent extends PagedListingComponentBase<CustomerOrd
   saving = false;
   id: number = 0;
 
-  totalQuantityOfOrder: number = 1;
+  QuantityOfOrder: number = 1;
   dateToday = new Date();
   selectedCategory: number = null;
   selectedDivision: number = null;
@@ -81,14 +81,14 @@ export class CustomerMenuComponent extends PagedListingComponentBase<CustomerOrd
 
   AddToCart(selectedItem: FoodDto): void
   {
+
       this.orderDto.foodId = selectedItem.id;
       this.orderDto.dateAndTimeOrderIsPlaced = moment(this.dateToday);
-      this.orderDto.totalAmountTobePay = this.orderDto.food?.price * this.totalQuantityOfOrder;
-      this.orderDto.sizeId = this.selectedSize;
-      this.orderDto.totalAmountTobePay = selectedItem.price * this.totalQuantityOfOrder;
+      this.orderDto.totalAmountTobePay = selectedItem.price * this.QuantityOfOrder;
+      this.orderDto.sizeId = this.selectedSize; 
       this.orderDto.divisionId = this.selectedDivision;
-      this.orderDto.totalQuantityOfOrder = this.totalQuantityOfOrder;
-      this.orderDto.orderStatus = false;
+      this.orderDto.totalQuantityOfOrder = this.QuantityOfOrder;
+      this.orderDto.orderStatus = true;
 
       this._orderServiceProxy.putOrdersToCart(this.orderDto).subscribe((request) => {
           this.notify.info(this.l('Added to Cart'));

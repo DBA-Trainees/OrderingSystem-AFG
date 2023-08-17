@@ -5,7 +5,7 @@
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 
                 <div class="col mb-5" *ngFor="let food of foodItems" >
-                    <div class="card h-100">
+                    <div class="card h-100" [busy]="isTableLoading">
                         <!-- Food image -->
                         <img class="card-img-top" [src]="'data:image/' + food.imageFileType + ';base64,' + food.image" style="height:80;" />
                         <!-- Food details -->
@@ -15,7 +15,7 @@
                                 <h5 class="fw-bolder">{{ food.foodName }}</h5>
 
                                 <!-- Food type -->
-                                {{ food.type?.typeName}}
+                                {{ food.type?.foodTypeName}}
 
                                 <br>
 
