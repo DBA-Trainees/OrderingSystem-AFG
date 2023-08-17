@@ -57,6 +57,7 @@ import { CreateOrEditFoodComponent } from './Vendor-View/food-list/create-or-edi
 import { CustomerMenuComponent } from './Customer-View/customer-menu/customer-menu.component';
 import { AddToCartComponent } from './Customer-View/customer-menu/add-to-cart/add-to-cart.component';
 import { CustomerCartComponent } from './Customer-View/customer-cart/customer-cart.component';
+import { CustomerEditOrderComponent } from './Customer-View/customer-cart/customer-edit-order/customer-edit-order.component';
 
 
 // #endregion
@@ -107,6 +108,7 @@ import { CustomerCartComponent } from './Customer-View/customer-cart/customer-ca
         CustomerMenuComponent,
         AddToCartComponent,
         CustomerCartComponent,
+        CustomerEditOrderComponent,
 
 
         // #endregion
