@@ -12,5 +12,7 @@ namespace OrderingSystemAFG.Entities
         /* List Columns */
         public string SizeName { get; set; }
 
+        public double SizeValue { get; set; } 
+
     }
 }

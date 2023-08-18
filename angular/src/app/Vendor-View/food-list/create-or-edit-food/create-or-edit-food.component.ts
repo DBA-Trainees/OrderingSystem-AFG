@@ -72,10 +72,6 @@ export class CreateOrEditFoodComponent extends AppComponentBase implements OnIni
 
   }
 
-  isAvailabilityChecked(event: any): void
-  {
-      this.isAvailable = event.target.checked;
-  }
 
   save(): void
   {

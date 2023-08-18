@@ -12,5 +12,7 @@ namespace OrderingSystemAFG.Sizes.Dto
     public class CreateSizeDto
     {
         public string SizeName { get; set; }
+
+        public double SizeValue { get; set; }
     }
 }

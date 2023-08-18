@@ -5381,6 +5381,7 @@ export interface ICreateRoleDto {
 
 export class CreateSizeDto implements ICreateSizeDto {
     sizeName: string | undefined;
+    sizeValue: number;
 
     constructor(data?: ICreateSizeDto) {
         if (data) {
@@ -5394,6 +5395,7 @@ export class CreateSizeDto implements ICreateSizeDto {
     init(_data?: any) {
         if (_data) {
             this.sizeName = _data["sizeName"];
+            this.sizeValue = _data["sizeValue"];
         }
     }
 
@@ -5407,6 +5409,7 @@ export class CreateSizeDto implements ICreateSizeDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["sizeName"] = this.sizeName;
+        data["sizeValue"] = this.sizeValue;
         return data;
     }
 
@@ -5420,6 +5423,7 @@ export class CreateSizeDto implements ICreateSizeDto {
 
 export interface ICreateSizeDto {
     sizeName: string | undefined;
+    sizeValue: number;
 }
 
 export class CreateTenantDto implements ICreateTenantDto {
@@ -7241,6 +7245,7 @@ export interface IRoleListDtoListResultDto {
 export class SizeDto implements ISizeDto {
     id: number;
     sizeName: string | undefined;
+    sizeValue: number;
 
     constructor(data?: ISizeDto) {
         if (data) {
@@ -7255,6 +7260,7 @@ export class SizeDto implements ISizeDto {
         if (_data) {
             this.id = _data["id"];
             this.sizeName = _data["sizeName"];
+            this.sizeValue = _data["sizeValue"];
         }
     }
 
@@ -7269,6 +7275,7 @@ export class SizeDto implements ISizeDto {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["sizeName"] = this.sizeName;
+        data["sizeValue"] = this.sizeValue;
         return data;
     }
 
@@ -7283,6 +7290,7 @@ export class SizeDto implements ISizeDto {
 export interface ISizeDto {
     id: number;
     sizeName: string | undefined;
+    sizeValue: number;
 }
 
 export class SizeDtoPagedResultDto implements ISizeDtoPagedResultDto {
