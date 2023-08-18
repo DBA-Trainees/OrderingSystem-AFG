@@ -17,7 +17,7 @@
                     <div class="small-box bg-warning">
                         <div class="inner">
                             <h1><strong>{{ totalItems }}</strong></h1>
-                            <p>Total Division(s)</p>
+                            <p>Total Size(s)</p>
                             <div class="icon">
                                 <i class="fa fa-line-chart"></i>
                             </div>
@@ -67,6 +67,7 @@
                             <thead class="bg-light">
                                 <tr>
                                     <th>{{ "Food Size Name" | localize }}</th>
+                                    <th>{{ "Assigned Amount" | localize }}</th>
                                     <th style="width: 310px;">{{ "Actions" | localize }}</th>
                                 </tr>
                             </thead>
@@ -79,7 +80,7 @@
                                     totalItems: totalItems}" >
                                     
                                     <td>{{size.sizeName}}</td>
-
+                                    <td>{{size.sizeValue}}</td>
 
                                     <td>
                                         <button type="button"

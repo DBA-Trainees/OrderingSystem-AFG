@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Injector, Output } from '@angular/core';
+import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
 
 import { PagedListingComponentBase, PagedRequestDto } from '@shared/paged-listing-component-base';
-import { CustomerOrderDto, CustomerOrderServiceProxy, FoodDto, FoodDtoPagedResultDto, FoodServiceProxy } from '@shared/service-proxies/service-proxies';
+import { CustomerOrderDto, CustomerOrderServiceProxy, FoodDto, FoodDtoPagedResultDto, FoodServiceProxy, SizeDto } from '@shared/service-proxies/service-proxies';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { finalize } from 'rxjs';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -27,8 +27,8 @@ class PagedOrderRequestDto extends PagedRequestDto {
 export class CustomerMenuComponent extends PagedListingComponentBase<CustomerOrderDto>
 {
   
-
   foodItems: FoodDto[] = [];
+  sizeItems: SizeDto[] = [];
   orderDto = new CustomerOrderDto();
   foodDto = new FoodDto();
   saving = false;
@@ -99,7 +99,6 @@ export class CustomerMenuComponent extends PagedListingComponentBase<CustomerOrd
       
 
   }
-
 
 
 }
