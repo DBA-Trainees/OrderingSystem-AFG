@@ -11,15 +11,15 @@
 
     <div class="form-group row required">
 
-        <label class="col-md-2 col-form-label" for="size">
+        <label class="col-md-2 col-form-label" for="food">
           {{ "Food List" | localize }}
         </label>
   
         <div class="col-md-10">
 
           <select class="form-control"
-                  name="size"
-                  id="size"
+                  name="food"
+                  id="food"
                   [ngModel]="selectedFood"
                   (ngModelChange)="selectedFood = $event">
   

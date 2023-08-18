@@ -57,14 +57,12 @@ namespace OrderingSystemAFG.CustomerOrders
                 item =>
                 item.OrderStatus == true &&
                 item.FoodId == input.FoodId &&
-                item.CategoryId == item.CategoryId);
+                item.SizeId == input.SizeId); 
 
             if(duplicateOrder != null)
             {
                 duplicateOrder.TotalQuantityOfOrder += input.TotalQuantityOfOrder;
                 duplicateOrder.DateAndTimeOrderIsPlaced = input.DateAndTimeOrderIsPlaced?.ToLocalTime();
-                duplicateOrder.SizeId = input.SizeId;
-                duplicateOrder.CategoryId = input.CategoryId;
                 duplicateOrder.OrderStatus = true;
 
                 await _customerOrderIRepository.UpdateAsync(duplicateOrder);

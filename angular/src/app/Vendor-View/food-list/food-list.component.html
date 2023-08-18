@@ -93,14 +93,14 @@
                                         />
                                     </td>
                                     
-                                    <td *ngIf="food.availability==1; else NotAvailable ">
+                                    <td *ngIf="food.totalStock != 0; else OutOfStock">
                                         
                                         <strong>Available</strong>
                                     
                                     </td>
                                    
-                                    <ng-template #NotAvailable>
-                                        <td>Not Available</td>                       
+                                    <ng-template #OutOfStock>
+                                        <td> <strong>Out of Stock</strong> </td>                       
                                     </ng-template>
 
                                     <td>{{ food.totalStock }}</td>

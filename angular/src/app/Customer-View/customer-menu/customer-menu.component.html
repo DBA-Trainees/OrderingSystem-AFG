@@ -17,10 +17,20 @@
                                 <!-- Food type -->
                                 {{ food.type?.foodTypeName}}
 
-                                <br>
+                                <br> <br>
 
                                 <!-- Food price -->
                                 {{ food.price | currency:'PHP'}}
+
+                                <br>
+
+                                <!-- Food Availability -->
+                                <h6 class="text-center" *ngIf="this.food.totalStock != 0; else NotAvailable"> Available </h6>
+                                
+                                <ng-template #NotAvailable>
+                                    <h6 class="text-center"> Out of Stock </h6> 
+                                </ng-template>
+      
 
                             </div>
 
@@ -28,7 +38,15 @@
                         </div>
                         <!-- Add to Cart Button -->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" (click)="AddToCart(food)">Add to cart</a></div>
+                            <div class="text-center">
+                                <a *ngIf="this.food.totalStock != 0; else OutOfStock" class="btn btn-outline-dark mt-auto" (click)="AddToCart(food)">Add to cart</a>    
+
+                                <ng-template #OutOfStock>
+                                    <a disabled>Not Available </a>
+                                </ng-template>
+
+                            </div>                      
+
                         </div>
                     </div>
                 </div>

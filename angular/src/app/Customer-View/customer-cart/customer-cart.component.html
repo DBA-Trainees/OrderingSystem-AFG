@@ -69,10 +69,9 @@
                                 <tr>
                                     <th>{{ "Food Name" | localize }}</th>
                                     <th>{{ "Image" | localize }}</th>
-                                    <th>{{ "Food Type" | localize }}</th>
-                                    <th>{{ "Total Quantity" | localize }}</th>
                                     <th>{{ "Category" | localize }}</th>
                                     <th>{{ "Size" | localize }}</th>
+                                    <th>{{ "Total Quantity" | localize }}</th>
                                     <th>{{ "Notes" | localize }}</th>
                                     <th>{{ "Amount" | localize }}</th> 
                                     <th style="width: 310px;">{{ "Actions" | localize }}</th>
@@ -96,13 +95,11 @@
                                         />
                                     </td>
                                     
-                                    <td> {{ order.food.type?.foodTypeName}} </td>
-
-                                    <td> {{ order.totalQuantityOfOrder}} </td>
-
                                     <td> {{ order.category?.categoryName }} </td>
 
                                     <td> {{ order.size?.sizeName }} </td>
+
+                                    <td> {{ order.totalQuantityOfOrder}} </td>                                   
                                     
                                     <td> {{ order.notes }} </td>
 
