@@ -47,7 +47,7 @@ namespace OrderingSystemAFG.Foods
                 .Include(items => items.Type)
                 .Include (items => items.Size)
                 .OrderByDescending(items => items.Id)
-                .Where(select => select.Availability)
+                //.Where(select => select.Availability)
                 .Select(items => ObjectMapper.Map<FoodDto>(items))
                 .ToListAsync();
 
