@@ -18,6 +18,7 @@ export class AddToCartComponent extends AppComponentBase implements OnInit {
   divisionItems: DivisionDto[] = [];
   sizeItems: SizeDto[] = [];
   foodDto: FoodDto = new FoodDto();
+  foodDtoNew = new FoodDto();
   orderDto: CustomerOrderDto = new CustomerOrderDto();
   saving: boolean;
   id: number = 0;
@@ -74,16 +75,20 @@ export class AddToCartComponent extends AppComponentBase implements OnInit {
       orderDtoNew.categoryId = this.selectedCategory;
       orderDtoNew.sizeId = this.selectedSize;
       orderDtoNew.orderStatus = true;
-      orderDtoNew.totalAmountTobePay = this.orderQty * foodDto.price;
-      orderDtoNew.totalQuantityOfOrder = this.orderQty;
+      orderDtoNew.totalAmountTobePay = this.orderDto.totalQuantityOfOrder * foodDto.price;
+      orderDtoNew.totalQuantityOfOrder = this.orderDto.totalQuantityOfOrder;
       orderDtoNew.dateAndTimeOrderIsPlaced = moment(this.dateToday);
       
+      //this.foodDtoNew.totalStock = this.foodDtoNew.totalStock - this.orderDto.totalQuantityOfOrder;
+
       this._orderServiceProxy.putOrdersToCart(orderDtoNew).subscribe((request) => {
             this.notify.info(this.l('Added to Cart'));
             this.orderModal.hide();
             this.onSave.emit(request);
 
             this.orderRouter.navigate(["./app/customer-cart"]);
+
+            //update quantity of stock
 
       }, () => {
             this.saving = false;
