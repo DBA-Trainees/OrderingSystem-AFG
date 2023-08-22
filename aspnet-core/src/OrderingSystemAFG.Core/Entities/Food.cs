@@ -21,6 +21,8 @@ namespace OrderingSystemAFG.Entities
         public Type Type { get; set; } 
         public int? SizeId { get; set; } 
         public Size Size { get; set; }
+        public int? CategoryId { get; set; }
+        public Category Category { get; set; }
         
 
     }

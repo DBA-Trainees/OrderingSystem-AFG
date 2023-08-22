@@ -54,14 +54,16 @@ namespace OrderingSystemAFG.Foods
             return new PagedResultDto<FoodDto>(availableFoodItems.Count(), availableFoodItems);
         }
 
-        public async Task<FoodDto> GetAllFoodIncludingCategory(EntityDto<int> input)
+        public async Task<FoodDto> GetSelectedFoodIncludingCategoryAndSize(EntityDto<int> input)
         {
-            var foodItems = await _foodIRepository.GetAll()
+            var foodSelected = await _foodIRepository.GetAll()
+                .Include(items => items.Category)
+                .Include(items => items.Size)
                 .Where(items => items.Id == input.Id)
                 .Select(items => ObjectMapper.Map<FoodDto>(items))
                 .FirstOrDefaultAsync();
 
-            return foodItems; 
+            return foodSelected; 
 
         }
 

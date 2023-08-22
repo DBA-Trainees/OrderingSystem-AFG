@@ -1946,8 +1946,8 @@ export class FoodServiceProxy {
      * @param id (optional) 
      * @return Success
      */
-    getAllFoodIncludingCategory(id: number | undefined): Observable<FoodDto> {
-        let url_ = this.baseUrl + "/api/services/app/Food/GetAllFoodIncludingCategory?";
+    getSelectedFoodIncludingCategoryAndSize(id: number | undefined): Observable<FoodDto> {
+        let url_ = this.baseUrl + "/api/services/app/Food/GetSelectedFoodIncludingCategoryAndSize?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
         else if (id !== undefined)
@@ -1963,11 +1963,11 @@ export class FoodServiceProxy {
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAllFoodIncludingCategory(response_);
+            return this.processGetSelectedFoodIncludingCategoryAndSize(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAllFoodIncludingCategory(response_ as any);
+                    return this.processGetSelectedFoodIncludingCategoryAndSize(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<FoodDto>;
                 }
@@ -1976,7 +1976,7 @@ export class FoodServiceProxy {
         }));
     }
 
-    protected processGetAllFoodIncludingCategory(response: HttpResponseBase): Observable<FoodDto> {
+    protected processGetSelectedFoodIncludingCategoryAndSize(response: HttpResponseBase): Observable<FoodDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5204,6 +5204,7 @@ export class CreateFoodDto implements ICreateFoodDto {
     totalStock: number;
     typeId: number | undefined;
     sizeId: number | undefined;
+    categoryId: number | undefined;
 
     constructor(data?: ICreateFoodDto) {
         if (data) {
@@ -5225,6 +5226,7 @@ export class CreateFoodDto implements ICreateFoodDto {
             this.totalStock = _data["totalStock"];
             this.typeId = _data["typeId"];
             this.sizeId = _data["sizeId"];
+            this.categoryId = _data["categoryId"];
         }
     }
 
@@ -5246,6 +5248,7 @@ export class CreateFoodDto implements ICreateFoodDto {
         data["totalStock"] = this.totalStock;
         data["typeId"] = this.typeId;
         data["sizeId"] = this.sizeId;
+        data["categoryId"] = this.categoryId;
         return data;
     }
 
@@ -5267,6 +5270,7 @@ export interface ICreateFoodDto {
     totalStock: number;
     typeId: number | undefined;
     sizeId: number | undefined;
+    categoryId: number | undefined;
 }
 
 export class CreateFoodTypeDto implements ICreateFoodTypeDto {
@@ -6147,6 +6151,8 @@ export class FoodDto implements IFoodDto {
     type: FoodTypeDto;
     sizeId: number | undefined;
     size: SizeDto;
+    categoryId: number | undefined;
+    category: CategoryDto;
 
     constructor(data?: IFoodDto) {
         if (data) {
@@ -6171,6 +6177,8 @@ export class FoodDto implements IFoodDto {
             this.type = _data["type"] ? FoodTypeDto.fromJS(_data["type"]) : <any>undefined;
             this.sizeId = _data["sizeId"];
             this.size = _data["size"] ? SizeDto.fromJS(_data["size"]) : <any>undefined;
+            this.categoryId = _data["categoryId"];
+            this.category = _data["category"] ? CategoryDto.fromJS(_data["category"]) : <any>undefined;
         }
     }
 
@@ -6195,6 +6203,8 @@ export class FoodDto implements IFoodDto {
         data["type"] = this.type ? this.type.toJSON() : <any>undefined;
         data["sizeId"] = this.sizeId;
         data["size"] = this.size ? this.size.toJSON() : <any>undefined;
+        data["categoryId"] = this.categoryId;
+        data["category"] = this.category ? this.category.toJSON() : <any>undefined;
         return data;
     }
 
@@ -6219,6 +6229,8 @@ export interface IFoodDto {
     type: FoodTypeDto;
     sizeId: number | undefined;
     size: SizeDto;
+    categoryId: number | undefined;
+    category: CategoryDto;
 }
 
 export class FoodDtoPagedResultDto implements IFoodDtoPagedResultDto {

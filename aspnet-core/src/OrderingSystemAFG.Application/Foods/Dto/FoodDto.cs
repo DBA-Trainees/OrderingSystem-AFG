@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
+using OrderingSystemAFG.Categorys.Dto;
 using OrderingSystemAFG.Entities;
 using OrderingSystemAFG.FoodTypes.Dto;
 using OrderingSystemAFG.Sizes.Dto;
@@ -27,6 +28,8 @@ namespace OrderingSystemAFG.Foods.Dto
         public FoodTypeDto Type { get; set; }
         public int? SizeId { get; set; }
         public SizeDto Size { get; set; }
+        public int? CategoryId { get; set; }
+        public CategoryDto Category { get; set; }
 
     }
 }
