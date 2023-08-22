@@ -51,9 +51,17 @@
                                     <a disabled> &nbsp; Not Available </a>
                                 </ng-template>
 
-                            </div>                      
+                            </div> 
+                            
+                            <br>
+
+                            <div class="text-center">
+                                <a *ngIf="this.food.totalStock != 0; " class="btn btn-outline-dark mt-auto" (click)="ShowMoreDetails(food.id)">Show More</a>    
+
+                            </div>       
 
                         </div>
+
                     </div>
                 </div>
                 

@@ -4,11 +4,12 @@ import { PagedListingComponentBase, PagedRequestDto } from '@shared/paged-listin
 import { CustomerOrderDto, CustomerOrderServiceProxy, FoodDto, FoodDtoPagedResultDto, FoodServiceProxy, SizeDto } from '@shared/service-proxies/service-proxies';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { finalize } from 'rxjs';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import * as moment from 'moment';
 
 import { CustomerCartComponent } from '../customer-cart/customer-cart.component';
 import { Router } from '@angular/router';
+import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 
 class PagedOrderRequestDto extends PagedRequestDto {
   keyword: string;
@@ -99,6 +100,25 @@ export class CustomerMenuComponent extends PagedListingComponentBase<CustomerOrd
       
 
   }
+
+  ShowMoreDetails(id): void
+  {
+        this.ShowAddToCartComponent(id);
+  }
+
+
+  private ShowAddToCartComponent(id?: number): void
+  {
+        let showAddToCartComponent: BsModalRef;
+
+        showAddToCartComponent = this._orderModalService.show(AddToCartComponent, {
+            class: 'modal-lg',
+            initialState: {id: id},
+        });
+
+  }
+
+
 
 
 }

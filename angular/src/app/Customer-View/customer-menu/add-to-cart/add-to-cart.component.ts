@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppComponentBase } from '@shared/app-component-base';
 import { CategoryDto, CategoryServiceProxy, CustomerOrderDto, CustomerOrderServiceProxy, DivisionDto, DivisionServiceProxy, FoodDto, FoodServiceProxy, FoodTypeDto, SizeDto, SizeServiceProxy } from '@shared/service-proxies/service-proxies';
+import * as moment from 'moment';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -24,6 +26,7 @@ export class AddToCartComponent extends AppComponentBase implements OnInit {
   selectedCategory: number = null;
   selectedDivision: number = null;
   selectedSize: number = null;
+  orderQty: number = 1;
 
   @Output() onSave = new EventEmitter<any>();
 
@@ -35,6 +38,7 @@ export class AddToCartComponent extends AppComponentBase implements OnInit {
       private _divisionServiceProxy: DivisionServiceProxy,
       private _categoryServiceProxy: CategoryServiceProxy,
       private _sizeServiceProxy: SizeServiceProxy,
+      private orderRouter: Router,
 
   ){
       super(injector);
@@ -43,18 +47,12 @@ export class AddToCartComponent extends AppComponentBase implements OnInit {
 
   ngOnInit(): void {
     
-    if(this.id)
+    if(this.id != 0)
     {
-        this._orderServiceProxy.get(this.id).subscribe((request: CustomerOrderDto) => {
-            this.orderDto = request;
-            this.selectedCategory = this.orderDto.categoryId;
-            this.selectedSize = this.orderDto.sizeId;
+        this._foodServiceProxy.getSelectedFoodIncludingCategoryAndSize(this.id).subscribe((request) => {
+                this.foodDto = request;
         });
     }
-
-    this._divisionServiceProxy.getAllTheListOfDivisionFromDTO().subscribe((request) => {
-        this.divisionItems = request;
-    });
 
     this._categoryServiceProxy.getAllTheListOfCategoryFromDTO().subscribe((request) => {
         this.categoryItems = request;
@@ -67,33 +65,31 @@ export class AddToCartComponent extends AppComponentBase implements OnInit {
 
   }
 
-  save(): void
+  save(foodDto: FoodDto): void
   {
       this.saving = true;
-      this.orderDto.divisionId = this.selectedDivision;
-      this.orderDto.categoryId = this.selectedCategory;
-      this.orderDto.sizeId = this.selectedSize;
+      const orderDtoNew = new CustomerOrderDto();
 
-      if (this.id != 0)
-      {
-          this._orderServiceProxy.update(this.orderDto).subscribe(() => {
-              this.notify.info(this.l('UpdatedSuccessfully'));
-              this.orderModal.hide();
-              this.onSave.emit();
-          }, () => {
-              this.saving = false;
-          });
-      }
-      else
-      {
-          this._orderServiceProxy.create(this.orderDto).subscribe(() => {
-              this.notify.info(this.l('CreatedSuccessfully'));
-              this.orderModal.hide();
-              this.onSave.emit();
-          }, () => {
-              this.saving = false;
-          });
-      }
+      orderDtoNew.foodId = foodDto.id;
+      orderDtoNew.categoryId = this.selectedCategory;
+      orderDtoNew.sizeId = this.selectedSize;
+      orderDtoNew.orderStatus = true;
+      orderDtoNew.totalAmountTobePay = this.orderQty * foodDto.price;
+      orderDtoNew.totalQuantityOfOrder = this.orderQty;
+      orderDtoNew.dateAndTimeOrderIsPlaced = moment(this.dateToday);
+      
+      this._orderServiceProxy.putOrdersToCart(orderDtoNew).subscribe((request) => {
+            this.notify.info(this.l('Added to Cart'));
+            this.orderModal.hide();
+            this.onSave.emit(request);
+
+            this.orderRouter.navigate(["./app/customer-cart"]);
+
+      }, () => {
+            this.saving = false;
+      });
+
+     
 
   }
 
