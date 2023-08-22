@@ -13,6 +13,7 @@ export class CustomerEditOrderComponent extends AppComponentBase implements OnIn
 {
 
   orderDto: CustomerOrderDto = new CustomerOrderDto();
+  foodDto: FoodDto = new FoodDto();
   id: number = 0;
   saving = false;
   notify: any;
@@ -52,6 +53,7 @@ export class CustomerEditOrderComponent extends AppComponentBase implements OnIn
                 this.selectedCategory = this.orderDto.categoryId;
                 this.selectedSize = this.orderDto.sizeId;
                 this.selectedFood = this.orderDto.foodId;
+                //this.orderDto.totalAmountTobePay = this.orderDto.totalQuantityOfOrder * this.orderDto.food.price; //
 
           });   
 
@@ -82,6 +84,7 @@ export class CustomerEditOrderComponent extends AppComponentBase implements OnIn
         this.orderDto.sizeId = this.selectedSize;
         this.orderDto.categoryId = this.selectedCategory;
         this.orderDto.foodId = this.selectedFood;
+        //this.orderDto.totalAmountTobePay = this.orderDto.totalQuantityOfOrder * this.foodDto.price; //
 
         if(this.id != 0)
         {
@@ -90,6 +93,7 @@ export class CustomerEditOrderComponent extends AppComponentBase implements OnIn
                   this._orderModal.hide();
                   this.onSave.emit();
             }, () => {
+                  //update price using service proxy here
                   this.saving = false;
             });
 

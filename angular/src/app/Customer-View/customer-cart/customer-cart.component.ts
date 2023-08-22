@@ -7,6 +7,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
 import { CustomerEditOrderComponent } from './customer-edit-order/customer-edit-order.component';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
+import { Router } from '@angular/router';
 
 class PagedOrderDto extends PagedRequestDto
 {
@@ -39,6 +40,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
     injector: Injector,
     private _orderServiceProxy: CustomerOrderServiceProxy,
     private _orderModalService: BsModalService,
+    private customerCartRouter: Router,
   )
   {
       super(injector);
@@ -47,6 +49,11 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
   ShowEditOrderForm(id)
   {
       this.EditCustomerOrder(id);
+  }
+
+  ShowCustomerMenu()
+  {
+    this.customerCartRouter.navigate(["./app/customer-menu"]); 
   }
 
   protected list(request: PagedOrderDto, pageNumber: number, finishedCallback: Function): void {
