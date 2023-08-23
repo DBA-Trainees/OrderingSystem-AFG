@@ -99,7 +99,16 @@
 
                                     <td> {{ order.size?.sizeName }} </td>
 
-                                    <td> {{ order.totalQuantityOfOrder}} </td>                                   
+                                    <td> 
+                                        
+                                        <input type="number"
+                                               class="form-control"
+                                               [(ngModel)]="order.totalQuantityOfOrder"
+                                               [min]="1"
+                                               [max]="order.food.totalStock"
+                                               (change)="UpdateQuantity(order)" />
+
+                                    </td>                                   
                                     
                                     <td> {{ order.notes }} </td>
 

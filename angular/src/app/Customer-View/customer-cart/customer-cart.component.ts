@@ -105,10 +105,34 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
 
       showCustomerEditCompoment.content.onSave.subscribe(() => {
           this.refresh();
-      })
+      });
 
 
   }
 
+  UpdateQuantity(orderDtoParameter: CustomerOrderDto): void
+  {
+      orderDtoParameter.totalAmountTobePay = this.UpdatedTotalAmmountToPay(orderDtoParameter);
+
+      if(orderDtoParameter.totalQuantityOfOrder <= orderDtoParameter.food.totalStock)
+      {
+          this._orderServiceProxy.update(orderDtoParameter).subscribe(() => {
+            this.notify.success(this.l('UpdatedSuccessfully'));
+          });
+
+      }
+      else
+      {
+        abp.message.error(this.l('OverQuantityMessage', orderDtoParameter.food?.totalStock));
+      }
+
+  }
+
+  UpdatedTotalAmmountToPay(orderDto : CustomerOrderDto): number
+  {
+      let originalAmmount = orderDto.food?.price;
+
+      return originalAmmount * orderDto.totalQuantityOfOrder;
+  }
     
 }
