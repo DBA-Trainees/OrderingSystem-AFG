@@ -161,6 +161,7 @@
     <!-- #region User prompt -->
     <text name="DeleteMessage">Are you sure you want to delete '{0}' ?</text>
     <text name="OverQuantityMessage">Sorry but there are only {0} left.</text>
+    <text name="CannotBeLessThanZeroMessage">Cannot be less than 1 or equal to zero.</text>
     <!-- #endregion  -->
 
     <!-- #region Sidebar Title -->

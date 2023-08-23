@@ -79,6 +79,7 @@ export class AddToCartComponent extends AppComponentBase implements OnInit {
       orderDtoNew.totalQuantityOfOrder = this.orderDto.totalQuantityOfOrder;
       orderDtoNew.dateAndTimeOrderIsPlaced = moment(this.dateToday);
       
+      //this.foodDto.totalStock = 
       //this.foodDtoNew.totalStock = this.foodDtoNew.totalStock - this.orderDto.totalQuantityOfOrder;
 
       this._orderServiceProxy.putOrdersToCart(orderDtoNew).subscribe((request) => {
@@ -97,6 +98,17 @@ export class AddToCartComponent extends AppComponentBase implements OnInit {
      
 
   }
+
+  /*
+  UpdateStocks(orderDtoParameter : CustomerOrderDto): number
+  {
+      let originalStock =    orderDtoParameter.totalQuantityOfOrder;
+
+      
+
+
+  }
+  */
 
 
 }

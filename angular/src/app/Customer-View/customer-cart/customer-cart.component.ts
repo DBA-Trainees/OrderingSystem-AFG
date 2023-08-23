@@ -114,18 +114,27 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
   {
       orderDtoParameter.totalAmountTobePay = this.UpdatedTotalAmmountToPay(orderDtoParameter);
 
-      if(orderDtoParameter.totalQuantityOfOrder <= orderDtoParameter.food.totalStock)
+      if(orderDtoParameter.totalQuantityOfOrder <= 0)
       {
-          this._orderServiceProxy.update(orderDtoParameter).subscribe(() => {
-            this.notify.success(this.l('UpdatedSuccessfully'));
-          });
-
+          abp.message.error(this.l('CannotBeLessThanZeroMessage'));
       }
       else
       {
-        abp.message.error(this.l('OverQuantityMessage', orderDtoParameter.food?.totalStock));
+          if(orderDtoParameter.totalQuantityOfOrder <= orderDtoParameter.food.totalStock)
+          {
+              this._orderServiceProxy.update(orderDtoParameter).subscribe(() => {
+                this.notify.success(this.l('UpdatedSuccessfully'));
+              });
+    
+          }
+          else
+          {
+            abp.message.error(this.l('OverQuantityMessage', orderDtoParameter.food?.totalStock));
+          }
+
       }
 
+      
   }
 
   UpdatedTotalAmmountToPay(orderDto : CustomerOrderDto): number
