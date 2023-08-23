@@ -79,36 +79,38 @@ export class AddToCartComponent extends AppComponentBase implements OnInit {
       orderDtoNew.totalQuantityOfOrder = this.orderDto.totalQuantityOfOrder;
       orderDtoNew.dateAndTimeOrderIsPlaced = moment(this.dateToday);
       
-      //this.foodDto.totalStock = 
       //this.foodDtoNew.totalStock = this.foodDtoNew.totalStock - this.orderDto.totalQuantityOfOrder;
+      //foodDto.totalStock = this.foodDtoNew.totalStock - this.orderDto.totalQuantityOfOrder;
+      //selectedItem.totalStock = selectedItem.totalStock - this.QuantityOfOrder; //
+      //foodDto.totalStock = foodDto.totalStock - this.orderDto.totalQuantityOfOrder;
+      //foodDto.totalStock = this.UpdateStocksQuantity(foodDto); 
+
 
       this._orderServiceProxy.putOrdersToCart(orderDtoNew).subscribe((request) => {
-            this.notify.info(this.l('Added to Cart'));
-            this.orderModal.hide();
-            this.onSave.emit(request);
-
-            this.orderRouter.navigate(["./app/customer-cart"]);
+            this.notify.info(this.l('Added to Cart')); 
+            this.orderModal.hide(); 
+            this.onSave.emit(request); 
 
             //update quantity of stock
+            this.orderRouter.navigate(["./app/customer-cart"]); 
+
 
       }, () => {
-            this.saving = false;
+            this.saving = false; 
       });
-
      
 
   }
 
-  /*
-  UpdateStocks(orderDtoParameter : CustomerOrderDto): number
+  
+  UpdateStocksQuantity (foodDtoParameter : FoodDto): number
   {
-      let originalStock =    orderDtoParameter.totalQuantityOfOrder;
+      let quantityOfStock = foodDtoParameter.totalStock; 
 
-      
-
+      return quantityOfStock - this.orderDto.totalQuantityOfOrder; 
 
   }
-  */
+  
 
 
 }

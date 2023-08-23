@@ -46,6 +46,7 @@
                id="orderQty"
                required
                [min]="1"
+               [max]="foodDto.totalStock"
                [(ngModel)]="orderDto.totalQuantityOfOrder"
                #foodQtyModel="ngModel"
                #foodQtyEl />

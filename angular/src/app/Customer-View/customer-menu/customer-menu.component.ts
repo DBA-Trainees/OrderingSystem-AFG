@@ -91,12 +91,18 @@ export class CustomerMenuComponent extends PagedListingComponentBase<CustomerOrd
       this.orderDto.totalQuantityOfOrder = this.QuantityOfOrder;
       this.orderDto.orderStatus = true;
 
+      selectedItem.totalStock = selectedItem.totalStock - this.QuantityOfOrder; 
+
       this._orderServiceProxy.putOrdersToCart(this.orderDto).subscribe((request) => {
           this.notify.info(this.l('Added to Cart'));
           this.onSave.emit(request);
 
           this.orderRouter.navigate(["./app/customer-cart"]);
       });
+
+      this._foodServiceProxy.update(selectedItem).subscribe(() => {
+
+      }); 
       
 
   }
