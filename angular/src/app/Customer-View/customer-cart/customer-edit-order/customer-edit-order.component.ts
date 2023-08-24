@@ -77,14 +77,20 @@ export class CustomerEditOrderComponent extends AppComponentBase implements OnIn
 
   }
 
-  save(): void
+  save(foodDtoParameter: FoodDto): void
   {
         this.saving = true;
         this.orderDto.divisionId = this.selectedDivision;
         this.orderDto.sizeId = this.selectedSize;
         this.orderDto.categoryId = this.selectedCategory;
         this.orderDto.foodId = this.selectedFood;
-        //this.orderDto.totalAmountTobePay = this.orderDto.totalQuantityOfOrder * this.orderDto.food.price; //
+
+        //this.orderDto.totalAmountTobePay = this.UpdatedTotalAmmountToPay(this.orderDto); //
+
+        //this.orderDto.totalAmountTobePay = this.UpdatedTotalAmmountToPay(this.orderDto); //
+        //this.orderDto.food.totalStock = this.UpdatedStocks(this.orderDto);
+        //foodDto.totalStock = this.UpdatedStocks(foodDto);
+        //foodDto.totalStock = foodDto.totalStock - this.orderDto.totalQuantityOfOrder;
 
 
         if(this.id != 0)
@@ -93,14 +99,32 @@ export class CustomerEditOrderComponent extends AppComponentBase implements OnIn
                   this.notify.info(this.l('UpdatedSuccessfully'));
                   this._orderModal.hide();
                   this.onSave.emit();
+
+                  //update stocks here 
+
             }, () => {
-                  //update price using service proxy here
                   this.saving = false;
             });
 
+            
         }
 
   }
+
+  UpdatedTotalAmmountToPay(orderDto : CustomerOrderDto): number
+  {
+      let originalAmmount = orderDto.food?.price;
+
+      return originalAmmount * orderDto.totalQuantityOfOrder;
+  }//
+
+  UpdatedStocks(orderDto: CustomerOrderDto): number
+  {
+      let remainingStocks = orderDto.food?.totalStock;
+
+      return remainingStocks - orderDto.totalQuantityOfOrder;
+
+  }//
 
 
 

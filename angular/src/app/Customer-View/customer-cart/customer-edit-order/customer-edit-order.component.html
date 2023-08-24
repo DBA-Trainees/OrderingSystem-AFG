@@ -1,7 +1,7 @@
 <form class="form-horizontal"
       autocomplete="off"
       #createOrderModal="ngForm"
-      (ngSubmit)="save()">
+      (ngSubmit)="save(foodDto)">
 
   <abp-modal-header [title]="'Edit Order' | localize"
                     (onCloseClick)="_orderModal.hide()">
@@ -80,6 +80,7 @@
       </div>
     </div>
     -->
+
 
     <div class="form-group row required">
 

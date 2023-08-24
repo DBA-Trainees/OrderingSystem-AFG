@@ -2,7 +2,7 @@ import { Component, Injector } from '@angular/core';
 
 import { CustomerMenuComponent } from '../customer-menu/customer-menu.component';
 import { PagedListingComponentBase, PagedRequestDto } from '@shared/paged-listing-component-base';
-import { CategoryDto, CustomerDto, CustomerOrderDto, CustomerOrderDtoPagedResultDto, CustomerOrderServiceProxy, DivisionDto, FoodDto, SizeDto } from '@shared/service-proxies/service-proxies';
+import { CategoryDto, CustomerDto, CustomerOrderDto, CustomerOrderDtoPagedResultDto, CustomerOrderServiceProxy, DivisionDto, FoodDto, FoodServiceProxy, SizeDto } from '@shared/service-proxies/service-proxies';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
 import { CustomerEditOrderComponent } from './customer-edit-order/customer-edit-order.component';
@@ -39,6 +39,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
   constructor(
     injector: Injector,
     private _orderServiceProxy: CustomerOrderServiceProxy,
+    private _foodServiceProxy: FoodServiceProxy, 
     private _orderModalService: BsModalService,
     private customerCartRouter: Router,
   )
@@ -112,7 +113,16 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
 
   UpdateQuantity(orderDtoParameter: CustomerOrderDto): void
   {
+
       orderDtoParameter.totalAmountTobePay = this.UpdatedTotalAmmountToPay(orderDtoParameter);
+
+      //foodDtoConstant.totalStock = foodDtoConstant.totalStock - orderDtoParameter.totalQuantityOfOrder;
+      //foodDtoConstant.totalStock = this.foodDto.totalStock - orderDtoParameter.totalQuantityOfOrder;
+      //foodDtoConstant.totalStock = this.UpdatedStocks(foodDtoConstant);
+      //this.foodDto.totalStock = this.UpdatedStocks(this.foodDto);
+      //orderDtoParameter.food.totalStock = this.foodDto.totalStock - orderDtoParameter.totalQuantityOfOrder;
+      //orderDtoParameter.food.totalStock = orderDtoParameter.food.totalStock - orderDtoParameter.totalQuantityOfOrder;
+
 
       if(orderDtoParameter.totalQuantityOfOrder <= 0)
       {
@@ -123,8 +133,12 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
           if(orderDtoParameter.totalQuantityOfOrder <= orderDtoParameter.food.totalStock)
           {
               this._orderServiceProxy.update(orderDtoParameter).subscribe(() => {
-                this.notify.success(this.l('UpdatedSuccessfully'));
+                  this.notify.success(this.l('UpdatedSuccessfully'));
+
               });
+
+              //update stocks here also if possible    
+
     
           }
           else
@@ -143,5 +157,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
 
       return originalAmmount * orderDto.totalQuantityOfOrder;
   }
+
+  
     
 }
