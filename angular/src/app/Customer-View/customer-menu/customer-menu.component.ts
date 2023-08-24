@@ -122,9 +122,13 @@ export class CustomerMenuComponent extends PagedListingComponentBase<CustomerOrd
             initialState: {id: id},
         });
 
+        showAddToCartComponent.content.onSave.subscribe(() => {
+            this.refresh();
+        });
+
   }
 
-
+  
 
 
 }
