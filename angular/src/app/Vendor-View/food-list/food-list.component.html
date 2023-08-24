@@ -82,7 +82,8 @@
                                     itemsPerPage: pageSize,
                                     currentPage: pageNumber,
                                     totalItems: totalItems
-                                }">
+                                }" [ngStyle]="{'background-color': (food.totalStock <= 0  ) ? 'red' : 'transparent', 'color': ( food.totalStock != 0 ) ? 'black' : 'black'}" >
+
                                     <td>{{ food.foodName }}</td>
 
                                     <td style="text-align:center">
@@ -100,7 +101,7 @@
                                     </td>
                                    
                                     <ng-template #OutOfStock>
-                                        <td> <strong>Out of Stock</strong> </td>                       
+                                        <td > <strong>Out of Stock</strong> </td>                       
                                     </ng-template>
 
                                     <td>{{ food.totalStock }}</td>
