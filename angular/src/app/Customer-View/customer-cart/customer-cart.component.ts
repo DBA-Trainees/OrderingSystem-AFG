@@ -113,32 +113,42 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
 
   UpdateQuantity(orderDtoParameter: CustomerOrderDto): void
   {
+      let quantityOfOrder = orderDtoParameter.totalQuantityOfOrder;
+      let currentStock = orderDtoParameter.food.totalStock;
+
+      //let updatedStock = currentStock - quantityOfOrder;
+      //orderDtoParameter.food.totalStock = updatedStock;
+
+      //orderDtoParameter.food.totalStock = this.UpdatedStock(orderDtoParameter);
+      orderDtoParameter.food.totalStock = this.UpdatedStock(orderDtoParameter);
 
       orderDtoParameter.totalAmountTobePay = this.UpdatedTotalAmmountToPay(orderDtoParameter);
 
-      //foodDtoConstant.totalStock = foodDtoConstant.totalStock - orderDtoParameter.totalQuantityOfOrder;
-      //foodDtoConstant.totalStock = this.foodDto.totalStock - orderDtoParameter.totalQuantityOfOrder;
-      //foodDtoConstant.totalStock = this.UpdatedStocks(foodDtoConstant);
-      //this.foodDto.totalStock = this.UpdatedStocks(this.foodDto);
-      //orderDtoParameter.food.totalStock = this.foodDto.totalStock - orderDtoParameter.totalQuantityOfOrder;
-      //orderDtoParameter.food.totalStock = orderDtoParameter.food.totalStock - orderDtoParameter.totalQuantityOfOrder;
+      
 
-
-      if(orderDtoParameter.totalQuantityOfOrder <= 0)
+      if(quantityOfOrder <= 0)
       {
           abp.message.error(this.l('CannotBeLessThanZeroMessage'));
       }
       else
       {
-          if(orderDtoParameter.totalQuantityOfOrder <= orderDtoParameter.food.totalStock)
+          if(quantityOfOrder <= currentStock)
           {
+
+              this._orderServiceProxy.update(orderDtoParameter).subscribe(() => {
+                this.notify.success(this.l('UpdatedSuccessfully'));
+
+              });
+
+              
+              /*
               this._orderServiceProxy.update(orderDtoParameter).subscribe(() => {
                   this.notify.success(this.l('UpdatedSuccessfully'));
 
               });
+              */
 
-              //update stocks here also if possible    
-
+              //abp.message.error(this.l('ForDebugMessageOnly', currentStock, quantityOfOrder, updatedStock));
     
           }
           else
@@ -158,6 +168,11 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
       return originalAmmount * orderDto.totalQuantityOfOrder;
   }
 
-  
+  UpdatedStock(orderDto : CustomerOrderDto): number
+  {
+      let remainingStock = orderDto.food?.totalStock;
+
+      return remainingStock - orderDto.totalQuantityOfOrder;
+  }
     
 }
