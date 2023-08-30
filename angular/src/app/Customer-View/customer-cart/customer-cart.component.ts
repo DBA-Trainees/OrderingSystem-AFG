@@ -113,30 +113,21 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
 
   UpdateQuantity(orderDtoParameter: CustomerOrderDto): void
   {
-      let inputedQuantityOfOrder = orderDtoParameter.totalQuantityOfOrder;
-      let currentStock = orderDtoParameter.food.totalStock;
-      let updatedQuantityOfOrdered = 0;
-      let updatedStock = 0;
+      let orignalAmount = orderDtoParameter.food?.price; 
+      let oldAmmount = orderDtoParameter.totalAmountTobePay; 
+      let updatedAmount = this.UpdatedTotalAmmountToPay(orderDtoParameter); 
+
+      let inputedQuantityOfOrder = orderDtoParameter.totalQuantityOfOrder; 
+      let oldQuantityOfOrder = oldAmmount / orignalAmount; 
+      let updatedQuantityOfOrder = updatedAmount / orignalAmount; 
+
       let orginalStock = 0;
-      let orginalQuantityOfOrdered = 0;
-    
-
-      //updatedStock = orginalStock + inputedQuantityOfOrder - orginalQuantityOfOrdered; //increase 
-      //updatedStock = orginalStock - (orginalQuantityOfOrdered - inputedQuantityOfOrder); //decrease 
-
-      /*
-      updatedStock = (currentStock - inputedQuantityOfOrder) + 1;
-      updatedQuantityOfOrdered = (currentStock - updatedStock) + 1;
-
-      orginalStock = (orginalQuantityOfOrdered + currentStock) + 1;
-      orginalQuantityOfOrdered = orginalStock - currentStock;
-      */
+      let currentStock = orderDtoParameter.food.totalStock; 
+      let updatedStock = 0; 
  
-      orderDtoParameter.totalAmountTobePay = this.UpdatedTotalAmmountToPay(orderDtoParameter); 
-      //orderDtoParameter.food.totalStock = this.UpdatedStock(orderDtoParameter); 
-      //orderDtoParameter.totalQuantityOfOrder = this.UpdatedQuantityOfOrder(orderDtoParameter);
-      
-      orderDtoParameter.totalAmountTobePay = this.UpdatedTotalAmmountToPay(orderDtoParameter); 
+      orderDtoParameter.totalAmountTobePay = updatedAmount;
+      orderDtoParameter.totalQuantityOfOrder = updatedQuantityOfOrder; 
+      //orderDtoParameter.food.totalStock = this.UpdatedStock(orderDtoParameter);  
 
       if(inputedQuantityOfOrder <= 0)
       {
@@ -144,24 +135,18 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
       }
       else
       {
-          updatedStock = (currentStock - inputedQuantityOfOrder) + 1;
-          updatedQuantityOfOrdered = (currentStock - updatedStock) + 1;
-          
-          orginalStock = (orginalQuantityOfOrdered + currentStock) + 1;
-          orginalQuantityOfOrdered = orginalStock - currentStock;
 
-          if(inputedQuantityOfOrder <= orginalStock)
+          if(inputedQuantityOfOrder <= currentStock)
           {
-            
-              orderDtoParameter.totalQuantityOfOrder = updatedQuantityOfOrdered; 
-              orderDtoParameter.food.totalStock = updatedStock; 
 
+                
+            
               this._orderServiceProxy.update(orderDtoParameter).subscribe(() => {
                 this.notify.success(this.l('UpdatedSuccessfully'));
-
+                
               }); 
 
-              /*
+              /* 
               this._orderServiceProxy.update(orderDtoParameter).subscribe(() => {
                   this.notify.success(this.l('UpdatedSuccessfully'));
 
@@ -188,18 +173,45 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
       return originalAmmount * orderDto.totalQuantityOfOrder;
   }
 
-  /*
+  DecreaseStock(orderDto : CustomerOrderDto): number
+  {
+      let currentStock = orderDto.food?.totalStock; 
+
+      return currentStock--; 
+  }
+
+  IncreaseStock(orderDto : CustomerOrderDto): number
+  {
+      let currentStock = orderDto.food?.totalStock; 
+
+      return currentStock++; 
+  }
+
+
+  UpdatedQuantity(orderDto : CustomerOrderDto): number
+  {
+      let orignalPrice = orderDto.food?.price; 
+      let amountToPay = this.UpdatedTotalAmmountToPay(orderDto); 
+      let updatedQuantity = 0; 
+
+      updatedQuantity =  amountToPay / orignalPrice; 
+       
+      return updatedQuantity; 
+  }
+
+ 
   UpdatedStock(orderDto : CustomerOrderDto): number
   {
       let inputedQuantityOfOrder = orderDto.totalQuantityOfOrder; 
       let currentStock = orderDto.food?.totalStock; 
-      let updatedStock = 0;
+      let updatedStock = 0; 
 
       updatedStock = (currentStock - inputedQuantityOfOrder) + 1; 
 
-      return updatedStock;
+      return updatedStock; 
   }
 
+ /*
   UpdatedQuantityOfOrder(orderDto : CustomerOrderDto): number
   {
       let inputedQuantityOfOrder = orderDto.totalQuantityOfOrder; 
