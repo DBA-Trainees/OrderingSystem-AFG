@@ -1,6 +1,7 @@
 import { Component, Injector } from '@angular/core';
 
 import { CustomerMenuComponent } from '../customer-menu/customer-menu.component';
+import { CustomerCheckoutComponent  } from '../customer-checkout/customer-checkout.component';
 import { PagedListingComponentBase, PagedRequestDto } from '@shared/paged-listing-component-base';
 import { CategoryDto, CustomerDto, CustomerOrderDto, CustomerOrderDtoPagedResultDto, CustomerOrderServiceProxy, DivisionDto, FoodDto, FoodServiceProxy, SizeDto } from '@shared/service-proxies/service-proxies';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
