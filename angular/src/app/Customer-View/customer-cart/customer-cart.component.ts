@@ -171,7 +171,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
           }
           else
           {
-            abp.message.error(this.l('OverQuantityMessage', orderDtoParameter.food?.totalStock));
+            abp.message.error(this.l('OverQuantityMessage', orginalStock)); 
           }
 
       }

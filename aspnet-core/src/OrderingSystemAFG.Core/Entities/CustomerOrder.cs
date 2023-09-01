@@ -26,7 +26,8 @@ namespace OrderingSystemAFG.Entities
         public DateTime? DateAndTimeOrderIsPlaced { get; set; } 
         public DateTime? DateAndTimeOrderIsRecieved { get; set; } 
 
-        public double TotalAmountTobePay { get; set; }
+        public double TotalAmountTobePay { get; set; } 
+        public double GrandTotal { get; set; } 
 
     }
 }

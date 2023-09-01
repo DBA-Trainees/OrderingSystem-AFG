@@ -161,9 +161,9 @@
 
     <!-- #region User prompt -->
     <text name="DeleteMessage">Are you sure you want to delete '{0}' ?</text>
-    <text name="OverQuantityMessage">Sorry but there are only {0} left.</text>
+    <text name="OverQuantityMessage">Sorry you can only order up to {0}. Try again!</text>
     <text name="CannotBeLessThanZeroMessage">Cannot be less than 1 or equal to zero.</text>
-    <text name="ForDebugMessageOnly">First = {0}, Second = {1}, Third = {2} </text>
+    <text name="ForDebugMessageOnly">{0} {1} {2} </text> 
     <!-- #endregion  -->
 
     <!-- #region Sidebar Title -->
