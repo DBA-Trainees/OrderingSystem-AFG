@@ -71,6 +71,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
             new MenuItem(this.l("CustomerNav"), '', 'fas fa-user-friends', 'Pages.User.Customer', [
                 new MenuItem(this.l('Food Menu'), '/app/customer-menu', 'fas fa-burger', 'Pages.Customers.Menu' ),
                 new MenuItem(this.l('Add to Cart'), '/app/customer-cart', 'fas fa-cart-shopping', 'Pages.Customers.Cart'),
+                new MenuItem(this.l('Checkout'), '/app/customer-checkout', 'fas fa-tags', 'Pages.Customers.Checkout'),
                 
             ]),
             // #endregion
