@@ -18,6 +18,7 @@ import { CustomerWithDivisionComponent } from './customer-with-division/customer
 import { FoodListComponent } from './Vendor-View/food-list/food-list.component';
 import { CustomerMenuComponent } from './Customer-View/customer-menu/customer-menu.component';
 import { CustomerCartComponent } from './Customer-View/customer-cart/customer-cart.component';
+import { CustomerCheckoutComponent } from './Customer-View/customer-checkout/customer-checkout.component';
 // #endregion
 
 @NgModule({
@@ -52,6 +53,7 @@ import { CustomerCartComponent } from './Customer-View/customer-cart/customer-ca
                     // #region Customer
                     { path: 'customer-menu', component: CustomerMenuComponent, data: { permission: 'Pages.User.Customer'}, canActivate: [AppRouteGuard] },
                     { path: 'customer-cart', component: CustomerCartComponent, data: { permission: 'Pages.User.Customer'}, canActivate: [AppRouteGuard] },
+                    { path: 'customer-checkout', component: CustomerCheckoutComponent, data: { permission: 'Pages.User.Customer'}, canActivate: [AppRouteGuard] },
                     
                     // #endregion
 
