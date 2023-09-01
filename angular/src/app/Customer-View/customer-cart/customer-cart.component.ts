@@ -80,19 +80,40 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
 
   protected delete(selectedOrder: CustomerOrderDto): void {
 
-    abp.message.confirm(
+
+      let orignalAmount = selectedOrder.food?.price; 
+      let currentAmount = this.UpdatedTotalAmmountToPay(selectedOrder); 
       
-        this.l('DeleteMessage', selectedOrder.food?.foodName),
-        undefined,
-        (result: boolean) => {
-          if (result) {
-            this._orderServiceProxy.delete(selectedOrder.id).subscribe(() => {
-              abp.notify.success(this.l('SuccessfullyDeleted'));
-              this.refresh();
-            });
+      let updatedQuantityOfOrder = currentAmount / orignalAmount; 
+
+      let currentStock = selectedOrder.food.totalStock; 
+      let updatedStock = currentStock + updatedQuantityOfOrder;
+	
+      selectedOrder.food.totalStock = updatedStock; 
+
+
+      abp.message.confirm(
+        
+          this.l('DeleteMessage', selectedOrder.food?.foodName),
+          undefined,
+          (result: boolean) => {
+            if (result) {
+
+                this._orderServiceProxy.update(selectedOrder).subscribe(() => {
+                  
+                });
+
+                this._orderServiceProxy.delete(selectedOrder.id).subscribe(() => {
+                    abp.notify.success(this.l('SuccessfullyDeleted'));
+                    this.refresh();
+                });
+
+
+
+            }
           }
-        }
-    );
+      );
+
   }
 
   private EditCustomerOrder(id?: number): void
@@ -143,13 +164,6 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
                 this.notify.success(this.l('UpdatedSuccessfully'));
                 
               }); 
-
-              /* 
-              this._orderServiceProxy.update(orderDtoParameter).subscribe(() => {
-                  this.notify.success(this.l('UpdatedSuccessfully'));
-
-              });
-              */
 
               //abp.message.error(this.l('ForDebugMessageOnly', orginalStock, currentStock, updatedStock)); 
     
