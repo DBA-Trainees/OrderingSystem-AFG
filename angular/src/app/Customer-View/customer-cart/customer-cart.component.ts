@@ -37,6 +37,8 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
   isActive: boolean | null;
   advancedFiltersVisible = false;
 
+  grandTotal: number = 0; 
+
   constructor(
     injector: Injector,
     private _orderServiceProxy: CustomerOrderServiceProxy,
@@ -69,6 +71,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
       .pipe(
           finalize(() => {
               finishedCallback();
+              this.UpdatedGrandTotal();
           })
       )
       .subscribe((result: CustomerOrderDtoPagedResultDto) => {
@@ -150,6 +153,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
       orderDtoParameter.totalAmountTobePay = updatedAmount;
       orderDtoParameter.totalQuantityOfOrder = updatedQuantityOfOrder; 
       orderDtoParameter.food.totalStock = updatedStock;
+      orderDtoParameter.grandTotal = this.UpdatedGrandTotal();
 
       if(inputedQuantityOfOrder <= 0)
       {
@@ -186,5 +190,19 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
       return originalAmmount * orderDto.totalQuantityOfOrder;
   }
 
+  
+  UpdatedGrandTotal(): number
+  {
+        /* Return the accumulated Sub Total into a Grand total  */
+
+        this.grandTotal = this.orderItems.reduce((total, orderDto) => {
+            return total + this.UpdatedTotalAmmountToPay(orderDto)}, 0
+        );   
+
+        return this.grandTotal;
+
+  }
+  
+  
     
 }

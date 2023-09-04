@@ -72,9 +72,10 @@
                                     <th>{{ "Category" | localize }}</th>
                                     <th>{{ "Size" | localize }}</th>
                                     <th>{{ "Ordered Quantity" | localize }}</th>
+                                    <th>{{ "Price" | localize }}</th> 
+                                    <th>{{ "Sub Total" | localize }}</th> 
                                     <th>{{ "Notes" | localize }}</th>
-                                    <th>{{ "Amount" | localize }}</th> 
-                                    <th style="width: 310px;">{{ "Actions" | localize }}</th>
+                                    <th style="width: 310px;">{{ "Actions" | localize }}</th> 
                                 </tr>
                             </thead>
 
@@ -108,13 +109,17 @@
                                                [max]="order.food.totalStock"
                                                (change)="UpdateQuantity(order)" />
 
-                                    </td>                                   
-                                    
-                                    <td> {{ order.notes }} </td>
+                                    </td>                                                                  
+
+                                    <td>
+                                        {{ order.food?.price | currency:'PHP'}}
+                                    </td>
 
                                     <td>
                                         {{ order.totalAmountTobePay | currency:'PHP'}}
                                     </td>
+
+                                    <td> {{ order.notes }} </td>
 
                                     <td>
                                         <button type="button" 
@@ -135,7 +140,44 @@
 
                                 </tr>
                             </tbody>
+                                               
                         </table>
+
+                        <div class="container-fluid">
+
+                            <div class="row">
+
+                                <div class="col-12 text-right">
+        
+                                    <label class="fw-bolder">
+                                        {{ "Grand Total" | localize }}
+                                    </label>
+        
+                                    <div class="col-12 text-right">
+                                        <p class="h6"> {{ grandTotal | currency:'PHP'}} </p>
+                                    </div>
+        
+                                    <div class="col-12 text-right pt-2">
+        
+                                        <a href="javascript:;"
+                                           class="btn bg-blue"
+                                           (click)="ShowCustomerMenu()">
+
+                                            <i class="fa fa-arrow-right"></i>
+                 
+                                            {{ "Checkout" | localize }}
+
+                                        </a>
+        
+                                    </div>
+        
+                                </div>
+        
+                            </div>
+
+                        </div>
+
+
                     </div>
                 </div>
             </div>
