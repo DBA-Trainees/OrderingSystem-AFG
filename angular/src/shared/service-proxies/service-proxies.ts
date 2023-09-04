@@ -5080,6 +5080,7 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
     dateAndTimeOrderIsPlaced: moment.Moment | undefined;
     dateAndTimeOrderIsRecieved: moment.Moment | undefined;
     totalAmountTobePay: number;
+    grandTotal: number;
 
     constructor(data?: ICreateCustomerOrderDto) {
         if (data) {
@@ -5103,6 +5104,7 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
             this.dateAndTimeOrderIsPlaced = _data["dateAndTimeOrderIsPlaced"] ? moment(_data["dateAndTimeOrderIsPlaced"].toString()) : <any>undefined;
             this.dateAndTimeOrderIsRecieved = _data["dateAndTimeOrderIsRecieved"] ? moment(_data["dateAndTimeOrderIsRecieved"].toString()) : <any>undefined;
             this.totalAmountTobePay = _data["totalAmountTobePay"];
+            this.grandTotal = _data["grandTotal"];
         }
     }
 
@@ -5126,6 +5128,7 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
         data["dateAndTimeOrderIsPlaced"] = this.dateAndTimeOrderIsPlaced ? this.dateAndTimeOrderIsPlaced.toISOString() : <any>undefined;
         data["dateAndTimeOrderIsRecieved"] = this.dateAndTimeOrderIsRecieved ? this.dateAndTimeOrderIsRecieved.toISOString() : <any>undefined;
         data["totalAmountTobePay"] = this.totalAmountTobePay;
+        data["grandTotal"] = this.grandTotal;
         return data;
     }
 
@@ -5149,6 +5152,7 @@ export interface ICreateCustomerOrderDto {
     dateAndTimeOrderIsPlaced: moment.Moment | undefined;
     dateAndTimeOrderIsRecieved: moment.Moment | undefined;
     totalAmountTobePay: number;
+    grandTotal: number;
 }
 
 export class CreateDivisionDto implements ICreateDivisionDto {
@@ -5691,6 +5695,7 @@ export class CustomerOrderDto implements ICustomerOrderDto {
     dateAndTimeOrderIsPlaced: moment.Moment | undefined;
     dateAndTimeOrderIsRecieved: moment.Moment | undefined;
     totalAmountTobePay: number;
+    grandTotal: number;
 
     constructor(data?: ICustomerOrderDto) {
         if (data) {
@@ -5719,6 +5724,7 @@ export class CustomerOrderDto implements ICustomerOrderDto {
             this.dateAndTimeOrderIsPlaced = _data["dateAndTimeOrderIsPlaced"] ? moment(_data["dateAndTimeOrderIsPlaced"].toString()) : <any>undefined;
             this.dateAndTimeOrderIsRecieved = _data["dateAndTimeOrderIsRecieved"] ? moment(_data["dateAndTimeOrderIsRecieved"].toString()) : <any>undefined;
             this.totalAmountTobePay = _data["totalAmountTobePay"];
+            this.grandTotal = _data["grandTotal"];
         }
     }
 
@@ -5747,6 +5753,7 @@ export class CustomerOrderDto implements ICustomerOrderDto {
         data["dateAndTimeOrderIsPlaced"] = this.dateAndTimeOrderIsPlaced ? this.dateAndTimeOrderIsPlaced.toISOString() : <any>undefined;
         data["dateAndTimeOrderIsRecieved"] = this.dateAndTimeOrderIsRecieved ? this.dateAndTimeOrderIsRecieved.toISOString() : <any>undefined;
         data["totalAmountTobePay"] = this.totalAmountTobePay;
+        data["grandTotal"] = this.grandTotal;
         return data;
     }
 
@@ -5775,6 +5782,7 @@ export interface ICustomerOrderDto {
     dateAndTimeOrderIsPlaced: moment.Moment | undefined;
     dateAndTimeOrderIsRecieved: moment.Moment | undefined;
     totalAmountTobePay: number;
+    grandTotal: number;
 }
 
 export class CustomerOrderDtoPagedResultDto implements ICustomerOrderDtoPagedResultDto {
