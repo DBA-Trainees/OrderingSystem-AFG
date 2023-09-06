@@ -62,7 +62,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
 
   protected list(request: PagedOrderDto, pageNumber: number, finishedCallback: Function): void {
     
-      this._orderServiceProxy.getAll(
+      this._orderServiceProxy.getAllTheListOfOrderIncludingFoodThenCategoryThenSizeThenDivision(
           request.keyword,
           request.IsActive,
           request.skipCount,
@@ -93,7 +93,8 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
       let currentStock = selectedOrder.food.totalStock; 
       let updatedStock = currentStock + updatedQuantityOfOrder;
 	
-      selectedOrder.food.totalStock = updatedStock; 
+      selectedOrder.food.totalStock = updatedStock;
+      selectedOrder.orderStatus = false;
 
 
       abp.message.confirm(
@@ -104,14 +105,25 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
             if (result) {
 
                 this._orderServiceProxy.update(selectedOrder).subscribe(() => {
-                  
+
+
+                    this._orderServiceProxy.delete(selectedOrder.id).subscribe(() => {
+                        
+                    });
+
+                    abp.notify.success(this.l('SuccessfullyDeleted'));
+                    this.refresh();
+    
+                    
                 });
 
+
+                /*
                 this._orderServiceProxy.delete(selectedOrder.id).subscribe(() => {
                     abp.notify.success(this.l('SuccessfullyDeleted'));
                     this.refresh();
                 });
-
+                */
 
 
             }

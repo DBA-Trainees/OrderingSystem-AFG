@@ -43,6 +43,7 @@ namespace OrderingSystemAFG.CustomerOrders
                 .Include(items => items.Category)
                 .Include(items => items.Size)
                 .Include(items => items.Division)
+                .Where(select => select.OrderStatus == true)
                 .OrderByDescending(items => items.Id)
                 .Select(items => ObjectMapper.Map<CustomerOrderDto>(items))
                 .ToListAsync();
@@ -63,6 +64,9 @@ namespace OrderingSystemAFG.CustomerOrders
             {
                 duplicateOrder.TotalQuantityOfOrder += input.TotalQuantityOfOrder;
                 duplicateOrder.DateAndTimeOrderIsPlaced = input.DateAndTimeOrderIsPlaced?.ToLocalTime();
+                duplicateOrder.FoodId = input.FoodId;
+                duplicateOrder.SizeId = input.SizeId;
+                duplicateOrder.CategoryId = input.CategoryId;   
                 duplicateOrder.OrderStatus = true;
 
                 await _customerOrderIRepository.UpdateAsync(duplicateOrder);
