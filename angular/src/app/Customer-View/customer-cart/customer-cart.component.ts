@@ -164,6 +164,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
       if(inputedQuantityOfOrder <= 0)
       {
           abp.message.error(this.l('CannotBeLessThanZeroMessage'));
+          this.refresh();
       }
       else
       {
@@ -181,7 +182,8 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
           }
           else
           {
-            abp.message.error(this.l('OverQuantityMessage', orginalStock)); 
+              abp.message.error(this.l('OverQuantityMessage', orginalStock)); 
+              this.refresh();
           }
 
       }
