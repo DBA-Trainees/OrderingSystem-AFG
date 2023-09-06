@@ -58,7 +58,8 @@ namespace OrderingSystemAFG.CustomerOrders
                 item =>
                 item.OrderStatus == true &&
                 item.FoodId == input.FoodId &&
-                item.SizeId == input.SizeId); 
+                item.SizeId == input.SizeId &&
+                item.CategoryId == input.CategoryId); 
 
             if(duplicateOrder != null)
             {
