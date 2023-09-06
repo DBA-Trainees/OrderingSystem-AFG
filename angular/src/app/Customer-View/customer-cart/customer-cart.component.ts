@@ -93,8 +93,8 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
       let currentStock = selectedOrder.food.totalStock; 
       let updatedStock = currentStock + updatedQuantityOfOrder;
 	
-      selectedOrder.food.totalStock = updatedStock;
-      selectedOrder.orderStatus = false;
+      //selectedOrder.food.totalStock = updatedStock;
+      //selectedOrder.orderStatus = false;
 
 
       abp.message.confirm(
@@ -104,27 +104,21 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
           (result: boolean) => {
             if (result) {
 
+                selectedOrder.food.totalStock = updatedStock;
+                selectedOrder.orderStatus = false; 
+
                 this._orderServiceProxy.update(selectedOrder).subscribe(() => {
-
-
-                    this._orderServiceProxy.delete(selectedOrder.id).subscribe(() => {
-                        
-                    });
-
-                    abp.notify.success(this.l('SuccessfullyDeleted'));
                     this.refresh();
-    
-                    
                 });
 
-
+                abp.notify.success(this.l('SuccessfullyDeleted'));
+                
                 /*
                 this._orderServiceProxy.delete(selectedOrder.id).subscribe(() => {
                     abp.notify.success(this.l('SuccessfullyDeleted'));
                     this.refresh();
                 });
-                */
-
+                */    
 
             }
           }
