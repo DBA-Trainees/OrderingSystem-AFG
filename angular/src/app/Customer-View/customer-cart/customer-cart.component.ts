@@ -90,7 +90,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
       
       let updatedQuantityOfOrder = currentAmount / orignalAmount; 
 
-      let currentStock = selectedOrder.food.totalStock; 
+      let currentStock = selectedOrder.food?.totalStock; 
       let updatedStock = currentStock + updatedQuantityOfOrder;
 	
       //selectedOrder.food.totalStock = updatedStock;
@@ -152,7 +152,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
       let oldQuantityOfOrder = oldAmmount / orignalAmount; 
       let updatedQuantityOfOrder = updatedAmount / orignalAmount; 
 
-      let currentStock = orderDtoParameter.food.totalStock; 
+      let currentStock = orderDtoParameter.food?.totalStock; 
       let orginalStock = currentStock + oldQuantityOfOrder;
       let updatedStock = orginalStock - updatedQuantityOfOrder; 
  
