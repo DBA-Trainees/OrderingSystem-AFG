@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { PagedListingComponentBase, PagedRequestDto } from '@shared/paged-listing-component-base';
 import { CustomerOrderDto, CustomerOrderDtoPagedResultDto, CustomerOrderServiceProxy } from '@shared/service-proxies/service-proxies';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
 
 class PagedOrderDto extends PagedRequestDto
@@ -83,6 +83,8 @@ export class CustomerCheckoutComponent extends PagedListingComponentBase<Custome
       return this.grandTotal;
 
   }
+
+  
 
 
 }

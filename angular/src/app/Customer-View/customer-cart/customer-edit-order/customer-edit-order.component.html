@@ -1,7 +1,7 @@
 <form class="form-horizontal"
       autocomplete="off"
       #createOrderModal="ngForm"
-      (ngSubmit)="save(foodDto)">
+      (ngSubmit)="save()">
 
   <abp-modal-header [title]="'Edit Order' | localize"
                     (onCloseClick)="_orderModal.hide()">

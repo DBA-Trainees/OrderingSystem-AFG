@@ -74,6 +74,8 @@
                                     <th>{{ "Ordered Quantity" | localize }}</th>
                                     <th>{{ "Price" | localize }}</th> 
                                     <th>{{ "Sub Total" | localize }}</th> 
+                                    
+                                    <th>{{ "Date Added" | localize }}</th>
                                     <th>{{ "Notes" | localize }}</th>
                                     <th style="width: 310px;">{{ "Actions" | localize }}</th> 
                                 </tr>
@@ -119,6 +121,8 @@
                                         {{ order.totalAmountTobePay | currency:'PHP'}}
                                     </td>
 
+                                    <td>{{ order.dateAndTimeOrderIsPlaced  | date: 'MM/dd/yyyy'}} </td>
+
                                     <td> {{ order.notes }} </td>
 
                                     <td>
@@ -161,7 +165,7 @@
         
                                         <a href="javascript:;"
                                            class="btn bg-blue"
-                                           (click)="ShowCustomerMenu()">
+                                           (click)="ShowCheckOutComponent()">
 
                                             <i class="fa fa-arrow-right"></i>
                  

@@ -210,6 +210,20 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
         return this.grandTotal;
 
   }
+
+  ShowCheckOutComponent()
+  {
+      this.ProceedToCheckout();
+  }
+
+  private ProceedToCheckout(): void
+  {
+      //To be continue
+
+      this.customerCartRouter.navigate(["./app/customer-checkout"]);
+      
+
+  }
   
   
     

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
 import { AppComponentBase } from '@shared/app-component-base';
 import { CategoryDto, CategoryServiceProxy, CustomerOrderDto, CustomerOrderServiceProxy, DivisionDto, DivisionServiceProxy, FoodDto, FoodServiceProxy, FoodTypeDto, FoodTypeServiceProxy, SizeDto, SizeServiceProxy } from '@shared/service-proxies/service-proxies';
+import * as moment from 'moment';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -14,6 +15,7 @@ export class CustomerEditOrderComponent extends AppComponentBase implements OnIn
 
   orderDto: CustomerOrderDto = new CustomerOrderDto();
   foodDto: FoodDto = new FoodDto();
+  dateToday = new Date();
   id: number = 0;
   saving = false;
   notify: any;
@@ -77,13 +79,14 @@ export class CustomerEditOrderComponent extends AppComponentBase implements OnIn
 
   }
 
-  save(foodDtoParameter: FoodDto): void
+  save(): void
   {
         this.saving = true;
         this.orderDto.divisionId = this.selectedDivision;
         this.orderDto.sizeId = this.selectedSize;
         this.orderDto.categoryId = this.selectedCategory;
         this.orderDto.foodId = this.selectedFood;
+        this.orderDto.dateAndTimeOrderIsPlaced = moment(this.dateToday);
 
         //this.orderDto.totalAmountTobePay = this.UpdatedTotalAmmountToPay(this.orderDto); //
 
