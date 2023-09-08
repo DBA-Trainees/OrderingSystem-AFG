@@ -62,7 +62,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
 
   protected list(request: PagedOrderDto, pageNumber: number, finishedCallback: Function): void {
     
-      this._orderServiceProxy.getAllTheListOfOrderIncludingFoodThenCategoryThenSizeThenDivision(
+      this._orderServiceProxy.getAll(
           request.keyword,
           request.IsActive,
           request.skipCount,

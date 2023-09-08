@@ -75,6 +75,7 @@ export class AddToCartComponent extends AppComponentBase implements OnInit {
       orderDtoNew.categoryId = this.selectedCategory;
       orderDtoNew.sizeId = this.selectedSize;
       orderDtoNew.orderStatus = true;
+      orderDtoNew.checkoutStatusNumber = 1;
       orderDtoNew.totalAmountTobePay = this.orderDto.totalQuantityOfOrder * foodDto.price;
       orderDtoNew.totalQuantityOfOrder = this.orderDto.totalQuantityOfOrder;
       orderDtoNew.dateAndTimeOrderIsPlaced = moment(this.dateToday);

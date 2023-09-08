@@ -89,7 +89,18 @@
 
                                 <div class="d-print-none mt-4">
                                     <div class="float-end text-right">
-                                        <a class="btn bg-blue w-md">Proceed</a>
+
+                                        <a  *ngIf="grandTotal != 0 else NoOrdersYet"
+                                            class="btn bg-blue w-md">
+                                            Proceed
+                                        </a>
+
+                                        <ng-template #NoOrdersYet>
+
+                                            <a hidden> </a>
+                                        
+                                        </ng-template> 
+
                                     </div>
                                 </div>
 
