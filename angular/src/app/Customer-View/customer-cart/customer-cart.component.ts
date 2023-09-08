@@ -9,6 +9,7 @@ import { finalize } from 'rxjs';
 import { CustomerEditOrderComponent } from './customer-edit-order/customer-edit-order.component';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 class PagedOrderDto extends PagedRequestDto
 {
@@ -38,6 +39,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
   advancedFiltersVisible = false;
 
   grandTotal: number = 0; 
+  dateToday = new Date();
 
   constructor(
     injector: Injector,
@@ -106,7 +108,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
 
                 selectedOrder.food.totalStock = updatedStock;
                 selectedOrder.orderStatus = false;
-                selectedOrder.checkoutStatusNumber = 0; 
+                selectedOrder.checkoutStatusNumber = 2; 
 
                 this._orderServiceProxy.update(selectedOrder).subscribe(() => {
                     this.refresh();
@@ -175,7 +177,6 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
 
               this._orderServiceProxy.update(orderDtoParameter).subscribe(() => {
                 this.notify.success(this.l('UpdatedSuccessfully'));
-                
               }); 
 
               //abp.message.error(this.l('ForDebugMessageOnly', orginalStock, currentStock, updatedStock)); 
@@ -219,10 +220,26 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
 
   private ProceedToCheckout(): void
   {
-      //To be continue
 
-      this.customerCartRouter.navigate(["./app/customer-checkout"]);
+        /*
+        const finalOrderDto = new CustomerOrderDto();
+
+        finalOrderDto.id = this.orderDto.id;
+        finalOrderDto.foodId = this.orderDto.foodId;
+        finalOrderDto.sizeId = this.orderDto.sizeId;
+        finalOrderDto.categoryId = this.orderDto.categoryId;
+        finalOrderDto.checkoutStatusNumber = 3;
+        finalOrderDto.totalQuantityOfOrder = this.orderDto.totalQuantityOfOrder;
+        finalOrderDto.grandTotal = this.UpdatedGrandTotal();
+        finalOrderDto.dateAndTimeOrderIsPlaced = moment(this.dateToday);
+        //finalOrderDto.customerName = this.
+        //finalOrderDto.divisionId = selectedDivision
+
+        */
+
+        this.customerCartRouter.navigate(["./app/customer-checkout"]);
       
+        //To be continue
 
   }
   
