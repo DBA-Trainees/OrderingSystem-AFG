@@ -105,7 +105,8 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
             if (result) {
 
                 selectedOrder.food.totalStock = updatedStock;
-                selectedOrder.orderStatus = false; 
+                selectedOrder.orderStatus = false;
+                selectedOrder.checkoutStatusNumber = 0; 
 
                 this._orderServiceProxy.update(selectedOrder).subscribe(() => {
                     this.refresh();

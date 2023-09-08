@@ -149,7 +149,8 @@
         
                                     <div class="col-12 text-right pt-2">
         
-                                        <a href="javascript:;"
+                                        <a *ngIf="grandTotal != 0 else NoOrdersYet"
+                                           href="javascript:;"
                                            class="btn bg-blue"
                                            (click)="ShowCheckOutComponent()">
 
@@ -158,8 +159,15 @@
                                             {{ "Checkout" | localize }} ( {{ totalItems }} )
 
                                         </a>
+
+                                        <ng-template #NoOrdersYet>
+
+                                            <a class="btn bg-blue" hidden> </a>
+                                        
+                                        </ng-template>
         
                                     </div>
+
         
                                 </div>
         

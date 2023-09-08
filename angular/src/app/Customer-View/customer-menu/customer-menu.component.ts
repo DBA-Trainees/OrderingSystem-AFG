@@ -90,6 +90,7 @@ export class CustomerMenuComponent extends PagedListingComponentBase<CustomerOrd
       this.orderDto.divisionId = this.selectedDivision;
       this.orderDto.totalQuantityOfOrder = this.QuantityOfOrder;
       this.orderDto.orderStatus = true;
+      this.orderDto.checkoutStatusNumber = 1;
 
       selectedItem.totalStock = selectedItem.totalStock - this.QuantityOfOrder; 
 
