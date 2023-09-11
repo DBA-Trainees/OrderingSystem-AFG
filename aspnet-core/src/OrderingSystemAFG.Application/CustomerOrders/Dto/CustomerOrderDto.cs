@@ -38,5 +38,7 @@ namespace OrderingSystemAFG.CustomerOrders.Dto
 
         public int? CheckoutStatusNumber { get; set; }
 
+        public Guid? ReferenceNumber { get; set; } 
+
     }
 }

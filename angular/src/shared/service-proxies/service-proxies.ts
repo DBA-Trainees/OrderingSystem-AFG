@@ -5082,6 +5082,7 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
     totalAmountTobePay: number;
     grandTotal: number;
     checkoutStatusNumber: number | undefined;
+    referenceNumber: string | undefined;
 
     constructor(data?: ICreateCustomerOrderDto) {
         if (data) {
@@ -5107,6 +5108,7 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
             this.totalAmountTobePay = _data["totalAmountTobePay"];
             this.grandTotal = _data["grandTotal"];
             this.checkoutStatusNumber = _data["checkoutStatusNumber"];
+            this.referenceNumber = _data["referenceNumber"];
         }
     }
 
@@ -5132,6 +5134,7 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
         data["totalAmountTobePay"] = this.totalAmountTobePay;
         data["grandTotal"] = this.grandTotal;
         data["checkoutStatusNumber"] = this.checkoutStatusNumber;
+        data["referenceNumber"] = this.referenceNumber;
         return data;
     }
 
@@ -5157,6 +5160,7 @@ export interface ICreateCustomerOrderDto {
     totalAmountTobePay: number;
     grandTotal: number;
     checkoutStatusNumber: number | undefined;
+    referenceNumber: string | undefined;
 }
 
 export class CreateDivisionDto implements ICreateDivisionDto {
@@ -5701,6 +5705,7 @@ export class CustomerOrderDto implements ICustomerOrderDto {
     totalAmountTobePay: number;
     grandTotal: number;
     checkoutStatusNumber: number | undefined;
+    referenceNumber: string | undefined;
 
     constructor(data?: ICustomerOrderDto) {
         if (data) {
@@ -5731,6 +5736,7 @@ export class CustomerOrderDto implements ICustomerOrderDto {
             this.totalAmountTobePay = _data["totalAmountTobePay"];
             this.grandTotal = _data["grandTotal"];
             this.checkoutStatusNumber = _data["checkoutStatusNumber"];
+            this.referenceNumber = _data["referenceNumber"];
         }
     }
 
@@ -5761,6 +5767,7 @@ export class CustomerOrderDto implements ICustomerOrderDto {
         data["totalAmountTobePay"] = this.totalAmountTobePay;
         data["grandTotal"] = this.grandTotal;
         data["checkoutStatusNumber"] = this.checkoutStatusNumber;
+        data["referenceNumber"] = this.referenceNumber;
         return data;
     }
 
@@ -5791,6 +5798,7 @@ export interface ICustomerOrderDto {
     totalAmountTobePay: number;
     grandTotal: number;
     checkoutStatusNumber: number | undefined;
+    referenceNumber: string | undefined;
 }
 
 export class CustomerOrderDtoPagedResultDto implements ICustomerOrderDtoPagedResultDto {

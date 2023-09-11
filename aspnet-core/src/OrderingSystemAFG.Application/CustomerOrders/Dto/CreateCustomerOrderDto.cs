@@ -26,5 +26,7 @@ namespace OrderingSystemAFG.CustomerOrders.Dto
         public double GrandTotal { get; set; }
 
         public int? CheckoutStatusNumber { get; set; }
+
+        public Guid? ReferenceNumber { get; set; }
     }
 }
