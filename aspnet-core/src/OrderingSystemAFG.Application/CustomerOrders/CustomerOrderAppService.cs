@@ -37,14 +37,14 @@ namespace OrderingSystemAFG.CustomerOrders
 
         }
 
-        public async Task<PagedResultDto<CustomerOrderDto>> GetAllTheListOfOrderIncludingFoodThenCategoryThenSizeThenDivision(PagedCustomerOrderResultRequestDto input)
+        public async Task<PagedResultDto<CustomerOrderDto>> GetAllOrderWhereTheStatusNumberIsThree(PagedCustomerOrderResultRequestDto input)
         {
             var orderList = await _customerOrderIRepository.GetAll()
                 .Include(items => items.Food)
                 .Include(items => items.Category)
                 .Include(items => items.Size)
                 .Include(items => items.Division)
-                .Where(select => select.CheckoutStatusNumber == 1) //3 - getallOrderwithStatus of 3
+                .Where(select => select.CheckoutStatusNumber == 3)
                 .OrderByDescending(items => items.Id)
                 .Select(items => ObjectMapper.Map<CustomerOrderDto>(items))
                 .ToListAsync();
@@ -93,7 +93,25 @@ namespace OrderingSystemAFG.CustomerOrders
         }
         //
 
+        public async Task<CustomerOrderDto> UpdateStatusNumberIntoThree(CustomerOrderDto input)
+        {
+            var customerOrder = new CustomerOrder();
+            var referenceNumber = Guid.NewGuid();
 
+
+            foreach (var individualItem in input.ListOfOrders)
+            {
+                customerOrder = ObjectMapper.Map<CustomerOrder>(individualItem);
+                customerOrder.Id = individualItem.Id;
+                customerOrder.ReferenceNumber = referenceNumber;
+
+                await _customerOrderIRepository.UpdateAsync(customerOrder);
+
+            }
+
+            return base.MapToEntityDto(customerOrder);
+
+        }
 
 
     }

@@ -1,4 +1,5 @@
-﻿using Abp.AutoMapper;
+﻿using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
 using OrderingSystemAFG.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace OrderingSystemAFG.CustomerOrders.Dto
 {
     [AutoMapTo(typeof(CustomerOrder))]
-    public class CreateCustomerOrderDto
+    public class CreateCustomerOrderDto : EntityDto<int>
     {
         public int? FoodId { get; set; }
         public string CustomerName { get; set; }
@@ -28,5 +29,8 @@ namespace OrderingSystemAFG.CustomerOrders.Dto
         public int? CheckoutStatusNumber { get; set; }
 
         public Guid? ReferenceNumber { get; set; }
+
+        public List<CustomerOrderDto> ListOfOrders { get; set; } //
+
     }
 }

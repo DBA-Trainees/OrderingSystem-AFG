@@ -1029,8 +1029,8 @@ export class CustomerOrderServiceProxy {
      * @param maxResultCount (optional) 
      * @return Success
      */
-    getAllTheListOfOrderIncludingFoodThenCategoryThenSizeThenDivision(keyword: string | undefined, isActive: boolean | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<CustomerOrderDtoPagedResultDto> {
-        let url_ = this.baseUrl + "/api/services/app/CustomerOrder/GetAllTheListOfOrderIncludingFoodThenCategoryThenSizeThenDivision?";
+    getAllOrderWhereTheStatusNumberIsThree(keyword: string | undefined, isActive: boolean | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<CustomerOrderDtoPagedResultDto> {
+        let url_ = this.baseUrl + "/api/services/app/CustomerOrder/GetAllOrderWhereTheStatusNumberIsThree?";
         if (keyword === null)
             throw new Error("The parameter 'keyword' cannot be null.");
         else if (keyword !== undefined)
@@ -1058,11 +1058,11 @@ export class CustomerOrderServiceProxy {
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAllTheListOfOrderIncludingFoodThenCategoryThenSizeThenDivision(response_);
+            return this.processGetAllOrderWhereTheStatusNumberIsThree(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAllTheListOfOrderIncludingFoodThenCategoryThenSizeThenDivision(response_ as any);
+                    return this.processGetAllOrderWhereTheStatusNumberIsThree(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<CustomerOrderDtoPagedResultDto>;
                 }
@@ -1071,7 +1071,7 @@ export class CustomerOrderServiceProxy {
         }));
     }
 
-    protected processGetAllTheListOfOrderIncludingFoodThenCategoryThenSizeThenDivision(response: HttpResponseBase): Observable<CustomerOrderDtoPagedResultDto> {
+    protected processGetAllOrderWhereTheStatusNumberIsThree(response: HttpResponseBase): Observable<CustomerOrderDtoPagedResultDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1128,6 +1128,62 @@ export class CustomerOrderServiceProxy {
     }
 
     protected processPutOrdersToCart(response: HttpResponseBase): Observable<CustomerOrderDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = CustomerOrderDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    updateStatusNumberIntoThree(body: CustomerOrderDto | undefined): Observable<CustomerOrderDto> {
+        let url_ = this.baseUrl + "/api/services/app/CustomerOrder/UpdateStatusNumberIntoThree";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdateStatusNumberIntoThree(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdateStatusNumberIntoThree(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<CustomerOrderDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<CustomerOrderDto>;
+        }));
+    }
+
+    protected processUpdateStatusNumberIntoThree(response: HttpResponseBase): Observable<CustomerOrderDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5069,6 +5125,7 @@ export interface ICreateCustomerDto {
 }
 
 export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
+    id: number;
     foodId: number | undefined;
     customerName: string | undefined;
     divisionId: number | undefined;
@@ -5083,6 +5140,7 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
     grandTotal: number;
     checkoutStatusNumber: number | undefined;
     referenceNumber: string | undefined;
+    listOfOrders: CustomerOrderDto[] | undefined;
 
     constructor(data?: ICreateCustomerOrderDto) {
         if (data) {
@@ -5095,6 +5153,7 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
 
     init(_data?: any) {
         if (_data) {
+            this.id = _data["id"];
             this.foodId = _data["foodId"];
             this.customerName = _data["customerName"];
             this.divisionId = _data["divisionId"];
@@ -5109,6 +5168,11 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
             this.grandTotal = _data["grandTotal"];
             this.checkoutStatusNumber = _data["checkoutStatusNumber"];
             this.referenceNumber = _data["referenceNumber"];
+            if (Array.isArray(_data["listOfOrders"])) {
+                this.listOfOrders = [] as any;
+                for (let item of _data["listOfOrders"])
+                    this.listOfOrders.push(CustomerOrderDto.fromJS(item));
+            }
         }
     }
 
@@ -5121,6 +5185,7 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
         data["foodId"] = this.foodId;
         data["customerName"] = this.customerName;
         data["divisionId"] = this.divisionId;
@@ -5135,6 +5200,11 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
         data["grandTotal"] = this.grandTotal;
         data["checkoutStatusNumber"] = this.checkoutStatusNumber;
         data["referenceNumber"] = this.referenceNumber;
+        if (Array.isArray(this.listOfOrders)) {
+            data["listOfOrders"] = [];
+            for (let item of this.listOfOrders)
+                data["listOfOrders"].push(item.toJSON());
+        }
         return data;
     }
 
@@ -5147,6 +5217,7 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
 }
 
 export interface ICreateCustomerOrderDto {
+    id: number;
     foodId: number | undefined;
     customerName: string | undefined;
     divisionId: number | undefined;
@@ -5161,6 +5232,7 @@ export interface ICreateCustomerOrderDto {
     grandTotal: number;
     checkoutStatusNumber: number | undefined;
     referenceNumber: string | undefined;
+    listOfOrders: CustomerOrderDto[] | undefined;
 }
 
 export class CreateDivisionDto implements ICreateDivisionDto {
@@ -5706,6 +5778,7 @@ export class CustomerOrderDto implements ICustomerOrderDto {
     grandTotal: number;
     checkoutStatusNumber: number | undefined;
     referenceNumber: string | undefined;
+    listOfOrders: CustomerOrderDto[] | undefined;
 
     constructor(data?: ICustomerOrderDto) {
         if (data) {
@@ -5737,6 +5810,11 @@ export class CustomerOrderDto implements ICustomerOrderDto {
             this.grandTotal = _data["grandTotal"];
             this.checkoutStatusNumber = _data["checkoutStatusNumber"];
             this.referenceNumber = _data["referenceNumber"];
+            if (Array.isArray(_data["listOfOrders"])) {
+                this.listOfOrders = [] as any;
+                for (let item of _data["listOfOrders"])
+                    this.listOfOrders.push(CustomerOrderDto.fromJS(item));
+            }
         }
     }
 
@@ -5768,6 +5846,11 @@ export class CustomerOrderDto implements ICustomerOrderDto {
         data["grandTotal"] = this.grandTotal;
         data["checkoutStatusNumber"] = this.checkoutStatusNumber;
         data["referenceNumber"] = this.referenceNumber;
+        if (Array.isArray(this.listOfOrders)) {
+            data["listOfOrders"] = [];
+            for (let item of this.listOfOrders)
+                data["listOfOrders"].push(item.toJSON());
+        }
         return data;
     }
 
@@ -5799,6 +5882,7 @@ export interface ICustomerOrderDto {
     grandTotal: number;
     checkoutStatusNumber: number | undefined;
     referenceNumber: string | undefined;
+    listOfOrders: CustomerOrderDto[] | undefined;
 }
 
 export class CustomerOrderDtoPagedResultDto implements ICustomerOrderDtoPagedResultDto {

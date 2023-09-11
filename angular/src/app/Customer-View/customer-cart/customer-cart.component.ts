@@ -213,33 +213,51 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
 
   }
 
-  ShowCheckOutComponent()
-  {
-      this.ProceedToCheckout();
-  }
-
-  private ProceedToCheckout(): void
+  ProceedToCheckout(referenceNumber: string): void
   {
 
-        /*
         const finalOrderDto = new CustomerOrderDto();
 
-        finalOrderDto.id = this.orderDto.id;
-        finalOrderDto.foodId = this.orderDto.foodId;
-        finalOrderDto.sizeId = this.orderDto.sizeId;
-        finalOrderDto.categoryId = this.orderDto.categoryId;
-        finalOrderDto.checkoutStatusNumber = 3;
-        finalOrderDto.totalQuantityOfOrder = this.orderDto.totalQuantityOfOrder;
-        finalOrderDto.grandTotal = this.UpdatedGrandTotal();
-        finalOrderDto.dateAndTimeOrderIsPlaced = moment(this.dateToday);
-        //finalOrderDto.customerName = this.
-        //finalOrderDto.divisionId = selectedDivision
+        finalOrderDto.listOfOrders = this.orderItems.map((order) => {
 
-        */
+            const orderDtoNew = new CustomerOrderDto();
 
-        this.customerCartRouter.navigate(["./app/customer-checkout"]);
-      
-        //To be continue
+            orderDtoNew.id = order.id;
+            orderDtoNew.foodId = order.foodId;
+            orderDtoNew.sizeId = order.sizeId;
+            orderDtoNew.categoryId = order.categoryId;
+            orderDtoNew.checkoutStatusNumber = 3;
+            orderDtoNew.orderStatus = true;
+            orderDtoNew.totalQuantityOfOrder = order.totalQuantityOfOrder;
+            orderDtoNew.totalAmountTobePay = order.totalAmountTobePay;
+            orderDtoNew.grandTotal = this.UpdatedGrandTotal();
+            orderDtoNew.dateAndTimeOrderIsPlaced = moment(this.dateToday);
+            
+            //finalOrderDto.customerName = this.
+            //finalOrderDto.divisionId = selectedDivision
+
+            return orderDtoNew;
+
+        });
+
+        this._orderServiceProxy.updateStatusNumberIntoThree(finalOrderDto).subscribe((result) => {
+            
+            referenceNumber = result.referenceNumber;
+            this.notify.info(this.l("Ordered Succesfully"));
+            
+            //pass the reference number to checkout page this.orderNow(orderNumber); but for, use router
+            
+            this.customerCartRouter.navigate(["./app/customer-checkout"]); 
+
+        });
+
+
+  }
+
+  private ShowCheckoutComponent(referenceNumber?: string): void
+  {
+
+       //To be continue    
 
   }
   

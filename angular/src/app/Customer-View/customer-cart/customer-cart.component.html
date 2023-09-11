@@ -152,7 +152,7 @@
                                         <a *ngIf="grandTotal != 0 else NoOrdersYet"
                                            href="javascript:;"
                                            class="btn bg-blue"
-                                           (click)="ShowCheckOutComponent()">
+                                           (click)="ProceedToCheckout(orderDto.referenceNumber)">
 
                                             <i class="fa fa-arrow-right"></i>
                  
