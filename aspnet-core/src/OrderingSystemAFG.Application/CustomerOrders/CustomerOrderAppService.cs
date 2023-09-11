@@ -57,10 +57,11 @@ namespace OrderingSystemAFG.CustomerOrders
             var customerOrder = ObjectMapper.Map<CustomerOrder>(input);
             var duplicateOrder = await _customerOrderIRepository.FirstOrDefaultAsync(
                 item =>
-                item.OrderStatus == true &&
+                item.OrderStatus == false &&
                 item.FoodId == input.FoodId &&
                 item.SizeId == input.SizeId &&
-                item.CategoryId == input.CategoryId); 
+                item.CategoryId == input.CategoryId && 
+                item.CheckoutStatusNumber == 1); 
 
             if(duplicateOrder != null)
             {
@@ -69,7 +70,8 @@ namespace OrderingSystemAFG.CustomerOrders
                 duplicateOrder.FoodId = input.FoodId;
                 duplicateOrder.SizeId = input.SizeId;
                 duplicateOrder.CategoryId = input.CategoryId;   
-                duplicateOrder.OrderStatus = true;
+                duplicateOrder.OrderStatus = false;
+                duplicateOrder.CheckoutStatusNumber = 1;
 
                 await _customerOrderIRepository.UpdateAsync(duplicateOrder);
                 return ObjectMapper.Map<CustomerOrderDto>(duplicateOrder);
@@ -81,7 +83,8 @@ namespace OrderingSystemAFG.CustomerOrders
                 customerOrder.FoodId = input.FoodId;
                 customerOrder.SizeId = input.SizeId;
                 customerOrder.CategoryId = input.CategoryId;
-                customerOrder.OrderStatus = true;
+                customerOrder.OrderStatus = false;
+                customerOrder.CheckoutStatusNumber = 1;
 
                 await _customerOrderIRepository.InsertAsync(customerOrder);
                 return ObjectMapper.Map<CustomerOrderDto>(customerOrder);

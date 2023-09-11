@@ -86,10 +86,10 @@ export class CustomerMenuComponent extends PagedListingComponentBase<CustomerOrd
       this.orderDto.foodId = selectedItem.id;
       this.orderDto.dateAndTimeOrderIsPlaced = moment(this.dateToday);
       this.orderDto.totalAmountTobePay = selectedItem.price * this.QuantityOfOrder;
+      this.orderDto.grandTotal = selectedItem.price * this.QuantityOfOrder; 
       this.orderDto.sizeId = this.selectedSize; 
       this.orderDto.divisionId = this.selectedDivision;
       this.orderDto.totalQuantityOfOrder = this.QuantityOfOrder;
-      this.orderDto.orderStatus = false;
       this.orderDto.checkoutStatusNumber = 1;
 
       selectedItem.totalStock = selectedItem.totalStock - this.QuantityOfOrder; 
