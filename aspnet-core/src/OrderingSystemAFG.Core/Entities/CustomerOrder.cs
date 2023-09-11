@@ -31,5 +31,7 @@ namespace OrderingSystemAFG.Entities
 
         public int? CheckoutStatusNumber { get; set; }
 
+        public Guid? ReferenceNumber { get; set; }
+
     }
 }
