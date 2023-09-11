@@ -253,13 +253,6 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
 
 
   }
-
-  private ShowCheckoutComponent(referenceNumber?: string): void
-  {
-
-       //To be continue    
-
-  }
   
   
     

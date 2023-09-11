@@ -84,7 +84,15 @@ export class CustomerCheckoutComponent extends PagedListingComponentBase<Custome
 
   }
 
-  
+  private PlacedTheOrder(referenceNumber?: string): void
+  {
+       // Use modal to see the confirmation of order
+       //Change the status number to 4 
+       //Then redirect to List of Purchased Order Component
+
+       //To be continue    
+
+  }
 
 
 }
