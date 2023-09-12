@@ -59,6 +59,7 @@ import { AddToCartComponent } from './Customer-View/customer-menu/add-to-cart/ad
 import { CustomerCartComponent } from './Customer-View/customer-cart/customer-cart.component';
 import { CustomerEditOrderComponent } from './Customer-View/customer-cart/customer-edit-order/customer-edit-order.component';
 import { CustomerCheckoutComponent } from './Customer-View/customer-checkout/customer-checkout.component';
+import { CheckoutSummaryComponent } from './Customer-View/customer-checkout/checkout-summary/checkout-summary.component';
 
 
 // #endregion
@@ -111,6 +112,7 @@ import { CustomerCheckoutComponent } from './Customer-View/customer-checkout/cus
         CustomerCartComponent,
         CustomerEditOrderComponent,
         CustomerCheckoutComponent,
+        CheckoutSummaryComponent,
 
 
         // #endregion
