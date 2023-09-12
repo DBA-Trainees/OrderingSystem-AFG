@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component, EventEmitter, Injector, Output } from '@angular/core';
 
 import { CustomerMenuComponent } from '../customer-menu/customer-menu.component';
 import { CustomerCheckoutComponent  } from '../customer-checkout/customer-checkout.component';
@@ -10,6 +10,7 @@ import { CustomerEditOrderComponent } from './customer-edit-order/customer-edit-
 import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { CheckoutSummaryComponent } from '../customer-checkout/checkout-summary/checkout-summary.component';
 
 class PagedOrderDto extends PagedRequestDto
 {
@@ -40,6 +41,8 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
 
   grandTotal: number = 0; 
   dateToday = new Date();
+
+  @Output() onSave = new EventEmitter<any>();
 
   constructor(
     injector: Injector,
@@ -227,7 +230,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
             orderDtoNew.sizeId = order.sizeId;
             orderDtoNew.categoryId = order.categoryId;
             orderDtoNew.checkoutStatusNumber = 3;
-            orderDtoNew.orderStatus = true;
+            orderDtoNew.orderStatus = false;
             orderDtoNew.totalQuantityOfOrder = order.totalQuantityOfOrder;
             orderDtoNew.totalAmountTobePay = order.totalAmountTobePay;
             orderDtoNew.grandTotal = this.UpdatedGrandTotal();
@@ -245,14 +248,31 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
             referenceNumber = result.referenceNumber;
             this.notify.info(this.l("Ordered Succesfully"));
             
-            //pass the reference number to checkout page this.orderNow(orderNumber); but for, use router
-            
-            this.customerCartRouter.navigate(["./app/customer-checkout"]); 
+            this.onSave.emit(result);
+            this.CheckOut(referenceNumber); 
+            this.refresh();
+
 
         });
 
+  }
+
+  CheckOut(referenceNumber: string): void
+  {
+        this.ShowCheckOutSummary(referenceNumber);
+  }
+
+  private ShowCheckOutSummary(referenceNumber?: string)
+  {
+       let showCheckoutSummary: BsModalRef;
+
+       showCheckoutSummary = this._orderModalService.show(CheckoutSummaryComponent, {
+            class: "modal-lg",
+            initialState: {referenceNumber: referenceNumber},
+       });
 
   }
+    
   
   
     
