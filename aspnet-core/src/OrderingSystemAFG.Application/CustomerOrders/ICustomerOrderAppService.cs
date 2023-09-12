@@ -17,5 +17,7 @@ namespace OrderingSystemAFG.CustomerOrders
         Task<CustomerOrderDto> PutOrdersToCart(CustomerOrderDto input);
 
         Task<CustomerOrderDto> UpdateStatusNumberIntoThree(CustomerOrderDto input);
+
+        Task<CustomerOrderDto> UpdateStatusNumberIntoFour(CustomerOrderDto input);
     }
 }

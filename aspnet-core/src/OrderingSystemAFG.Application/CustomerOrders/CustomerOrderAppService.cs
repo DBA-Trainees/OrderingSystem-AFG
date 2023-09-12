@@ -106,6 +106,7 @@ namespace OrderingSystemAFG.CustomerOrders
             {
                 customerOrder = ObjectMapper.Map<CustomerOrder>(individualItem);
                 customerOrder.Id = individualItem.Id;
+                customerOrder.OrderStatus = false;
                 customerOrder.ReferenceNumber = referenceNumber;
 
                 await _customerOrderIRepository.UpdateAsync(customerOrder);
@@ -115,6 +116,45 @@ namespace OrderingSystemAFG.CustomerOrders
             return base.MapToEntityDto(customerOrder);
 
         }
+
+        public async Task<CustomerOrderDto> UpdateStatusNumberIntoFour(CustomerOrderDto input)
+        {
+            var customerOrder = new CustomerOrder();
+            var referenceNumber = Guid.NewGuid();
+
+
+            foreach (var individualItem in input.ListOfOrders)
+            {
+                customerOrder = ObjectMapper.Map<CustomerOrder>(individualItem);
+                customerOrder.Id = individualItem.Id;
+                customerOrder.CheckoutStatusNumber = 4;
+                customerOrder.OrderStatus = false;
+                customerOrder.ReferenceNumber = referenceNumber;
+
+                await _customerOrderIRepository.UpdateAsync(customerOrder);
+
+            }
+
+            return base.MapToEntityDto(customerOrder);
+
+        }
+
+        public List<CustomerOrderDto> GetOrderByReferenceNumber(Guid referenceNumber)
+        {
+            var listOfOrder = _customerOrderIRepository.GetAll()
+                .Include(items => items.Food)
+                .Include(items => items.Category)
+                .Include(items => items.Size)
+                .Include(items => items.Division)
+                .Where(select => select.ReferenceNumber == referenceNumber && select.CheckoutStatusNumber == 3)
+                .ToList();
+
+            return ObjectMapper.Map<List<CustomerOrderDto>>(listOfOrder);
+
+        }
+
+
+
 
 
     }
