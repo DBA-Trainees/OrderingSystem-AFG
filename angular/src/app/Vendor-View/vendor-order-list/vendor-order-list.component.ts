@@ -71,6 +71,7 @@ export class VendorOrderListComponent extends PagedListingComponentBase<Customer
       //To be continue
   }
 
+  /*
   ShowEditComponent(id)
   {
       this.EditStatusOfOrder(id);
@@ -90,6 +91,7 @@ export class VendorOrderListComponent extends PagedListingComponentBase<Customer
       });
 
   }
+  */
 
 
 }
