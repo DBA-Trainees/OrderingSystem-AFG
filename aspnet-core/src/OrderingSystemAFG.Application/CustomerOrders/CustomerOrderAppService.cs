@@ -117,28 +117,6 @@ namespace OrderingSystemAFG.CustomerOrders
 
         }
 
-        public async Task<CustomerOrderDto> UpdateStatusNumberIntoFour(CustomerOrderDto input)
-        {
-            var customerOrder = new CustomerOrder();
-            var referenceNumber = Guid.NewGuid();
-
-
-            foreach (var individualItem in input.ListOfOrders)
-            {
-                customerOrder = ObjectMapper.Map<CustomerOrder>(individualItem);
-                customerOrder.Id = individualItem.Id;
-                customerOrder.CheckoutStatusNumber = 4;
-                customerOrder.OrderStatus = false;
-                customerOrder.ReferenceNumber = referenceNumber;
-
-                await _customerOrderIRepository.UpdateAsync(customerOrder);
-
-            }
-
-            return base.MapToEntityDto(customerOrder);
-
-        }
-
         public List<CustomerOrderDto> GetOrderByReferenceNumber(Guid referenceNumber)
         {
             var listOfOrder = _customerOrderIRepository.GetAll()
@@ -151,6 +129,21 @@ namespace OrderingSystemAFG.CustomerOrders
 
             return ObjectMapper.Map<List<CustomerOrderDto>>(listOfOrder);
 
+        }
+
+        public async Task<PagedResultDto<CustomerOrderDto>> GetAllOrderWhereTheStatusNumberIsFourAndOrderStatusIsTrue(PagedCustomerOrderResultRequestDto input)
+        {
+            var orderList = await _customerOrderIRepository.GetAll()
+                .Include(items => items.Food)
+                .Include(items => items.Category)
+                .Include(items => items.Size)
+                .Include(items => items.Division)
+                .Where(select => select.CheckoutStatusNumber == 4 && select.OrderStatus == true)
+                .OrderByDescending(items => items.Id)
+                .Select(items => ObjectMapper.Map<CustomerOrderDto>(items))
+                .ToListAsync();
+
+            return new PagedResultDto<CustomerOrderDto>(orderList.Count(), orderList);
         }
 
 
