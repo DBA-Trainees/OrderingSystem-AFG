@@ -25,6 +25,7 @@
             public const string Pages_Vendor_Type = "Pages.Vendor.Type";
             public const string Pages_Vendor_Size = "Pages.Vendor.Size";
             public const string Pages_Vendor_Food_List = "Pages.Vendor.Food.List";
+            public const string Pages_Vendor_Order_List = "Pages.Vendor.Order.List";
         #endregion
 
 
