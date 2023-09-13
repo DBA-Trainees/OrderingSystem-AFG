@@ -41,11 +41,19 @@ export class CheckoutSummaryComponent extends AppComponentBase implements OnInit
     }
 
 
+    UpdatedTotalAmmountToPay(orderDto : CustomerOrderDto): number
+    {
+        let originalAmmount = orderDto.food?.price;
+
+        return originalAmmount * orderDto.totalQuantityOfOrder;
+    }
+
     GrandTotal(orderDtoItems: CustomerOrderDto[]): number
     {
           /* Return the accumulated Sub Total into a Grand total  */
   
-          return orderDtoItems.reduce((total, orderDto) => total + orderDto.totalAmountTobePay, 0);
+          return orderDtoItems.reduce((total, orderDto) => 
+          total + this.UpdatedTotalAmmountToPay(orderDto), 0);
   
     }
 
