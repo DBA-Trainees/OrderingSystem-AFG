@@ -62,6 +62,7 @@ import { CustomerCheckoutComponent } from './Customer-View/customer-checkout/cus
 import { CheckoutSummaryComponent } from './Customer-View/customer-checkout/checkout-summary/checkout-summary.component';
 import { OrderHistoryComponent } from './Customer-View/order-history/order-history.component';
 import { VendorOrderListComponent } from './Vendor-View/vendor-order-list/vendor-order-list.component';
+import { VendorEditOrderComponent } from './Vendor-View/vendor-order-list/vendor-edit-order/vendor-edit-order.component';
 
 
 // #endregion
@@ -117,6 +118,7 @@ import { VendorOrderListComponent } from './Vendor-View/vendor-order-list/vendor
         CheckoutSummaryComponent,
         OrderHistoryComponent,
         VendorOrderListComponent,
+        VendorEditOrderComponent,
 
 
         // #endregion
