@@ -46,7 +46,6 @@ export class VendorOrderListComponent extends PagedListingComponentBase<Customer
 
   protected list(request: PagedVendorOrderDto, pageNumber: number, finishedCallback: Function): void {
 
-      //service proxy that filter checkoutstatus = 3 
       this._orderServiceProxyVendor.getAllOrderWhereTheStatusNumberIsThree(
           request.keyword,
           request.IsActive,
@@ -68,30 +67,25 @@ export class VendorOrderListComponent extends PagedListingComponentBase<Customer
   }
 
   protected delete(selectedOrder: CustomerOrderDto): void {
-      //To be continue
+      //throw
   }
 
-  /*
-  ShowEditComponent(id)
+  ShowUpdateStatus(id?: number): void
   {
-      this.EditStatusOfOrder(id);
-  }
+      let showVendorOrderEditComponent: BsModalRef;
 
-  private EditStatusOfOrder(id?: number): void
-  {
-      let showVendorEditComponent: BsModalRef;
-
-      showVendorEditComponent = this._vendorOrderListModalService.show(VendorEditOrderComponent, {
+      showVendorOrderEditComponent = this._vendorOrderListModalService.show(VendorEditOrderComponent, {
           class: 'modal-lg',
-          initialState: {id: id},
+          initialState:  {id: id},
       });
 
-      showVendorEditComponent.content.onSave.subscribe(() => {
+      showVendorOrderEditComponent.content.onSave.subscribe(() => {
           this.refresh();
       });
 
   }
-  */
+
+
 
 
 }

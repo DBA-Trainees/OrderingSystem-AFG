@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { AppComponentBase } from '@shared/app-component-base';
 import { PagedListingComponentBase, PagedRequestDto } from '@shared/paged-listing-component-base';
-import { CustomerOrderDto, CustomerOrderDtoPagedResultDto, CustomerOrderServiceProxy } from '@shared/service-proxies/service-proxies';
+import { CustomerDto, CustomerOrderDto, CustomerOrderDtoPagedResultDto, CustomerOrderServiceProxy } from '@shared/service-proxies/service-proxies';
 import * as moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
@@ -21,7 +21,7 @@ class PagedOrderDto extends PagedRequestDto
   animations: [appModuleAnimation()],
 })
 
-export class CustomerCheckoutComponent extends AppComponentBase implements OnInit
+export class CustomerCheckoutComponent extends PagedListingComponentBase<CustomerDto>
 {
   
   checkoutItems: CustomerOrderDto[] = [];
@@ -49,7 +49,18 @@ export class CustomerCheckoutComponent extends AppComponentBase implements OnIni
    ngOnInit(): void {
         //
    }
+
+  protected list(request: PagedOrderDto, pageNumber: number, finishedCallback: Function): void {
+    
+        //get all orders with 
+
+  }
+
+  protected delete(entity: CustomerDto): void {
+    throw new Error('Method not implemented.');
+  }
   
+
    
 
 
