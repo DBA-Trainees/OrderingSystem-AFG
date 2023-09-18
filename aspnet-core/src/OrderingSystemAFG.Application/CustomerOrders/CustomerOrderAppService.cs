@@ -44,9 +44,9 @@ namespace OrderingSystemAFG.CustomerOrders
                 .Include(items => items.Category)
                 .Include(items => items.Size)
                 .Include(items => items.Division)
-                .Where(select => select.CheckoutStatusNumber == 3)
+                .Where(select => select.CheckoutStatusNumber == 3 || select.CheckoutStatusNumber == 4)
                 .OrderByDescending(items => items.Id)
-                .Select(items => ObjectMapper.Map<CustomerOrderDto>(items))
+                .Select(items => ObjectMapper.Map<CustomerOrderDto>(items)) 
                 .ToListAsync();
 
             return new PagedResultDto<CustomerOrderDto>(orderList.Count(), orderList); 
