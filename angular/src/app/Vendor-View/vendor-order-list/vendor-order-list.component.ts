@@ -72,35 +72,23 @@ export class VendorOrderListComponent extends PagedListingComponentBase<Customer
             (condition: boolean) => {
                 if (condition)
                 {
-                    this._orderServiceProxyVendor.delete(selectedOrder.id).subscribe(() => {
+
+                    selectedOrder.checkoutStatusNumber = 4;
+                    selectedOrder.orderStatus = true; 
+
+
+                    this._orderServiceProxyVendor.update(selectedOrder).subscribe(() => {
                         abp.notify.success(this.l('SuccessfullyDeleted'));
                         this.refresh();
 
                     });
+
                 }
             }
         );
 
-        /* Tasukete */
+        /* Tasukete */ 
 
   }
-
-  ShowUpdateStatus(id?: number): void
-  {
-      let showVendorOrderEditComponent: BsModalRef;
-
-      showVendorOrderEditComponent = this._vendorOrderListModalService.show(VendorEditOrderComponent, {
-          class: 'modal-lg',
-          initialState:  {id: id},
-      });
-
-      showVendorOrderEditComponent.content.onSave.subscribe(() => {
-          this.refresh();
-      });
-
-  }
-
-
-
 
 }
