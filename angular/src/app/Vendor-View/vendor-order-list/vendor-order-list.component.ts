@@ -67,7 +67,22 @@ export class VendorOrderListComponent extends PagedListingComponentBase<Customer
   }
 
   protected delete(selectedOrder: CustomerOrderDto): void {
-      //throw
+
+        abp.message.confirm(this.l('DeleteMessage', selectedOrder.food?.foodName), undefined,
+            (condition: boolean) => {
+                if (condition)
+                {
+                    this._orderServiceProxyVendor.delete(selectedOrder.id).subscribe(() => {
+                        abp.notify.success(this.l('SuccessfullyDeleted'));
+                        this.refresh();
+
+                    });
+                }
+            }
+        );
+
+        /* Tasukete */
+
   }
 
   ShowUpdateStatus(id?: number): void
