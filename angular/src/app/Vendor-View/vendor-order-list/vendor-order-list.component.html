@@ -45,6 +45,8 @@
 
                             <thead class="bg-light">
                                 <tr>
+                                    <th>{{ "Reference #" | localize }}</th>
+
                                     <th>{{ "Food Name" | localize }}</th>
                                     <th>{{ "Image" | localize }}</th>
                                     <th>{{ "Category" | localize }}</th>
@@ -55,6 +57,9 @@
                                     
                                     <th>{{ "Date" | localize }}</th>
                                     <th>{{ "Notes" | localize }}</th>
+
+                                    <th>{{ "Status" | localize }}</th>
+
                                     <th style="width: 310px;">{{ "Actions" | localize }}</th> 
                                 </tr>
                             </thead>
@@ -65,10 +70,13 @@
                                     itemsPerPage: pageSize,
                                     currentPage: pageNumber,
                                     totalItems: totalItems
-                                }">
+                                }" [ngStyle]="{'background-color': (order.checkoutStatusNumber == 4  ) ? 'green' : 'transparent', 'color': ( order.checkoutStatusNumber == 3 ) ? 'black' : 'white'}"    >
+
+                                    <td style="width:280px;"> {{ order.referenceNumber }} </td> 
+
                                     <td>{{ order.food?.foodName }}</td>
 
-                                    <td style="text-align:center">
+                                    <td style="text-align:center"> 
 
                                         <img class="center" 
                                              [src]="'data:image/' + order.food?.imageFileType + ';base64,' + order.food?.image" 
@@ -93,6 +101,16 @@
                                     <td>{{ order.dateAndTimeOrderIsPlaced  | date: 'MM/dd/yyyy'}} </td>
 
                                     <td> {{ order.notes }} </td>
+
+                                    <td *ngIf="order.checkoutStatusNumber != 3 else Unpaid"> 
+
+                                        <strong>Paid</strong> 
+
+                                    </td>
+
+                                    <ng-template #Unpaid>
+                                        <td > <strong>Unpaid</strong> </td>                       
+                                    </ng-template>
 
                                     <td>
 
