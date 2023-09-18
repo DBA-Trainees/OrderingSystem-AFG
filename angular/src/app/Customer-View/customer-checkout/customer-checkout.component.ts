@@ -46,19 +46,31 @@ export class CustomerCheckoutComponent extends PagedListingComponentBase<Custome
       super(injector);
   }
 
-   ngOnInit(): void {
-        //
-   }
-
   protected list(request: PagedOrderDto, pageNumber: number, finishedCallback: Function): void {
     
-        //get all orders with 
+       this._orderServiceProxy.getAllOrderWhereTheStatusNumberIsThree(
+          request.keyword,
+          request.IsActive,
+          request.skipCount,
+          request.maxResultCount,
+       )
+       .pipe(
+          finalize(() => {
+              finishedCallback();
+          })
+       )
+       .subscribe((result: CustomerOrderDtoPagedResultDto) => {
+          this.checkoutItems = result.items;
+          this.showPaging(result, pageNumber);
+       });
 
   }
 
   protected delete(entity: CustomerDto): void {
-    throw new Error('Method not implemented.');
+     //throw
   }
+
+
   
 
    
