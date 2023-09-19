@@ -49,8 +49,7 @@
 
                             <thead class="bg-light">
                                 <tr>
-                                    <th>{{ "Reference #" | localize }}</th>
-
+                                    
                                     <th>{{ "Food Name" | localize }}</th>
                                     <th>{{ "Image" | localize }}</th>
                                     <th>{{ "Category" | localize }}</th>
@@ -76,7 +75,7 @@
                                     totalItems: totalItems
                                 }" [ngStyle]="{'background-color': (order.checkoutStatusNumber == 4  ) ? 'green' : 'transparent', 'color': ( order.checkoutStatusNumber == 3 ) ? 'black' : 'white'}"    >
 
-                                    <td style="width:280px;"> {{ order.referenceNumber }} </td> 
+                                   
 
                                     <td>{{ order.food?.foodName }}</td>
 

@@ -193,7 +193,7 @@
     <text name="Create Customer">CUSTOMER</text>
     <text name="Food Menu">Menu</text>
     <text name="Add to Cart">Orders</text>
-    <text name="Order History">Purchase History</text>
+    <text name="Order History">Paid Purchase</text>
     <text name="Customer Report">Reports </text>
     <!-- #endregion  -->
 
