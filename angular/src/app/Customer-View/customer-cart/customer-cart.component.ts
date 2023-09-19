@@ -40,6 +40,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
   advancedFiltersVisible = false;
 
   grandTotal: number = 0; 
+  accumulatedOrders: number = 0;
   dateToday = new Date();
 
   @Output() onSave = new EventEmitter<any>();
@@ -166,6 +167,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
       orderDtoParameter.totalQuantityOfOrder = updatedQuantityOfOrder; 
       orderDtoParameter.food.totalStock = updatedStock;
       orderDtoParameter.grandTotal = this.UpdatedGrandTotal();
+      orderDtoParameter.checkoutTotalAccumulatedOrders = this.AccumulatedQuantityOfOrders();
 
       if(inputedQuantityOfOrder <= 0)
       {
@@ -216,6 +218,18 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
 
   }
 
+  AccumulatedQuantityOfOrders(): number
+  {
+
+        this.accumulatedOrders = this.orderItems.reduce((total, orderDto) => {
+            return total + orderDto.totalQuantityOfOrder}, 0
+        );   
+
+        return this.accumulatedOrders;
+
+  }
+
+
   ProceedToCheckout(referenceNumber: string): void
   {
 
@@ -235,7 +249,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
             orderDtoNew.totalAmountTobePay = order.totalAmountTobePay;
             orderDtoNew.grandTotal = this.UpdatedGrandTotal();
             orderDtoNew.dateAndTimeOrderIsPlaced = moment(this.dateToday);
-            
+            orderDtoNew.checkoutTotalAccumulatedOrders = this.AccumulatedQuantityOfOrders();
             //finalOrderDto.customerName = this.
             //finalOrderDto.divisionId = selectedDivision
 
