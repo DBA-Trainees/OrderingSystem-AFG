@@ -1340,6 +1340,62 @@ export class CustomerOrderServiceProxy {
     }
 
     /**
+     * @param body (optional) 
+     * @return Success
+     */
+    updateCheckoutOrderStatusNumerIntoFour(body: CustomerOrderDto | undefined): Observable<CustomerOrderDto> {
+        let url_ = this.baseUrl + "/api/services/app/CustomerOrder/UpdateCheckoutOrderStatusNumerIntoFour";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdateCheckoutOrderStatusNumerIntoFour(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdateCheckoutOrderStatusNumerIntoFour(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<CustomerOrderDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<CustomerOrderDto>;
+        }));
+    }
+
+    protected processUpdateCheckoutOrderStatusNumerIntoFour(response: HttpResponseBase): Observable<CustomerOrderDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = CustomerOrderDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
      * @param id (optional) 
      * @return Success
      */
@@ -5272,6 +5328,7 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
     dateAndTimeOrderIsRecieved: moment.Moment | undefined;
     totalAmountTobePay: number;
     grandTotal: number;
+    checkoutTotalAccumulatedOrders: number;
     checkoutStatusNumber: number | undefined;
     referenceNumber: string | undefined;
     listOfOrders: CustomerOrderDto[] | undefined;
@@ -5300,6 +5357,7 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
             this.dateAndTimeOrderIsRecieved = _data["dateAndTimeOrderIsRecieved"] ? moment(_data["dateAndTimeOrderIsRecieved"].toString()) : <any>undefined;
             this.totalAmountTobePay = _data["totalAmountTobePay"];
             this.grandTotal = _data["grandTotal"];
+            this.checkoutTotalAccumulatedOrders = _data["checkoutTotalAccumulatedOrders"];
             this.checkoutStatusNumber = _data["checkoutStatusNumber"];
             this.referenceNumber = _data["referenceNumber"];
             if (Array.isArray(_data["listOfOrders"])) {
@@ -5332,6 +5390,7 @@ export class CreateCustomerOrderDto implements ICreateCustomerOrderDto {
         data["dateAndTimeOrderIsRecieved"] = this.dateAndTimeOrderIsRecieved ? this.dateAndTimeOrderIsRecieved.toISOString() : <any>undefined;
         data["totalAmountTobePay"] = this.totalAmountTobePay;
         data["grandTotal"] = this.grandTotal;
+        data["checkoutTotalAccumulatedOrders"] = this.checkoutTotalAccumulatedOrders;
         data["checkoutStatusNumber"] = this.checkoutStatusNumber;
         data["referenceNumber"] = this.referenceNumber;
         if (Array.isArray(this.listOfOrders)) {
@@ -5364,6 +5423,7 @@ export interface ICreateCustomerOrderDto {
     dateAndTimeOrderIsRecieved: moment.Moment | undefined;
     totalAmountTobePay: number;
     grandTotal: number;
+    checkoutTotalAccumulatedOrders: number;
     checkoutStatusNumber: number | undefined;
     referenceNumber: string | undefined;
     listOfOrders: CustomerOrderDto[] | undefined;
@@ -5910,6 +5970,7 @@ export class CustomerOrderDto implements ICustomerOrderDto {
     dateAndTimeOrderIsRecieved: moment.Moment | undefined;
     totalAmountTobePay: number;
     grandTotal: number;
+    checkoutTotalAccumulatedOrders: number;
     checkoutStatusNumber: number | undefined;
     referenceNumber: string | undefined;
     listOfOrders: CustomerOrderDto[] | undefined;
@@ -5942,6 +6003,7 @@ export class CustomerOrderDto implements ICustomerOrderDto {
             this.dateAndTimeOrderIsRecieved = _data["dateAndTimeOrderIsRecieved"] ? moment(_data["dateAndTimeOrderIsRecieved"].toString()) : <any>undefined;
             this.totalAmountTobePay = _data["totalAmountTobePay"];
             this.grandTotal = _data["grandTotal"];
+            this.checkoutTotalAccumulatedOrders = _data["checkoutTotalAccumulatedOrders"];
             this.checkoutStatusNumber = _data["checkoutStatusNumber"];
             this.referenceNumber = _data["referenceNumber"];
             if (Array.isArray(_data["listOfOrders"])) {
@@ -5978,6 +6040,7 @@ export class CustomerOrderDto implements ICustomerOrderDto {
         data["dateAndTimeOrderIsRecieved"] = this.dateAndTimeOrderIsRecieved ? this.dateAndTimeOrderIsRecieved.toISOString() : <any>undefined;
         data["totalAmountTobePay"] = this.totalAmountTobePay;
         data["grandTotal"] = this.grandTotal;
+        data["checkoutTotalAccumulatedOrders"] = this.checkoutTotalAccumulatedOrders;
         data["checkoutStatusNumber"] = this.checkoutStatusNumber;
         data["referenceNumber"] = this.referenceNumber;
         if (Array.isArray(this.listOfOrders)) {
@@ -6014,6 +6077,7 @@ export interface ICustomerOrderDto {
     dateAndTimeOrderIsRecieved: moment.Moment | undefined;
     totalAmountTobePay: number;
     grandTotal: number;
+    checkoutTotalAccumulatedOrders: number;
     checkoutStatusNumber: number | undefined;
     referenceNumber: string | undefined;
     listOfOrders: CustomerOrderDto[] | undefined;

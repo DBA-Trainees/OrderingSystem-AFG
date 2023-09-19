@@ -36,6 +36,8 @@ namespace OrderingSystemAFG.CustomerOrders.Dto
         public double TotalAmountTobePay { get; set; }
         public double GrandTotal { get; set; }
 
+        public int CheckoutTotalAccumulatedOrders { get; set; }
+
         public int? CheckoutStatusNumber { get; set; }
 
         public Guid? ReferenceNumber { get; set; }
