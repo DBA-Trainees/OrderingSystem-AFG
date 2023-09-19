@@ -245,6 +245,7 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
             orderDtoNew.categoryId = order.categoryId;
             orderDtoNew.checkoutStatusNumber = 3;
             orderDtoNew.orderStatus = false;
+            orderDtoNew.notes = order.notes;
             orderDtoNew.totalQuantityOfOrder = order.totalQuantityOfOrder;
             orderDtoNew.totalAmountTobePay = order.totalAmountTobePay;
             orderDtoNew.grandTotal = this.UpdatedGrandTotal();
