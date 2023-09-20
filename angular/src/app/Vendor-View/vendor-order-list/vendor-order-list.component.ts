@@ -75,7 +75,7 @@ export class VendorOrderListComponent extends PagedListingComponentBase<Customer
 
   Ready(selectedOrder: CustomerOrderDto): void {
 
-    abp.message.confirm(this.l('DeleteMessage', selectedOrder.food?.foodName), undefined,
+    abp.message.confirm(this.l('RemoveOrderMessage'), undefined,
         (condition: boolean) => {
             if (condition)
             {

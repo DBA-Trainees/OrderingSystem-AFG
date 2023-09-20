@@ -51,8 +51,6 @@
                                 <tr>
                                     <th>{{ "Order Name" | localize }}</th>
 
-                                    <th>{{ "Transaction Number" | localize }}</th> 
-
                                     <th>{{ "Quantity" | localize }}</th> 
 
                                     <th>{{ "Total Amount" | localize }}</th> 
@@ -73,8 +71,6 @@
                                 }" [ngStyle]="{'background-color': (order.checkoutStatusNumber == 3  ) ? 'red' : 'transparent', 'color': ( order.checkoutStatusNumber == 4 ) ? 'black' : 'white'}"  >
 
                                     <td>{{ order.food?.foodName }}</td> 
-
-                                    <td>{{ order.referenceNumber }}</td> 
 
                                     <td> {{ order.totalQuantityOfOrder }} </td>                                                               
 
