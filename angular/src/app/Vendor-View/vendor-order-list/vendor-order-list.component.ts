@@ -6,6 +6,7 @@ import { result } from 'lodash-es';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
 import { VendorEditOrderComponent } from './vendor-edit-order/vendor-edit-order.component';
+import * as moment from 'moment';
 
 class PagedVendorOrderDto extends PagedRequestDto
 {
@@ -31,6 +32,8 @@ export class VendorOrderListComponent extends PagedListingComponentBase<Customer
   isActive: boolean | null;
   advancedFiltersVisible = false;
 
+  dateToday = new Date();
+
   @Output() onSave = new EventEmitter<any>();
 
   constructor(
@@ -46,7 +49,7 @@ export class VendorOrderListComponent extends PagedListingComponentBase<Customer
 
   protected list(request: PagedVendorOrderDto, pageNumber: number, finishedCallback: Function): void {
 
-      this._orderServiceProxyVendor.getAllOrderWhereTheStatusNumberIsThree(
+      this._orderServiceProxyVendor.getAllOrdersForVendor(
           request.keyword,
           request.IsActive,
           request.skipCount,
@@ -67,28 +70,32 @@ export class VendorOrderListComponent extends PagedListingComponentBase<Customer
   }
 
   protected delete(selectedOrder: CustomerOrderDto): void {
-
-        abp.message.confirm(this.l('DeleteMessage', selectedOrder.food?.foodName), undefined,
-            (condition: boolean) => {
-                if (condition)
-                {
-
-                    selectedOrder.checkoutStatusNumber = 4;
-                    selectedOrder.orderStatus = true; 
-
-
-                    this._orderServiceProxyVendor.update(selectedOrder).subscribe(() => {
-                        abp.notify.success(this.l('SuccessfullyDeleted'));
-                        this.refresh();
-
-                    });
-
-                }
-            }
-        );
-
-        /* Tasukete */ 
-
+    //throw
   }
+
+  Ready(selectedOrder: CustomerOrderDto): void {
+
+    abp.message.confirm(this.l('DeleteMessage', selectedOrder.food?.foodName), undefined,
+        (condition: boolean) => {
+            if (condition)
+            {
+
+                selectedOrder.checkoutStatusNumber = 4;
+                selectedOrder.orderStatus = true; 
+                selectedOrder.dateAndTimeOrderIsPlaced = moment(this.dateToday); 
+
+
+                this._orderServiceProxyVendor.update(selectedOrder).subscribe(() => {
+                    abp.notify.success(this.l('SuccessfullyDeleted'));
+                    this.refresh();
+
+                });
+
+            }
+        }
+    );
+
+    /* Tasukete */ 
+}
 
 }

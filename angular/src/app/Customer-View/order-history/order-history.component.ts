@@ -42,7 +42,7 @@ export class OrderHistoryComponent extends PagedListingComponentBase<CustomerOrd
 
   protected list(request: PagedCustomerOrderDto, pageNumber: number, finishedCallback: Function): void {
 
-      this._orderServiceProxyCustomer.getAllOrderWhereTheStatusNumberIsFourAndOrderStatusIsTrue(
+      this._orderServiceProxyCustomer.getAllPaidOrders(
           request.keyword,
           request.IsActive,
           request.skipCount,

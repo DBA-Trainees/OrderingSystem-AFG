@@ -49,9 +49,11 @@
 
                             <thead class="bg-light">
                                 <tr>
-                                    <th>{{ "Reference #" | localize }}</th>
+                                    <th>{{ "Order Name" | localize }}</th>
 
-                                    <th>{{ "Total Items" | localize }}</th> 
+                                    <th>{{ "Transaction Number" | localize }}</th> 
+
+                                    <th>{{ "Quantity" | localize }}</th> 
 
                                     <th>{{ "Total Amount" | localize }}</th> 
                                     
@@ -70,24 +72,26 @@
                                     totalItems: totalItems
                                 }" [ngStyle]="{'background-color': (order.checkoutStatusNumber == 3  ) ? 'red' : 'transparent', 'color': ( order.checkoutStatusNumber == 4 ) ? 'black' : 'white'}"  >
 
+                                    <td>{{ order.food?.foodName }}</td> 
+
                                     <td>{{ order.referenceNumber }}</td> 
 
-                                    <td> {{ order.checkoutTotalAccumulatedOrders }} </td>                                                               
+                                    <td> {{ order.totalQuantityOfOrder }} </td>                                                               
 
                                     <td>
-                                        {{ order.grandTotal | currency:'PHP'}}
+                                        {{ order.totalAmountTobePay | currency:'PHP' }}
                                     </td>
 
                                     <td>{{ order.dateAndTimeOrderIsPlaced  | date: 'MM/dd/yyyy'}} </td>
 
-                                    <td *ngIf="order.checkoutStatusNumber != 3 else Unpaid"> 
+                                    <td *ngIf="order.checkoutStatusNumber != 3 else UnderProcess"> 
 
-                                        <strong>Paid</strong> 
+                                        <strong>Ready</strong> 
 
                                     </td>
 
-                                    <ng-template #Unpaid>
-                                        <td > <strong>Unpaid</strong> </td>                       
+                                    <ng-template #UnderProcess>
+                                        <td > <strong>Under processing</strong> </td>                       
                                     </ng-template>
 
 

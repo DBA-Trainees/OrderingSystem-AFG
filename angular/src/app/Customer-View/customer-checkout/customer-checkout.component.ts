@@ -48,7 +48,7 @@ export class CustomerCheckoutComponent extends PagedListingComponentBase<Custome
 
   protected list(request: PagedOrderDto, pageNumber: number, finishedCallback: Function): void {
     
-       this._orderServiceProxy.getAllOrderWhereTheStatusNumberIsThree(
+       this._orderServiceProxy.getAllOrdersInCheckout(
           request.keyword,
           request.IsActive,
           request.skipCount,

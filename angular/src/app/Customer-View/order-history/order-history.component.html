@@ -50,17 +50,11 @@
                             <thead class="bg-light">
                                 <tr>
                                     
-                                    <th>{{ "Food Name" | localize }}</th>
-                                    <th>{{ "Category" | localize }}</th>
-                                    <th>{{ "Size" | localize }}</th>
-                                    <th>{{ "Ordered Quantity" | localize }}</th>
-                                    <th>{{ "Price" | localize }}</th> 
+                                    <th>{{ "Reference Number" | localize }}</th>
                                     <th>{{ "Amount" | localize }}</th> 
-                                    
+                                    <th>{{ "Quantity" | localize }}</th> 
                                     <th>{{ "Date" | localize }}</th>
-                                    <th>{{ "Notes" | localize }}</th>
 
-                                    <th>{{ "Status" | localize }}</th>
 
                                 </tr>
                             </thead>
@@ -73,33 +67,17 @@
                                     totalItems: totalItems
                                 }"  >
 
-                                   
 
-                                    <td>{{ order.food?.foodName }}</td>
+                                    <td>{{ order.referenceNumber }}</td>
+
+
+                                    <td>
+                                        {{ order.grandTotal | currency:'PHP'}}
+                                    </td>    
                                     
-                                    <td> {{ order.category?.categoryName }} </td>
-
-                                    <td> {{ order.size?.sizeName }} </td>
-
-                                    <td> {{ order.totalQuantityOfOrder }} </td>                                                               
-
-                                    <td>
-                                        {{ order.food?.price | currency:'PHP'}}
-                                    </td>
-
-                                    <td>
-                                        {{ order.totalAmountTobePay | currency:'PHP'}}
-                                    </td>
+                                    <td>{{ order.checkoutTotalAccumulatedOrders }}</td>
 
                                     <td>{{ order.dateAndTimeOrderIsPlaced  | date: 'MM/dd/yyyy'}} </td>
-
-                                    <td> {{ order.notes }} </td>
-
-                                    <td *ngIf="order.checkoutStatusNumber == 4 "> 
-
-                                        <strong>Paid</strong> 
-
-                                    </td>
 
 
                                 </tr>
