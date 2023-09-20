@@ -37,19 +37,41 @@ namespace OrderingSystemAFG.CustomerOrders
 
         }
 
-        public async Task<PagedResultDto<CustomerOrderDto>> GetAllOrderWhereTheStatusNumberIsThree(PagedCustomerOrderResultRequestDto input)
+        public async Task<PagedResultDto<CustomerOrderDto>> GetAllOrdersInCart(PagedCustomerOrderResultRequestDto input)
         {
-            var orderList = await _customerOrderIRepository.GetAll()
+
+            #region Number Guide
+            /*
+
+                For Checkout Status Number              
+
+                1 - Order added to cart      
+                2 - Deleted order
+                3 - Order is successfully placed        
+                4 - Order is done                       
+
+                For Order Status Number 
+
+                False - Unpaid
+                True - Paid 
+
+
+            */
+            #endregion
+
+
+            var orderItems = await _customerOrderIRepository.GetAll()
                 .Include(items => items.Food)
                 .Include(items => items.Category)
                 .Include(items => items.Size)
                 .Include(items => items.Division)
-                .Where(select => select.CheckoutStatusNumber == 3 || select.CheckoutStatusNumber == 4)
+                .Where(select => select.CheckoutStatusNumber == 1)
                 .OrderByDescending(items => items.Id)
-                .Select(items => ObjectMapper.Map<CustomerOrderDto>(items)) 
+                .Select(items => ObjectMapper.Map<CustomerOrderDto>(items))
                 .ToListAsync();
 
-            return new PagedResultDto<CustomerOrderDto>(orderList.Count(), orderList); 
+            return new PagedResultDto<CustomerOrderDto>(orderItems.Count(), orderItems);
+
         }
 
         public async Task<CustomerOrderDto> PutOrdersToCart(CustomerOrderDto input)
@@ -98,6 +120,25 @@ namespace OrderingSystemAFG.CustomerOrders
 
         public async Task<CustomerOrderDto> UpdateStatusNumberIntoThree(CustomerOrderDto input)
         {
+
+            #region Number Guide
+            /*
+
+                For Checkout Status Number              
+
+                1 - Order added to cart      
+                2 - Deleted order
+                3 - Order is successfully placed        
+                4 - Order is done                       
+
+                For Order Status Number 
+
+                False - Unpaid
+                True - Paid 
+
+            */
+            #endregion
+
             var customerOrder = new CustomerOrder();
             var referenceNumber = Guid.NewGuid();
 
@@ -131,22 +172,152 @@ namespace OrderingSystemAFG.CustomerOrders
 
         }
 
-        public async Task<PagedResultDto<CustomerOrderDto>> GetAllOrderWhereTheStatusNumberIsFourAndOrderStatusIsTrue(PagedCustomerOrderResultRequestDto input)
+        public async Task<PagedResultDto<CustomerOrderDto>> GetAllOrdersInCheckout(PagedCustomerOrderResultRequestDto input)
         {
+
+            #region Number Guide
+            /*
+
+                For Checkout Status Number              
+
+                1 - Order added to cart      
+                2 - Deleted order
+                3 - Order is successfully placed        
+                4 - Order is done                       
+
+                For Order Status Number 
+
+                False - Unpaid
+                True - Paid 
+
+
+            */
+            #endregion
+
             var orderList = await _customerOrderIRepository.GetAll()
-                .Include(items => items.Food)
-                .Include(items => items.Category)
-                .Include(items => items.Size)
-                .Include(items => items.Division)
-                .Where(select => select.CheckoutStatusNumber == 4 && select.OrderStatus == true)
-                .OrderByDescending(items => items.Id)
-                .Select(items => ObjectMapper.Map<CustomerOrderDto>(items))
-                .ToListAsync();
+                 .Include(items => items.Food)
+                 .Include(items => items.Category)
+                 .Include(items => items.Size)
+                 .Include(items => items.Division)
+                 .Where(select => select.CheckoutStatusNumber == 3 || select.CheckoutStatusNumber == 4)
+                 .OrderByDescending(items => items.Id)
+                 .Select(items => ObjectMapper.Map<CustomerOrderDto>(items))
+                 .ToListAsync();
+
+            return new PagedResultDto<CustomerOrderDto>(orderList.Count(), orderList);
+        }
+
+        public async Task<PagedResultDto<CustomerOrderDto>> GetAllOrdersForVendor(PagedCustomerOrderResultRequestDto input)
+        {
+
+            #region Number Guide
+            /*
+
+                For Checkout Status Number              
+
+                1 - Order added to cart      
+                2 - Deleted order
+                3 - Order is successfully placed        
+                4 - Order is done                       
+
+                For Order Status Number 
+
+                False - Unpaid
+                True - Paid 
+
+
+            */
+            #endregion
+
+            var orderList = await _customerOrderIRepository.GetAll()
+                 .Include(items => items.Food)
+                 .Include(items => items.Category)
+                 .Include(items => items.Size)
+                 .Include(items => items.Division)
+                 .Where(select => select.CheckoutStatusNumber == 3)
+                 .OrderByDescending(items => items.Id)
+                 .Select(items => ObjectMapper.Map<CustomerOrderDto>(items))
+                 .ToListAsync();
 
             return new PagedResultDto<CustomerOrderDto>(orderList.Count(), orderList);
         }
 
 
+        public async Task<PagedResultDto<CustomerOrderDto>> GetAllPaidOrders(PagedCustomerOrderResultRequestDto input)
+        {
+            #region Number Guide
+            /*
+
+                For Checkout Status Number              
+
+                1 - Order added to cart      
+                2 - Deleted order
+                3 - Order is successfully placed        
+                4 - Order is done                       
+
+                For Order Status Number 
+
+                False - Unpaid
+                True - Paid 
+
+
+            */
+            #endregion
+
+            var orderList = await _customerOrderIRepository.GetAll()
+               .Include(items => items.Food)
+               .Include(items => items.Category)
+               .Include(items => items.Size)
+               .Include(items => items.Division)
+               .Where(select => select.CheckoutStatusNumber == 4 && select.OrderStatus == true)
+               .GroupBy(organize => organize.ReferenceNumber)
+               .Select(item => new CustomerOrderDto()
+               {
+                   ReferenceNumber = item.Key,
+                   CheckoutTotalAccumulatedOrders = item.FirstOrDefault().CheckoutTotalAccumulatedOrders,
+                   GrandTotal = item.FirstOrDefault().GrandTotal,
+                   DateAndTimeOrderIsPlaced = item.FirstOrDefault().DateAndTimeOrderIsPlaced,
+                   OrderStatus = item.FirstOrDefault().OrderStatus
+               })
+               .ToListAsync();
+
+            return new PagedResultDto<CustomerOrderDto>(orderList.Count(), orderList);
+        }
+
+        public async Task<PagedResultDto<CustomerOrderDto>> GetAllPreviousOrderVendor(PagedCustomerOrderResultRequestDto input)
+        {
+
+            #region Number Guide
+            /*
+
+                For Checkout Status Number              
+
+                1 - Order added to cart      
+                2 - Deleted order
+                3 - Order is successfully placed        
+                4 - Order is done                       
+
+                For Order Status Number 
+
+                False - Unpaid
+                True - Paid 
+
+
+            */
+            #endregion
+
+            var orderList = await _customerOrderIRepository.GetAll()
+                 .Include(items => items.Food)
+                 .Include(items => items.Category)
+                 .Include(items => items.Size)
+                 .Include(items => items.Division)
+                 .Where(select => select.CheckoutStatusNumber == 4 && select.OrderStatus == true)
+                 .OrderByDescending(items => items.Id)
+                 .Select(items => ObjectMapper.Map<CustomerOrderDto>(items))
+                 .ToListAsync();
+
+            return new PagedResultDto<CustomerOrderDto>(orderList.Count(), orderList);
+        }
 
 
 
