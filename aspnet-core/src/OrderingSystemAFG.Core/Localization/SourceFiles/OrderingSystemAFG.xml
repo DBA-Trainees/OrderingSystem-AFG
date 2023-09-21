@@ -163,7 +163,7 @@
 
     <!-- #region User prompt -->
     <text name="DeleteMessage">Are you sure you want to delete '{0}' ?</text>
-    <text name="RemoveOrderMessage">Are you sure you want to remove this order?</text>
+    <text name="RemoveOrderMessage">Are you sure this order is paid?</text> 
     <text name="OverQuantityMessage">Sorry you can only order up to {0}. Try again!</text>
     <text name="CannotBeLessThanZeroMessage">Cannot be less than 1 or equal to zero.</text>
     <text name="ForDebugMessageOnly">{0} {1} {2} </text> 

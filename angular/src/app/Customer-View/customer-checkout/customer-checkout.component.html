@@ -52,8 +52,6 @@
                                     <th>{{ "Order Name" | localize }}</th>
 
                                     <th>{{ "Quantity" | localize }}</th> 
-
-                                    <th>{{ "Total Amount" | localize }}</th> 
                                     
                                     <th>{{ "Date" | localize }}</th>
 
@@ -73,10 +71,6 @@
                                     <td>{{ order.food?.foodName }}</td> 
 
                                     <td> {{ order.totalQuantityOfOrder }} </td>                                                               
-
-                                    <td>
-                                        {{ order.totalAmountTobePay | currency:'PHP' }}
-                                    </td>
 
                                     <td>{{ order.dateAndTimeOrderIsPlaced  | date: 'MM/dd/yyyy'}} </td>
 
