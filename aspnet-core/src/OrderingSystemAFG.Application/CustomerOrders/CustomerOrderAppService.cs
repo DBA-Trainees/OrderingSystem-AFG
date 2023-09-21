@@ -46,14 +46,6 @@ namespace OrderingSystemAFG.CustomerOrders
                 For Checkout Status Number              
 
                 1 - Order added to cart      
-                2 - Deleted order
-                3 - Order is successfully placed        
-                4 - Order is done                       
-
-                For Order Status Number 
-
-                False - Unpaid
-                True - Paid 
 
 
             */
@@ -121,24 +113,6 @@ namespace OrderingSystemAFG.CustomerOrders
         public async Task<CustomerOrderDto> UpdateStatusNumberIntoThree(CustomerOrderDto input)
         {
 
-            #region Number Guide
-            /*
-
-                For Checkout Status Number              
-
-                1 - Order added to cart      
-                2 - Deleted order
-                3 - Order is successfully placed        
-                4 - Order is done                       
-
-                For Order Status Number 
-
-                False - Unpaid
-                True - Paid 
-
-            */
-            #endregion
-
             var customerOrder = new CustomerOrder();
             var referenceNumber = Guid.NewGuid();
 
@@ -160,6 +134,20 @@ namespace OrderingSystemAFG.CustomerOrders
 
         public List<CustomerOrderDto> GetOrderByReferenceNumber(Guid referenceNumber)
         {
+
+            #region Number Guide
+            /*
+
+                For Checkout Status Number              
+
+                1 - Order added to cart      
+                2 - Deleted order
+                3 - Order is successfully placed                            
+
+
+            */
+            #endregion
+
             var listOfOrder = _customerOrderIRepository.GetAll()
                 .Include(items => items.Food)
                 .Include(items => items.Category)
@@ -183,12 +171,7 @@ namespace OrderingSystemAFG.CustomerOrders
                 1 - Order added to cart      
                 2 - Deleted order
                 3 - Order is successfully placed        
-                4 - Order is done                       
-
-                For Order Status Number 
-
-                False - Unpaid
-                True - Paid 
+                4 - Order is under process                       
 
 
             */
@@ -218,12 +201,6 @@ namespace OrderingSystemAFG.CustomerOrders
                 1 - Order added to cart      
                 2 - Deleted order
                 3 - Order is successfully placed        
-                4 - Order is done                       
-
-                For Order Status Number 
-
-                False - Unpaid
-                True - Paid 
 
 
             */
@@ -253,7 +230,7 @@ namespace OrderingSystemAFG.CustomerOrders
                 1 - Order added to cart      
                 2 - Deleted order
                 3 - Order is successfully placed        
-                4 - Order is done                       
+                4 - Order is confirm                       
 
                 For Order Status Number 
 
@@ -295,7 +272,7 @@ namespace OrderingSystemAFG.CustomerOrders
                 1 - Order added to cart      
                 2 - Deleted order
                 3 - Order is successfully placed        
-                4 - Order is done                       
+                4 - Order is confirm                       
 
                 For Order Status Number 
 
@@ -318,6 +295,68 @@ namespace OrderingSystemAFG.CustomerOrders
 
             return new PagedResultDto<CustomerOrderDto>(orderList.Count(), orderList);
         }
+
+        public async Task<PagedResultDto<CustomerOrderDto>> GetAllConfirmedOrdersCustomer(PagedCustomerOrderResultRequestDto input)
+        {
+            #region Number Guide
+            /*
+
+                For Checkout Status Number              
+
+                1 - Order added to cart      
+                2 - Deleted order
+                3 - Order is successfully placed        
+                4 - Order is confirm                       
+
+                For Order Status Number 
+
+                False - Confirm
+                True - Unconfirm 
+
+
+            */
+            #endregion
+
+            var orderList = await _customerOrderIRepository.GetAll()
+               .Include(items => items.Food)
+               .Include(items => items.Category)
+               .Include(items => items.Size)
+               .Include(items => items.Division)
+               .Where(select => select.CheckoutStatusNumber == 4 && select.OrderStatus == false)
+               .GroupBy(organize => organize.ReferenceNumber)
+               .Select(item => new CustomerOrderDto()
+               {
+                   ReferenceNumber = item.Key,
+                   CheckoutTotalAccumulatedOrders = item.FirstOrDefault().CheckoutTotalAccumulatedOrders,
+                   GrandTotal = item.FirstOrDefault().GrandTotal,
+                   DateAndTimeOrderIsPlaced = item.FirstOrDefault().DateAndTimeOrderIsPlaced,
+                   OrderStatus = item.FirstOrDefault().OrderStatus
+               })
+               .ToListAsync();
+
+            return new PagedResultDto<CustomerOrderDto>(orderList.Count(), orderList);
+        }
+
+        /*
+
+               This is the guide i use 
+
+               A. Order is added to cart
+                    - CheckoutStatusNumber = 1
+
+               B. Order is successfully placed
+                    - CheckoutStatusNumber = 3
+
+               C. Order is successfully paid
+                    - CheckoutStatusNumber = 4
+                    - OrderStatus = True
+
+               D. Order is successfully confirm
+                    - CheckoutStatusNumber = 4
+                    - OrderStatus = False
+
+        */
+
 
 
 
