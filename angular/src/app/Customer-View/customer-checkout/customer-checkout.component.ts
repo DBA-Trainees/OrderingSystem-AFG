@@ -70,7 +70,29 @@ export class CustomerCheckoutComponent extends PagedListingComponentBase<Custome
      //throw
   }
 
+  ConfirmOrder(selectedOrder: CustomerOrderDto): void {
 
+    abp.message.confirm(this.l('ConfirmationOfOrderMessage'), undefined,
+        (condition: boolean) => {
+            if (condition)
+            {
+
+                selectedOrder.orderStatus = false; 
+                selectedOrder.dateAndTimeOrderIsRecieved = moment(this.dateToday); 
+
+
+                this._orderServiceProxy.update(selectedOrder).subscribe(() => {
+                    abp.notify.success(this.l('ThankYouMessageNotification'));
+                    this.refresh();
+
+                });
+
+            }
+        }
+    );
+
+    /* Tasukete */ 
+  }
   
 
    

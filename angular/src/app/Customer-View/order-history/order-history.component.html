@@ -50,7 +50,7 @@
                             <thead class="bg-light">
                                 <tr>
                                     
-                                    <th>{{ "Reference Number" | localize }}</th>
+                                    <th>{{ "Order Name" | localize }}</th>
                                     <th>{{ "Amount" | localize }}</th> 
                                     <th>{{ "Quantity" | localize }}</th> 
                                     <th>{{ "Date" | localize }}</th>
@@ -68,14 +68,14 @@
                                 }"  >
 
 
-                                    <td>{{ order.referenceNumber }}</td>
+                                    <td>{{ order.food?.foodName }}</td>
 
 
                                     <td>
-                                        {{ order.grandTotal | currency:'PHP'}}
+                                        {{ order.totalAmountTobePay | currency:'PHP'}}
                                     </td>    
                                     
-                                    <td>{{ order.checkoutTotalAccumulatedOrders }}</td>
+                                    <td>{{ order.totalQuantityOfOrder }}</td>
 
                                     <td>{{ order.dateAndTimeOrderIsPlaced  | date: 'MM/dd/yyyy'}} </td>
 
