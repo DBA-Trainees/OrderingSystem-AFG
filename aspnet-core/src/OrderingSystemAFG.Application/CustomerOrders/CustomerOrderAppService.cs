@@ -246,7 +246,7 @@ namespace OrderingSystemAFG.CustomerOrders
                .Include(items => items.Category)
                .Include(items => items.Size)
                .Include(items => items.Division)
-               .Where(select => select.CheckoutStatusNumber == 4 && select.OrderStatus == true)
+               .Where(select => select.CheckoutStatusNumber == 4 && select.OrderStatus == false)
                .GroupBy(organize => organize.ReferenceNumber)
                .Select(item => new CustomerOrderDto()
                {
