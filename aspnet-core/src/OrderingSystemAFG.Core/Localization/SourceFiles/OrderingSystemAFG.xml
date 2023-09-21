@@ -131,6 +131,7 @@
     <text name="Food Size View">Vendor - Food Size View</text>
     <text name="Food List View">Vendor - Food List View</text>
     <text name="Vendor Order List View">Vendor - Order List View</text>
+	<text name="Vendor Order History View">Vendor - Order History View</text>
 	  
     <text name="Admin Main Navigation">Admin Main View</text> 
     <text name="Division View">Admin - Division View</text> 
