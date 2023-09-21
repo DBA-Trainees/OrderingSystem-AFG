@@ -50,8 +50,8 @@ import { VendorOrderHistoryComponent } from './Vendor-View/vendor-order-history/
                     { path: 'food-type', component: FoodTypeComponent, data: { permission: 'Pages.User.Vendor'}, canActivate: [AppRouteGuard] },
                     { path: 'food-size', component: FoodSizeComponent, data: { permission: 'Pages.User.Vendor'}, canActivate: [AppRouteGuard] },
                     { path: 'food-list', component: FoodListComponent, data: { permission: 'Pages.User.Vendor'}, canActivate: [AppRouteGuard] },
-                    { path: 'vendor-order-list', component: VendorOrderListComponent, data: { permission: 'Pages.User.Customer'}, canActivate: [AppRouteGuard] },
-                    { path: 'vendor-order-history', component: VendorOrderHistoryComponent, data: { permission: 'Pages.User.Customer'}, canActivate: [AppRouteGuard] },
+                    { path: 'vendor-order-list', component: VendorOrderListComponent, data: { permission: 'Pages.User.Vendor'}, canActivate: [AppRouteGuard] },
+                    { path: 'vendor-order-history', component: VendorOrderHistoryComponent, data: { permission: 'Pages.User.Vendor'}, canActivate: [AppRouteGuard] },
                     
                     // #endregion
 
