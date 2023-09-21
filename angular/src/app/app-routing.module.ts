@@ -22,6 +22,7 @@ import { CustomerCheckoutComponent } from './Customer-View/customer-checkout/cus
 import { OrderHistoryComponent } from './Customer-View/order-history/order-history.component';
 import { VendorOrderListComponent } from './Vendor-View/vendor-order-list/vendor-order-list.component';
 import { VendorOrderHistoryComponent } from './Vendor-View/vendor-order-history/vendor-order-history.component';
+import { CustomerReportComponent } from './Customer-View/customer-report/customer-report.component';
 // #endregion
 
 @NgModule({
@@ -60,9 +61,9 @@ import { VendorOrderHistoryComponent } from './Vendor-View/vendor-order-history/
                     { path: 'customer-cart', component: CustomerCartComponent, data: { permission: 'Pages.User.Customer'}, canActivate: [AppRouteGuard] },
                     { path: 'customer-checkout', component: CustomerCheckoutComponent, data: { permission: 'Pages.User.Customer'}, canActivate: [AppRouteGuard] },
                     { path: 'order-history', component: OrderHistoryComponent, data: { permission: 'Pages.User.Customer'}, canActivate: [AppRouteGuard] },
+                    { path: 'customer-report', component: CustomerReportComponent, data: { permission: 'Pages.User.Customer'}, canActivate: [AppRouteGuard] },
                     
-                    
-                    // #endregion
+                    // #endregion 
 
                 ]
             }
