@@ -36,6 +36,7 @@
             public const string Pages_Customers_Cart = "Pages.Customers.Cart";
             public const string Pages_Customers_Checkout = "Pages.Customers.Checkout";
             public const string Pages_Customers_Order_History = "Pages.Customers.Order.History"; 
+            public const string Pages_Customers_Order_Report = "Pages.Customers.Order.Report"; 
         #endregion
 
     }
