@@ -21,6 +21,7 @@ import { CustomerCartComponent } from './Customer-View/customer-cart/customer-ca
 import { CustomerCheckoutComponent } from './Customer-View/customer-checkout/customer-checkout.component';
 import { OrderHistoryComponent } from './Customer-View/order-history/order-history.component';
 import { VendorOrderListComponent } from './Vendor-View/vendor-order-list/vendor-order-list.component';
+import { VendorOrderHistoryComponent } from './Vendor-View/vendor-order-history/vendor-order-history.component';
 // #endregion
 
 @NgModule({
@@ -50,6 +51,7 @@ import { VendorOrderListComponent } from './Vendor-View/vendor-order-list/vendor
                     { path: 'food-size', component: FoodSizeComponent, data: { permission: 'Pages.User.Vendor'}, canActivate: [AppRouteGuard] },
                     { path: 'food-list', component: FoodListComponent, data: { permission: 'Pages.User.Vendor'}, canActivate: [AppRouteGuard] },
                     { path: 'vendor-order-list', component: VendorOrderListComponent, data: { permission: 'Pages.User.Customer'}, canActivate: [AppRouteGuard] },
+                    { path: 'vendor-order-history', component: VendorOrderHistoryComponent, data: { permission: 'Pages.User.Customer'}, canActivate: [AppRouteGuard] },
                     
                     // #endregion
 
