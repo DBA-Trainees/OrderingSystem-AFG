@@ -39,7 +39,8 @@ namespace OrderingSystemAFG.Authorization
                 customerView.CreateChildPermission(PermissionNames.Pages_Customers_Menu, L("Customer Menu View"));
                 customerView.CreateChildPermission(PermissionNames.Pages_Customers_Cart, L("Customer Cart View"));
                 customerView.CreateChildPermission(PermissionNames.Pages_Customers_Checkout, L("Customer Checkout View"));
-                customerView.CreateChildPermission(PermissionNames.Pages_Customers_Order_History, L("Customer Order History View")); 
+                customerView.CreateChildPermission(PermissionNames.Pages_Customers_Order_History, L("Customer Order History View"));
+                customerView.CreateChildPermission(PermissionNames.Pages_Customers_Order_Report, L("Customer Order Report View"));
             #endregion
 
 

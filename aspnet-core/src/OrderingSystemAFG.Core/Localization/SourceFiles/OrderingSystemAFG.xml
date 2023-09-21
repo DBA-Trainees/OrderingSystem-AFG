@@ -142,6 +142,7 @@
     <text name="Customer Cart View">Customer - Cart View</text> 
     <text name="Customer Checkout View">Customer - Checkout View</text> 
 	<text name="Customer Order History View">Customer - Order History</text> 
+	<text name="Customer Order Report View">Customer - Order Report</text> 
     
     <text name="Home View">Home View</text>
     <text name="Customer View">Customer View</text>
