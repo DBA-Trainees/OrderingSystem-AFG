@@ -182,7 +182,7 @@ namespace OrderingSystemAFG.CustomerOrders
                  .Include(items => items.Category)
                  .Include(items => items.Size)
                  .Include(items => items.Division)
-                 .Where(select => select.CheckoutStatusNumber == 3 || select.CheckoutStatusNumber == 4)
+                 .Where(select => select.CheckoutStatusNumber == 3 || select.CheckoutStatusNumber == 4 && select.OrderStatus == true)
                  .OrderByDescending(items => items.Id)
                  .Select(items => ObjectMapper.Map<CustomerOrderDto>(items))
                  .ToListAsync();
@@ -288,7 +288,7 @@ namespace OrderingSystemAFG.CustomerOrders
                  .Include(items => items.Category)
                  .Include(items => items.Size)
                  .Include(items => items.Division)
-                 .Where(select => select.CheckoutStatusNumber == 4 && select.OrderStatus == true)
+                 .Where(select => select.CheckoutStatusNumber == 4) 
                  .OrderByDescending(items => items.Id)
                  .Select(items => ObjectMapper.Map<CustomerOrderDto>(items))
                  .ToListAsync();
@@ -318,23 +318,18 @@ namespace OrderingSystemAFG.CustomerOrders
             #endregion
 
             var orderList = await _customerOrderIRepository.GetAll()
-               .Include(items => items.Food)
-               .Include(items => items.Category)
-               .Include(items => items.Size)
-               .Include(items => items.Division)
-               .Where(select => select.CheckoutStatusNumber == 4 && select.OrderStatus == false)
-               .GroupBy(organize => organize.ReferenceNumber)
-               .Select(item => new CustomerOrderDto()
-               {
-                   ReferenceNumber = item.Key,
-                   CheckoutTotalAccumulatedOrders = item.FirstOrDefault().CheckoutTotalAccumulatedOrders,
-                   GrandTotal = item.FirstOrDefault().GrandTotal,
-                   DateAndTimeOrderIsPlaced = item.FirstOrDefault().DateAndTimeOrderIsPlaced,
-                   OrderStatus = item.FirstOrDefault().OrderStatus
-               })
-               .ToListAsync();
+                 .Include(items => items.Food)
+                 .Include(items => items.Category)
+                 .Include(items => items.Size)
+                 .Include(items => items.Division)
+                 .Where(select => select.CheckoutStatusNumber == 4 && select.OrderStatus == false)
+                 .OrderByDescending(items => items.Id)
+                 .Select(items => ObjectMapper.Map<CustomerOrderDto>(items))
+                 .ToListAsync();
 
             return new PagedResultDto<CustomerOrderDto>(orderList.Count(), orderList);
+
+
         }
 
         /*

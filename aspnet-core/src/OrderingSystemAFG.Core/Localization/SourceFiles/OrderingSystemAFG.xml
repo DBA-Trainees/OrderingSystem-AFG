@@ -165,6 +165,7 @@
     <!-- #region User prompt -->
     <text name="DeleteMessage">Are you sure you want to delete '{0}' ?</text>
     <text name="RemoveOrderMessage">Are you sure this order is paid?</text> 
+    <text name="ConfirmationOfOrderMessage">Are you sure you already recieved this order?</text> 
     <text name="OverQuantityMessage">Sorry you can only order up to {0}. Try again!</text>
     <text name="CannotBeLessThanZeroMessage">Cannot be less than 1 or equal to zero.</text>
     <text name="ForDebugMessageOnly">{0} {1} {2} </text> 
@@ -180,6 +181,7 @@
     <!-- #region Notification Message -->
     <text name="UpdatedSuccessfully" value="Updated Successfully" />
     <text name="CreatedSuccessfully" value="Created Successfully" />
+    <text name="ThankYouMessageNotification" value="Thank You!" />
     <!-- #endregion  -->
 
     <!-- #region Divisions -->
