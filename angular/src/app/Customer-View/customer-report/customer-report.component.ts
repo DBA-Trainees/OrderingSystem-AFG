@@ -24,6 +24,8 @@ export class CustomerReportComponent extends PagedListingComponentBase<CustomerO
   orderList: CustomerOrderDto[] = [];
   orderDtoCustomer = new CustomerOrderDto();
 
+  totalSpendingAmount: number = 0; 
+
   keyword = "";
   isActive: boolean | null;
   advancedFiltersVisible = false;
@@ -48,6 +50,7 @@ export class CustomerReportComponent extends PagedListingComponentBase<CustomerO
     .pipe(
         finalize(() => {
             finishedCallback();
+            this.UpdatedTotalSpending();
         })
     )
     .subscribe((result: CustomerOrderDtoPagedResultDto) => {
@@ -62,7 +65,16 @@ export class CustomerReportComponent extends PagedListingComponentBase<CustomerO
     //throw new Error('Method not implemented.');
   }
 
-  
+  UpdatedTotalSpending(): number
+  {
+      this.totalSpendingAmount = this.orderList.reduce((total, orderDto) => {
+            return total + orderDto.grandTotal}, 0
+      );   
+
+      return this.totalSpendingAmount;
+
+
+  }
 
 
 }
