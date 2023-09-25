@@ -11,8 +11,8 @@
                         <div class="card-body">
 
                             
-                            <div class="py-2">
-                                <h5 class="font-size-15">Order Summary</h5>
+                            <div class="py-2" >
+                                <h5 class="font-size-15"> Details </h5>
         
                                 <div class="table-responsive">
 
@@ -26,8 +26,8 @@
                                             </tr>
                                         </thead>
 
-                                        <tbody>
-                                            <tr *ngFor="let order of ordertItems">
+                                        <tbody *ngFor="let order of ordertItems">
+                                            <tr >
 
                                                 <td>
                                                     <div>
@@ -55,7 +55,7 @@
                                             <div class="col-12 text-right">
                     
                                                 <label class="fw-bolder">
-                                                    {{ "Total amount to pay" | localize }}
+                                                    {{ "Total amount" | localize }}
                                                 </label>
                     
                                                 <div class="col-12 text-right">

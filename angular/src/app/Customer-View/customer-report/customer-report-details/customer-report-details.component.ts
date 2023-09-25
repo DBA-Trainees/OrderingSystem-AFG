@@ -39,7 +39,7 @@ export class CustomerReportDetailsComponent extends AppComponentBase implements 
 
     getAllByReferenceNumber(referenceNumber: string): void
     {
-        this._orderServiceProxy.getOrderByReferenceNumber(referenceNumber).subscribe((result) => {
+        this._orderServiceProxy.getPreviousOrderByReferenceNumber(referenceNumber).subscribe((result) => {
             this.ordertItems = result;
 
         });
