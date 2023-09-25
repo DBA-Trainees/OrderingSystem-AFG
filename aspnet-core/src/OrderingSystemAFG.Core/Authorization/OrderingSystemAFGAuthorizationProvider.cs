@@ -23,7 +23,7 @@ namespace OrderingSystemAFG.Authorization
                 vendorView.CreateChildPermission(PermissionNames.Pages_Vendor_Food_List, L("Food List View"));
                 vendorView.CreateChildPermission(PermissionNames.Pages_Vendor_Order_List, L("Vendor Order List View"));
                 vendorView.CreateChildPermission(PermissionNames.Pages_Vendor_Order_History, L("Vendor Order History View"));
-                vendorView.CreateChildPermission(PermissionNames.Pages_Vendor_Reports, L("Vendor Reports View"));
+                vendorView.CreateChildPermission(PermissionNames.Pages_Vendor_Reports, L("Vendor Reports View"));          
             #endregion
 
             #region Admin View
