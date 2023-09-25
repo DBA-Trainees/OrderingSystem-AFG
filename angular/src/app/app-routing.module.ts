@@ -23,6 +23,7 @@ import { OrderHistoryComponent } from './Customer-View/order-history/order-histo
 import { VendorOrderListComponent } from './Vendor-View/vendor-order-list/vendor-order-list.component';
 import { VendorOrderHistoryComponent } from './Vendor-View/vendor-order-history/vendor-order-history.component';
 import { CustomerReportComponent } from './Customer-View/customer-report/customer-report.component';
+import { VendorReportsComponent } from './Vendor-View/vendor-reports/vendor-reports.component';
 // #endregion
 
 @NgModule({
@@ -53,6 +54,7 @@ import { CustomerReportComponent } from './Customer-View/customer-report/custome
                     { path: 'food-list', component: FoodListComponent, data: { permission: 'Pages.User.Vendor'}, canActivate: [AppRouteGuard] },
                     { path: 'vendor-order-list', component: VendorOrderListComponent, data: { permission: 'Pages.User.Vendor'}, canActivate: [AppRouteGuard] },
                     { path: 'vendor-order-history', component: VendorOrderHistoryComponent, data: { permission: 'Pages.User.Vendor'}, canActivate: [AppRouteGuard] },
+                    { path: 'vendor-reports', component: VendorReportsComponent, data: { permission: 'Pages.User.Vendor'}, canActivate: [AppRouteGuard] },
                     
                     // #endregion
 
