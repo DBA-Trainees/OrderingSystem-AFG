@@ -65,6 +65,7 @@ import { VendorOrderListComponent } from './Vendor-View/vendor-order-list/vendor
 import { VendorEditOrderComponent } from './Vendor-View/vendor-order-list/vendor-edit-order/vendor-edit-order.component';
 import { VendorOrderHistoryComponent } from './Vendor-View/vendor-order-history/vendor-order-history.component';
 import { CustomerReportComponent } from './Customer-View/customer-report/customer-report.component';
+import { VendorReportsComponent } from './Vendor-View/vendor-reports/vendor-reports.component';
 
 
 // #endregion
@@ -123,6 +124,7 @@ import { CustomerReportComponent } from './Customer-View/customer-report/custome
         VendorEditOrderComponent,
         VendorOrderHistoryComponent,
         CustomerReportComponent,
+        VendorReportsComponent,
 
 
         // #endregion
