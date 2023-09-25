@@ -23,7 +23,9 @@ namespace OrderingSystemAFG.CustomerOrders
 
         Task<PagedResultDto<CustomerOrderDto>> GetAllOrdersInCheckout(PagedCustomerOrderResultRequestDto input);
 
-        Task<PagedResultDto<CustomerOrderDto>> GetAllPaidOrders(PagedCustomerOrderResultRequestDto input); 
+        Task<PagedResultDto<CustomerOrderDto>> GetAllPaidOrders(PagedCustomerOrderResultRequestDto input);
+
+        List<CustomerOrderDto> GetPreviousOrderByReferenceNumber(Guid referenceNumber);
 
     }
 }

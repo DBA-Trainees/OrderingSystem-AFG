@@ -332,6 +332,22 @@ namespace OrderingSystemAFG.CustomerOrders
 
         }
 
+        public List<CustomerOrderDto> GetPreviousOrderByReferenceNumber(Guid referenceNumber)
+        {
+
+            var listOfOrder = _customerOrderIRepository.GetAll()
+                .Include(items => items.Food)
+                .Include(items => items.Category)
+                .Include(items => items.Size)
+                .Include(items => items.Division)
+                .Where(select => select.ReferenceNumber == referenceNumber && select.CheckoutStatusNumber == 4 && select.OrderStatus == false)
+                .ToList();
+
+            return ObjectMapper.Map<List<CustomerOrderDto>>(listOfOrder);
+
+        }
+
+
         /*
 
                This is the guide i use 
