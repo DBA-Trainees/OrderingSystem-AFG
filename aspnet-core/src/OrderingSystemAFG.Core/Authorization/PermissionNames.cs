@@ -27,6 +27,7 @@
             public const string Pages_Vendor_Food_List = "Pages.Vendor.Food.List";
             public const string Pages_Vendor_Order_List = "Pages.Vendor.Order.List";
             public const string Pages_Vendor_Order_History = "Pages.Vendor.Order.History"; 
+            public const string Pages_Vendor_Reports = "Pages.Vendor.Reports"; 
         #endregion
 
 
