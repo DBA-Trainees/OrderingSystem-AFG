@@ -1,8 +1,11 @@
 import { Component, Injector } from '@angular/core';
+import { VendorReportDetailsComponent } from '@app/Vendor-View/vendor-reports/vendor-report-details/vendor-report-details.component';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { PagedListingComponentBase, PagedRequestDto } from '@shared/paged-listing-component-base';
 import { CustomerOrderDto, CustomerOrderDtoPagedResultDto, CustomerOrderServiceProxy } from '@shared/service-proxies/service-proxies';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
+import { CustomerReportDetailsComponent } from './customer-report-details/customer-report-details.component';
 
 class PagedOrderDtoCustomer extends PagedRequestDto
 {
@@ -18,7 +21,7 @@ class PagedOrderDtoCustomer extends PagedRequestDto
   animations: [appModuleAnimation()],
 })
 
-export class CustomerReportComponent extends PagedListingComponentBase<CustomerOrderDto>
+export class CustomerReportComponent extends PagedListingComponentBase<CustomerOrderDto> 
 {
 
   orderList: CustomerOrderDto[] = [];
@@ -32,7 +35,8 @@ export class CustomerReportComponent extends PagedListingComponentBase<CustomerO
 
   constructor(
       injector: Injector,
-      private _orderServiceProxyVendor: CustomerOrderServiceProxy,
+      private _orderServiceProxyCustomer: CustomerOrderServiceProxy,
+      private _orderModalServiceCustomer: BsModalService,
   )
   {
       super(injector);
@@ -41,7 +45,7 @@ export class CustomerReportComponent extends PagedListingComponentBase<CustomerO
 
   protected list(request: PagedOrderDtoCustomer, pageNumber: number, finishedCallback: Function): void {
     
-    this._orderServiceProxyVendor.getAllPaidOrders(
+    this._orderServiceProxyCustomer.getAllPaidOrders(
         request.keyword,
         request.IsActive,
         request.skipCount,
@@ -75,6 +79,27 @@ export class CustomerReportComponent extends PagedListingComponentBase<CustomerO
 
 
   }
+
+  View(referenceNumber: string): void
+  {
+
+      this.ViewSelected(referenceNumber);
+
+  }
+
+
+  private ViewSelected(referenceNumber?: string): void
+  {
+      let showReportDetailsComponents: BsModalRef;
+
+      showReportDetailsComponents = this._orderModalServiceCustomer.show(CustomerReportDetailsComponent, {
+          class: 'modal-lg',
+          initialState: {referenceNumber: referenceNumber},
+
+      });
+
+  } 
+
 
 
 }

@@ -1,4 +1,5 @@
 import { Component, Injector } from '@angular/core';
+import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { PagedListingComponentBase, PagedRequestDto } from '@shared/paged-listing-component-base';
 import { CustomerOrderDto, CustomerOrderDtoPagedResultDto, CustomerOrderServiceProxy } from '@shared/service-proxies/service-proxies';
 import { result } from 'lodash-es';
@@ -15,7 +16,8 @@ class PagedOrderDtoVendor extends PagedRequestDto
 @Component({
   selector: 'app-vendor-reports',
   templateUrl: './vendor-reports.component.html',
-  styleUrls: ['./vendor-reports.component.css']
+  styleUrls: ['./vendor-reports.component.css'],
+  animations: [appModuleAnimation()],
 })
 
 
