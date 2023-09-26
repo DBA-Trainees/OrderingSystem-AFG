@@ -63,7 +63,7 @@ export class CheckoutSummaryComponent extends AppComponentBase implements OnInit
         this._orderServiceProxy.getOrderByReferenceNumber(referenceNumber).subscribe((result) => {
             this.ordertItems = result;
 
-            this.checkoutSummaryRouter.navigate(["./app/customer/order-history"]);
+            this.checkoutSummaryRouter.navigate(["./app//customer-checkout"]);
         });
 
     }
