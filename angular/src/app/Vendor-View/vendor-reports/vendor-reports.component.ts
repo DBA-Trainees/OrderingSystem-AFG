@@ -3,7 +3,9 @@ import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { PagedListingComponentBase, PagedRequestDto } from '@shared/paged-listing-component-base';
 import { CustomerOrderDto, CustomerOrderDtoPagedResultDto, CustomerOrderServiceProxy } from '@shared/service-proxies/service-proxies';
 import { result } from 'lodash-es';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
+import { VendorReportDetailsComponent } from './vendor-report-details/vendor-report-details.component';
 
 class PagedOrderDtoVendor extends PagedRequestDto
 {
@@ -36,6 +38,7 @@ export class VendorReportsComponent extends PagedListingComponentBase<CustomerOr
   constructor(
     injector: Injector,
     private _orderServiceProxyVendor: CustomerOrderServiceProxy,
+    private _orderModalServiceVendor: BsModalService,
   )
   {
       super(injector);
@@ -76,6 +79,17 @@ export class VendorReportsComponent extends PagedListingComponentBase<CustomerOr
       );   
 
       return this.totalSales;
+
+  }
+
+  ViewSelected(referenceNumber?: string): void
+  {
+      let showReportDetailsComponent: BsModalRef;
+
+      showReportDetailsComponent = this._orderModalServiceVendor.show(VendorReportDetailsComponent, {
+          class: 'modal-lg',
+          initialState: {referenceNumber: referenceNumber},
+      });
 
   }
 
