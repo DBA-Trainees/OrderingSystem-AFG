@@ -167,6 +167,8 @@
 
     <!-- #region User prompt -->
     <text name="DeleteMessage">Are you sure you want to delete '{0}' ?</text>
+	<text name="ConfirmCheckoutMessage" >Are you sure you want to proceed ? </text> 
+	  
     <text name="RemoveOrderMessage">Are you sure this order is paid?</text> 
     <text name="ConfirmationOfOrderMessage">Are you sure you already recieved this order?</text> 
     <text name="OverQuantityMessage">Sorry you can only order up to {0}. Try again!</text>

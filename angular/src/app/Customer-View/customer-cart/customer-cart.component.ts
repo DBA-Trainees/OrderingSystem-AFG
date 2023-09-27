@@ -233,42 +233,58 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
   ProceedToCheckout(referenceNumber: string): void
   {
 
-        const finalOrderDto = new CustomerOrderDto();
+        abp.message.confirm(
+        
+            this.l('ConfirmCheckoutMessage'),
+            undefined,
+            (result: boolean) => {
+              if (result) {
 
-        finalOrderDto.listOfOrders = this.orderItems.map((order) => {
+                    
+                    const finalOrderDto = new CustomerOrderDto();
 
-            const orderDtoNew = new CustomerOrderDto();
-
-            orderDtoNew.id = order.id;
-            orderDtoNew.foodId = order.foodId;
-            orderDtoNew.sizeId = order.sizeId;
-            orderDtoNew.categoryId = order.categoryId;
-            orderDtoNew.checkoutStatusNumber = 3;
-            orderDtoNew.orderStatus = false;
-            orderDtoNew.notes = order.notes;
-            orderDtoNew.totalQuantityOfOrder = order.totalQuantityOfOrder;
-            orderDtoNew.totalAmountTobePay = order.totalAmountTobePay;
-            orderDtoNew.grandTotal = this.UpdatedGrandTotal();
-            orderDtoNew.dateAndTimeOrderIsPlaced = moment(this.dateToday);
-            orderDtoNew.checkoutTotalAccumulatedOrders = this.AccumulatedQuantityOfOrders();
-            //finalOrderDto.customerName = this.
-            //finalOrderDto.divisionId = selectedDivision
-
-            return orderDtoNew;
-
-        });
-
-        this._orderServiceProxy.updateStatusNumberIntoThree(finalOrderDto).subscribe((result) => {
+                    finalOrderDto.listOfOrders = this.orderItems.map((order) => {
             
-            referenceNumber = result.referenceNumber;
-            this.notify.info(this.l("Ordered Succesfully"));
+                        const orderDtoNew = new CustomerOrderDto();
             
-            this.onSave.emit(result);
-            this.CheckOut(referenceNumber); 
-            this.refresh();
+                        orderDtoNew.id = order.id;
+                        orderDtoNew.foodId = order.foodId;
+                        orderDtoNew.sizeId = order.sizeId;
+                        orderDtoNew.categoryId = order.categoryId;
+                        orderDtoNew.checkoutStatusNumber = 3;
+                        orderDtoNew.orderStatus = false;
+                        orderDtoNew.notes = order.notes;
+                        orderDtoNew.totalQuantityOfOrder = order.totalQuantityOfOrder;
+                        orderDtoNew.totalAmountTobePay = order.totalAmountTobePay;
+                        orderDtoNew.grandTotal = this.UpdatedGrandTotal();
+                        orderDtoNew.dateAndTimeOrderIsPlaced = moment(this.dateToday);
+                        orderDtoNew.checkoutTotalAccumulatedOrders = this.AccumulatedQuantityOfOrders();
+                        //finalOrderDto.customerName = this.
+                        //finalOrderDto.divisionId = selectedDivision
+            
+                        return orderDtoNew;
+            
+                    });
+            
+                    this._orderServiceProxy.updateStatusNumberIntoThree(finalOrderDto).subscribe((result) => {
+                        
+                        referenceNumber = result.referenceNumber;
+                        this.notify.info(this.l("Ordered Succesfully"));
+                        
+                        this.onSave.emit(result);
+                        this.CheckOut(referenceNumber); 
+                        this.refresh();
+            
+            
+                    });
 
 
-        });
+  
+              }
+            }
+        );
+
+
 
   }
 
