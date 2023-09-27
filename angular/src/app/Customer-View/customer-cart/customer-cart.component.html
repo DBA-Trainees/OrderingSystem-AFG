@@ -98,7 +98,7 @@
                                                class="form-control"
                                                [(ngModel)]="order.totalQuantityOfOrder"
                                                [min]="1"
-                                               [max]="order.food.totalStock"
+                                               [max]="UpdatedMaxQuantity(order)"
                                                (change)="UpdateQuantity(order)" />
 
                                     </td>                                                                  

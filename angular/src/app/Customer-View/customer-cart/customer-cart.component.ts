@@ -287,6 +287,21 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
        });
 
   }
+
+  UpdatedMaxQuantity(orderDto : CustomerOrderDto): number
+  {
+
+        let orignalAmount = orderDto.food?.price; 
+        let oldAmmount = orderDto.totalAmountTobePay; 
+
+        let oldQuantityOfOrder = oldAmmount / orignalAmount; 
+
+        let currentStock = orderDto.food?.totalStock; 
+
+
+        return currentStock + oldQuantityOfOrder;
+
+  }
     
   
   
