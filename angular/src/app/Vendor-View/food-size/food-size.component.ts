@@ -40,6 +40,12 @@ export class FoodSizeComponent extends PagedListingComponentBase<SizeDto>{
   {
     super(injector);
   }
+
+  clearFilters(): void {
+    this.keyword = '';
+    this.isActive = undefined;
+    this.getDataPage(1);
+  }
   
   ShowCreateSize(): void 
   {
