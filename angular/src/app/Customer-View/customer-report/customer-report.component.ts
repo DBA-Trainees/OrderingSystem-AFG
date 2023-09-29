@@ -42,6 +42,12 @@ export class CustomerReportComponent extends PagedListingComponentBase<CustomerO
       super(injector);
   }
 
+  clearFilters(): void {
+    this.keyword = '';
+    this.isActive = undefined;
+    this.getDataPage(1);
+  }
+
 
   protected list(request: PagedOrderDtoCustomer, pageNumber: number, finishedCallback: Function): void {
     
