@@ -38,6 +38,12 @@ export class VendorOrderHistoryComponent extends PagedListingComponentBase<Custo
       super(injector);
   }
 
+  clearFilters(): void {
+    this.keyword = '';
+    this.isActive = undefined;
+    this.getDataPage(1);
+  }
+
   protected list(request: PagedOrderDtoVendor, pageNumber: number, finishedCallback: Function): void {
     
       this._orderServiceProxyVendor.getAllPreviousOrderVendor(

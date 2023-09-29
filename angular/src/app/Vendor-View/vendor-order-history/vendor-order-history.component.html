@@ -27,17 +27,25 @@
                         <div class="col-md-6">&emsp;</div>
                         <div class="col-md-6">
 
-                            <!--
                             <div class="input-group">
-                                <input 
-                                type="text" 
-                                class="form-control" 
-                                name="keyword"                                    
-                                [placeholder]="'SearchWithThreeDot' | localize" 
-                                [(ngModel)]="keyword"
-                                (keyup.enter)="getDataPage(1)" />
+
+                                <input type="text" 
+                                       class="form-control" 
+                                       name="keyword"
+                                       [placeholder]="'SearchWithThreeDot' | localize" [(ngModel)]="keyword"
+                                       (keyup.enter)="getDataPage(1)" 
+                                />
+
+                                <div class="input-group-append">
+
+                                    <button type="button" class="btn btn-default float-right" 
+                                            (click)="clearFilters()">
+                                        Clear
+                                    </button>
+
+                                </div>
+
                             </div>
-                            -->
 
                         </div>
                     </div>
@@ -65,7 +73,8 @@
                                     itemsPerPage: pageSize,
                                     currentPage: pageNumber,
                                     totalItems: totalItems
-                                }" [ngStyle]="{'background-color': (order.checkoutStatusNumber == 3  ) ? 'red' : 'transparent', 'color': ( order.checkoutStatusNumber == 4 ) ? 'black' : 'white'}"  >
+                                }" [ngStyle]="{'background-color': (order.checkoutStatusNumber == 3  ) ? 'red' : 'transparent', 'color': ( order.checkoutStatusNumber == 4 ) ? 'black' : 'white'} | 
+                                    search: keyword: ['food.foodName' , 'totalQuantityOfOrder', 'dateAndTimeOrderIsPlaced' ]">
 
                                     <td>{{ order.food?.foodName }}</td> 
 
