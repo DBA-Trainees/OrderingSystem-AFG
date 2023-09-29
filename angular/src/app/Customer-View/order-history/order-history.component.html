@@ -27,17 +27,25 @@
                         <div class="col-md-6">&emsp;</div>
                         <div class="col-md-6">
 
-                            <!--
-                            <div class="input-group">
-                                <input 
-                                type="text" 
-                                class="form-control" 
-                                name="keyword"                                    
-                                [placeholder]="'SearchWithThreeDot' | localize" 
-                                [(ngModel)]="keyword"
-                                (keyup.enter)="getDataPage(1)" />
+                            <div class="input-group"> 
+
+                                <input type="text" 
+                                       class="form-control" 
+                                       name="keyword"
+                                       [placeholder]="'SearchWithThreeDot' | localize" [(ngModel)]="keyword"
+                                       (keyup.enter)="getDataPage(1)" 
+                                />
+
+                                <div class="input-group-append">
+
+                                    <button type="button" class="btn btn-default float-right" 
+                                            (click)="clearFilters()">
+                                        Clear
+                                    </button>
+
+                                </div>
+
                             </div>
-                            -->
 
                         </div>
                     </div>
@@ -64,8 +72,7 @@
                                     id: 'server',
                                     itemsPerPage: pageSize,
                                     currentPage: pageNumber,
-                                    totalItems: totalItems
-                                }"  >
+                                    totalItems: totalItems} | search: keyword: ['food.foodName', 'totalAmountTobePay', 'totalQuantityOfOrder', 'dateAndTimeOrderIsPlaced' ]">
 
 
                                     <td>{{ order.food?.foodName }}</td>
