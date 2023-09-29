@@ -44,6 +44,12 @@ export class VendorReportsComponent extends PagedListingComponentBase<CustomerOr
       super(injector);
   }
 
+  clearFilters(): void {
+    this.keyword = '';
+    this.isActive = undefined;
+    this.getDataPage(1);
+  }
+
 
   protected list(request: PagedOrderDtoVendor, pageNumber: number, finishedCallback: Function): void {
 
