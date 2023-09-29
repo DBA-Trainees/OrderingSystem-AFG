@@ -43,6 +43,12 @@ export class CategoryComponent extends PagedListingComponentBase<CategoryDto>{
     super(injector);
   }
 
+  clearFilters(): void {
+    this.keyword = '';
+    this.isActive = undefined;
+    this.getDataPage(1);
+  }
+
   ShowCreateCategory() : void
   {
     this.CreateCategory();
