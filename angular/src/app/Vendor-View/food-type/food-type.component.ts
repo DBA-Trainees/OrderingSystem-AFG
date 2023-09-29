@@ -27,7 +27,7 @@ export class FoodTypeComponent extends PagedListingComponentBase<FoodTypeDto>{
   typeItems: FoodTypeDto[] = [];
   totalRecords: number = 0;
   loading: boolean = false;
-  icActive: boolean | null;
+  isActive: boolean | null;
   keyword: "";
   request: FoodTypeDtoPagedResultDto;
   advancedFiltersVisible = false;
@@ -40,6 +40,13 @@ export class FoodTypeComponent extends PagedListingComponentBase<FoodTypeDto>{
   {
     super(injector);
   }
+
+  clearFilters(): void {
+    this.keyword = '';
+    this.isActive = undefined;
+    this.getDataPage(1);
+  }
+  
   
   ShowCreateFoodType(): void
   {

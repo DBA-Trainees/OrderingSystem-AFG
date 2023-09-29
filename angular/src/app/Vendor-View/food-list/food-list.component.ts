@@ -37,6 +37,12 @@ export class FoodListComponent extends PagedListingComponentBase<FoodDto> {
   {
       super(injector);
   }
+
+  clearFilters(): void {
+    this.keyword = '';
+    this.isActive = undefined;
+    this.getDataPage(1);
+  }
   
   ShowCreateFood(): void
   {
