@@ -92,6 +92,7 @@
                id="foodQty"
                required
                [min]="1"
+               (keypress)="keyPressNumbers($event)"
                [(ngModel)]="foodDto.totalStock"
                #foodQtyModel="ngModel"
                #foodQtyEl />

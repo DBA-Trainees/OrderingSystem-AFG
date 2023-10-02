@@ -47,6 +47,7 @@
                required
                [min]="1"
                [max]="foodDto.totalStock"
+               (keypress)="keyPressNumbers($event)" 
                [(ngModel)]="orderDto.totalQuantityOfOrder"
                #foodQtyModel="ngModel"
                #foodQtyEl />
