@@ -99,7 +99,8 @@
                                                [(ngModel)]="order.totalQuantityOfOrder"
                                                [min]="1"
                                                [max]="UpdatedMaxQuantity(order)"
-                                               (change)="UpdateQuantity(order)" />
+                                               (keypress)="keyPressNumbers($event)" 
+                                               (change)="UpdateQuantity(order)" /> 
 
                                     </td>                                                                  
 
