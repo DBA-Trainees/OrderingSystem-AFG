@@ -106,9 +106,10 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
       let currentAmount = this.UpdatedTotalAmmountToPay(selectedOrder); 
       
       let updatedQuantityOfOrder = currentAmount / orignalAmount; 
+      let finalUpdatedQuantityOfOrder = Math.round(updatedQuantityOfOrder);
 
       let currentStock = selectedOrder.food?.totalStock; 
-      let updatedStock = currentStock + updatedQuantityOfOrder;
+      let updatedStock = currentStock + finalUpdatedQuantityOfOrder;
 	
       //selectedOrder.food.totalStock = updatedStock;
       //selectedOrder.orderStatus = false;
