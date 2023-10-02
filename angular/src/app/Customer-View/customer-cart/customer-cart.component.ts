@@ -167,15 +167,19 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
       let updatedAmount = this.UpdatedTotalAmmountToPay(orderDtoParameter); 
 
       let inputedQuantityOfOrder = orderDtoParameter.totalQuantityOfOrder; 
+      
       let oldQuantityOfOrder = oldAmmount / orignalAmount; 
+      let finalOldQuantityOfOrder = Math.round(oldQuantityOfOrder);
+
       let updatedQuantityOfOrder = updatedAmount / orignalAmount; 
+      let finalUpdatedQuantityOfOrder = Math.round(updatedQuantityOfOrder);
 
       let currentStock = orderDtoParameter.food?.totalStock; 
-      let orginalStock = currentStock + oldQuantityOfOrder;
-      let updatedStock = orginalStock - updatedQuantityOfOrder; 
+      let orginalStock = currentStock + finalOldQuantityOfOrder;
+      let updatedStock = orginalStock - finalUpdatedQuantityOfOrder; 
  
       orderDtoParameter.totalAmountTobePay = updatedAmount;
-      orderDtoParameter.totalQuantityOfOrder = updatedQuantityOfOrder; 
+      orderDtoParameter.totalQuantityOfOrder = finalUpdatedQuantityOfOrder; 
       orderDtoParameter.food.totalStock = updatedStock;
       orderDtoParameter.grandTotal = this.UpdatedGrandTotal();
       orderDtoParameter.checkoutTotalAccumulatedOrders = this.AccumulatedQuantityOfOrders();
