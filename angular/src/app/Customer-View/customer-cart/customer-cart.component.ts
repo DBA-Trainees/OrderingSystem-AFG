@@ -327,11 +327,12 @@ export class CustomerCartComponent extends PagedListingComponentBase<CustomerDto
         let oldAmmount = orderDto.totalAmountTobePay; 
 
         let oldQuantityOfOrder = oldAmmount / orignalAmount; 
+        let finalOldQuantityOfOrder = Math.round(oldQuantityOfOrder);
 
         let currentStock = orderDto.food?.totalStock; 
 
 
-        return currentStock + oldQuantityOfOrder;
+        return currentStock + finalOldQuantityOfOrder;
 
   }
     
